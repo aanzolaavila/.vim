@@ -137,9 +137,11 @@ set autoread
 " disable beep on errors
 set noerrorbells
 
-"" Swap and backup file options - disable all of them
-set noswapfile
-set nobackup
+"" Swap and backup file option 
+" set noswapfile " disable swap files
+set directory=$HOME/.vim/swp// " specify the directory for swap files
+set nobackup " disable backups
+" set backupdir=$HOME/.vim/.backup// " specify backup location of files
 set nowb
 
 "" Text rendering options
@@ -165,3 +167,7 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 " set statusline+=%c,     "cursor column
 " set statusline+=%l/%L   "cursor line/total lines
 " set statusline+=\ %P    "percent through file
+
+" Maintain undo history between sessions
+set undofile
+set undodir=~/.vim/undodir
