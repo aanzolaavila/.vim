@@ -21,7 +21,7 @@ set wildmenu
 " - Use * to make it fuzzy
 
 " THINGS TO CONSIDER:
-" - :b lets yoiu autocomplete any open buffer
+" - :b lets you autocomplete any open buffer
 
 " ---
 " TAG JUMPING:
@@ -41,7 +41,7 @@ command! MakeTags !ctags -R .
 " AUTOCOMPLETE:
 " The good stuff is documented in |ins-completion|
 
-" HIGHTLIGHTS:
+" HIGHLIGHTS:
 " - ^x^n for JUST this file
 " - ^x^f for filenames (works with our path trick!)
 " - ^x^] for for tags only
@@ -171,3 +171,26 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 " Maintain undo history between sessions
 set undofile
 set undodir=~/.vim/undodir
+
+" adds commands for capitalization of words and sentences
+if (&tildeop)
+  nmap gcw guw~l
+  nmap gcW guW~l
+  nmap gciw guiw~l
+  nmap gciW guiW~l
+  nmap gcis guis~l
+  nmap gc$ gu$~l
+  nmap gcgc guu~l
+  nmap gcc guu~l
+  vmap gc gu~l
+else
+  nmap gcw guw~h
+  nmap gcW guW~h
+  nmap gciw guiw~h
+  nmap gciW guiW~h
+  nmap gcis guis~h
+  nmap gc$ gu$~h
+  nmap gcgc guu~h
+  nmap gcc guu~h
+  vmap gc gu~h
+endif
