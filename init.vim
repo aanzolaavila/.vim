@@ -125,7 +125,7 @@ set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
 " enable spell checking
-set spell
+set nospell
 set spelllang=en,es
 
 " allow backspacing over indention, line breaks ans insertion start
