@@ -194,3 +194,6 @@ else
   nmap gcc guu~h
   vmap gc gu~h
 endif
+
+" Stamping
+nnoremap S diw"0P
