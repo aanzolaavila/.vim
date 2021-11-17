@@ -1,5 +1,11 @@
 colorscheme murphy
 
+set scrolloff=999
+set scrolljump=-100 
+
+" Performance improvement
+set lazyredraw
+
 " enter the current millenium
 set nocompatible
 
@@ -197,3 +203,19 @@ endif
 
 " Stamping
 nnoremap S diw"0P
+
+" When going through search results keep match at the center
+nnoremap n nzz
+nnoremap N Nzz
+
+" Common typos
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
+" Change from one windows to another directionally
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
