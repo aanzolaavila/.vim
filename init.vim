@@ -213,8 +213,6 @@ nnoremap N Nzz
 :command Wq wq
 :command W w
 :command Q q
-" optimization
-:cnoremap w update
 
 " Change from one windows to another directionally
 nnoremap <C-H> <C-W><C-H>
