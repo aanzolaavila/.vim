@@ -213,6 +213,8 @@ nnoremap N Nzz
 :command Wq wq
 :command W w
 :command Q q
+" optimization
+:cnoremap w update
 
 " Change from one windows to another directionally
 nnoremap <C-H> <C-W><C-H>
@@ -226,3 +228,9 @@ vnoremap . :normal.<CR>
 " Move visual selection
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" HARD MODE - Disable arrow keys in Normal mode
+:noremap <left> <nop>
+:noremap <right> <nop>
+:noremap <up> <nop>
+:noremap <down> <nop>
