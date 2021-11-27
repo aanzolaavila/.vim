@@ -9,6 +9,19 @@ set lazyredraw
 " enter the current millenium
 set nocompatible
 
+" ================================ 
+" PLUGINS
+" ================================ 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/plugins')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+call vundle#end()
+" ================================ 
+" END PLUGINS
+" ================================ 
+
 " enable syntax and plugins (netrw)
 syntax enable
 filetype plugin on
