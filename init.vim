@@ -1,8 +1,8 @@
 " Plugins
-source plugins.vim
+source ~/.vim/plugins.vim
 
 " General config
-source general.vim
+source ~/.vim/general.vim
 
 " Shortcuts
-source shortcuts.vim
+source ~/.vim/shortcuts.vim
