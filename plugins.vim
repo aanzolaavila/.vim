@@ -13,6 +13,9 @@ Plugin 'sharkdp/fd'
 Plugin 'BurntSushi/ripgrep'
 Plugin 'kyazdani42/nvim-web-devicons'
 
+" Targets plugin
+Plugin 'wellle/targets.vim'
+
 " ================================ 
 " ================================ 
 call vundle#end()
