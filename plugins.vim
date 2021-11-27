@@ -6,8 +6,12 @@ call vundle#begin('~/.vim/plugins')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'nvim-lua/plenary.nvim'
+" Telescope
 Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'sharkdp/fd'
+Plugin 'BurntSushi/ripgrep'
+Plugin 'kyazdani42/nvim-web-devicons'
 
 " ================================ 
 " ================================ 
