@@ -1,11 +1,11 @@
 " Plugins
-source ~/.vim/plugins.vim
+runtime plugins.vim
 
 " Plugin options
-source ~/.vim/plugin-options.vim
+runtime plugin-options.vim
 
 " General config
-source ~/.vim/general.vim
+runtime general.vim
 
 " Shortcuts
-source ~/.vim/mappings.vim
+runtime mappings.vim

@@ -23,7 +23,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Polyglot
 Plug 'sheerun/vim-polyglot'
 
-" Undotreew
+" Undotree
 Plug 'mbbill/undotree'
 
 " Doom One colorscheme
@@ -48,7 +48,7 @@ Plug 'sbdchd/neoformat'
 " K: check documentation of class or method
 " <leader>n: show the usage of a name in current file
 " <leader>r: rename a name
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 
 " File managing and exploration plugin
 Plug 'scrooloose/nerdtree'

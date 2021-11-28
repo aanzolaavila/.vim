@@ -64,14 +64,10 @@ vnoremap K :m '<-2<CR>gv=gv
 :noremap <down> <nop>
 
 " Telescope plugin
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+runtime plugin-mappings/telescope.vim
 
 " Todoist plugin
-nnoremap <leader>t <cmd>Todoist Personal<cr>
-nnoremap <leader>T <cmd>Clap todoist<cr>
+runtime plugin-mappings/todoist.vim
 
 " Buffer Next Previous
 nnoremap <leader>h <cmd>bprev<cr>
@@ -80,12 +76,8 @@ nnoremap <leader>l <cmd>bnext<cr>
 " Tabs
 nnoremap T <cmd>tabnew<cr>
 
-" For autocompletion
-" will select completion if <cr> is pressed
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" use <tab> and <s-tab> to navigate the completion list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " NERDTree plugin
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+" Conquer of Completion plugin
+runtime plugin-mappings/coc.vim
