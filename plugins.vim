@@ -77,4 +77,3 @@ Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
-source ~/.vim/plugin-options.vim
