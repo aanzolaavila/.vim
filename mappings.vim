@@ -46,9 +46,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
-" Change from one tab to another directionally
-nnoremap <S-L> gt
-nnoremap <S-H> gT
+" Tabs
+nnoremap T <cmd>tabnew<cr>
+nnoremap <S-L> <cmd>tabn<cr>
+nnoremap <S-H> <cmd>tabp<cr>
+nnoremap <leader><S-H> <cmd>tabm -1<cr>
+nnoremap <leader><S-L> <cmd>tabm +1<cr>
 
 " In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vnoremap . :normal.<CR>
@@ -58,10 +61,10 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " HARD MODE - Disable arrow keys in Normal mode
-:noremap <left> <nop>
-:noremap <right> <nop>
-:noremap <up> <nop>
-:noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
 
 " Telescope plugin
 runtime plugin-mappings/telescope.vim
@@ -73,11 +76,11 @@ runtime plugin-mappings/todoist.vim
 nnoremap <leader>h <cmd>bprev<cr>
 nnoremap <leader>l <cmd>bnext<cr>
 
-" Tabs
-nnoremap T <cmd>tabnew<cr>
-
 " NERDTree plugin
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 " Conquer of Completion plugin
 runtime plugin-mappings/coc.vim
+
+" Terminal emulator
+tnoremap <Esc> <C-\><C-n>

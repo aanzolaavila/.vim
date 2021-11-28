@@ -69,4 +69,3 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
-
