@@ -28,11 +28,17 @@ nnoremap S diw"0P
 nnoremap n nzz
 nnoremap N Nzz
 
+" When going up or down also keep it at the center
+nnoremap <C-U> <C-U>zz
+nnoremap <C-D> <C-D>zz
+
 " Common typos
 :command WQ wq
 :command Wq wq
 :command W w
 :command Q q
+:command Qa qa
+:command QA qa
 
 " Change from one windows to another directionally
 nnoremap <C-H> <C-W><C-H>
@@ -62,3 +68,21 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Todoist
+nnoremap <leader>t <cmd>Todoist Personal<cr>
+nnoremap <leader>T <cmd>Clap todoist<cr>
+
+" Buffer Next Previous
+nnoremap <leader>h <cmd>bprev<cr>
+nnoremap <leader>l <cmd>bnext<cr>
+
+" Tabs
+nnoremap T <cmd>tabnew<cr>
+
+" For autocompletion
+" will select completion if <cr> is pressed
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" use <tab> and <s-tab> to navigate the completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

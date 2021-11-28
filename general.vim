@@ -1,10 +1,11 @@
-colorscheme murphy
+" colorscheme murphy
+let g:doom_one_terminal_colors = v:true
 
 " Performance improvement
 set lazyredraw
 
 set scrolloff=999
-set scrolljump=-100 
+set scrolljump=-100
 
 " enter the current millenium
 set nocompatible
@@ -14,7 +15,7 @@ filetype off
 syntax enable
 filetype plugin on
 
-" --- 
+" ---
 " FINDING FILES:
 " search down into subfolders
 " provides tab-completion for all file-related tasks
@@ -57,7 +58,7 @@ command! MakeTags !ctags -R .
 " NOW WE CAN:
 " - Use ^n and ^p to go back and forth in the suggestion list
 
-" --- 
+" ---
 " FILE BROWSING:
 " Tweaks for browsing
 let g:netrw_banner=0          " disable annoying banner
@@ -144,7 +145,7 @@ set autoread
 " disable beep on errors
 set noerrorbells
 
-"" Swap and backup file option 
+"" Swap and backup file option
 " set noswapfile " disable swap files
 set directory=$HOME/.vim/swp// " specify the directory for swap files
 set nobackup " disable backups
@@ -156,7 +157,7 @@ set nowb
 " word
 set linebreak
 
-" the number of screen lines to keep above and below the cursor 
+" the number of screen lines to keep above and below the cursor
 set scrolloff=3
 
 " the number of screen columns to keep to the left and right of the cursor
@@ -178,3 +179,13 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 " Maintain undo history between sessions
 set undofile
 set undodir=~/.vim/undodir
+
+" Basic formating for NeoFormat plugin
+" enable alignment
+let g:neoformat_basic_format_align = 1
+
+" enable tab to space conversion
+let g:neoformat_basic_format_retab = 1
+
+" enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1

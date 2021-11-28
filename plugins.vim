@@ -1,21 +1,46 @@
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/plugins')
-" ================================ 
-" ================================ 
+" REFERENCES
+" https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Telescope
-Plugin 'nvim-telescope/telescope.nvim'
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'sharkdp/fd'
-Plugin 'BurntSushi/ripgrep'
-Plugin 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sharkdp/fd'
+Plug 'BurntSushi/ripgrep'
+Plug 'kyazdani42/nvim-web-devicons'
 
-" Targets plugin
-Plugin 'wellle/targets.vim'
+" Targets
+Plug 'wellle/targets.vim'
 
-" ================================ 
-" ================================ 
-call vundle#end()
+" Todoist
+Plug 'romgrk/todoist.nvim', { 'do': ':TodoistInstall' }
+Plug 'liuchengxu/vim-clap'
+
+" Conquer of Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Polyglot
+Plug 'sheerun/vim-polyglot'
+
+" Undotreew
+Plug 'mbbill/undotree'
+
+" Doom One colorscheme
+Plug 'romgrk/doom-one.vim'
+
+" Status bar plugin
+Plug 'vim-airline/vim-airline'
+
+" Automatic quote and bracket completion
+Plug 'jiangmiao/auto-pairs'
+
+" Comment plugin
+" To comment out a single line, use `<leader>cc`
+" To uncomment a line, use `<leader>cu`
+Plug 'scrooloose/nerdcommenter'
+
+" Code auto-format plugin
+Plug 'sbdchd/neoformat'
+
+call plug#end()
