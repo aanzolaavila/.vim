@@ -56,6 +56,25 @@ Plug 'scrooloose/nerdtree'
 " Code checker plugin
 Plug 'neomake/neomake'
 
+" Multiple cursor editing plugin
+" In normal mode, move the cursor to a variable you want to rename, press <Ctrl-N> and this variable will be highlighted. Continue press <Ctrl-N>, the next occurrence of this variable will be highlighted. If you want to skip a certain occurrence (for example, a string may contain a sub-string which is the same as the variable), just press <Ctrl-X> after this position has been highlighted. Continue selecting the occurrence of this variable until all its occurrence has been selected.
+" Now, press c (in Nvim, c means to change ) and enter insert mode. Input a new name and save.
+Plug 'terryma/vim-multiple-cursors'
+
+" Highlight your yank area
+Plug 'machakann/vim-highlightedyank'
+
+" Code folding plugin
+" For large code base, it is helpful to fold some part to get a better idea of the structure of the code.
+" zo: Open fold in current cursor position
+" zO: Open fold and sub-fold in current cursor position recursively
+" zc: Close the fold in current cursor position
+" zC: Close the fold and sub-fold in current cursor position recursively
+Plug 'tmhedberg/SimpylFold'
+
+" Vim git-gutter
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 source ~/.vim/plugin-options.vim

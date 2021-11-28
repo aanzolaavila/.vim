@@ -24,3 +24,4 @@ let g:jedi#use_splits_not_buffers = "right"
 "--------------------------------
 " NEOMAKE
 let g:neomake_python_enabled_makers = ['pylint']
+call neomake#configure#automake('nrwi', 500)
