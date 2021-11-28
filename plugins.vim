@@ -43,4 +43,19 @@ Plug 'scrooloose/nerdcommenter'
 " Code auto-format plugin
 Plug 'sbdchd/neoformat'
 
+" Code jump plugin
+" <leader>d: go to definition
+" K: check documentation of class or method
+" <leader>n: show the usage of a name in current file
+" <leader>r: rename a name
+Plug 'davidhalter/jedi-vim'
+
+" File managing and exploration plugin
+Plug 'scrooloose/nerdtree'
+
+" Code checker plugin
+Plug 'neomake/neomake'
+
 call plug#end()
+
+source ~/.vim/plugin-options.vim

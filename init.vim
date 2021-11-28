@@ -5,4 +5,4 @@ source ~/.vim/plugins.vim
 source ~/.vim/general.vim
 
 " Shortcuts
-source ~/.vim/shortcuts.vim
+source ~/.vim/mappings.vim
