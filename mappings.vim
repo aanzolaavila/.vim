@@ -69,7 +69,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" Todoist
+" Todoist plugin
 nnoremap <leader>t <cmd>Todoist Personal<cr>
 nnoremap <leader>T <cmd>Clap todoist<cr>
 
@@ -86,3 +86,6 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " use <tab> and <s-tab> to navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" NERDTree plugin
+nnoremap <C-t> :NERDTreeToggle<CR>
