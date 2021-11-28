@@ -54,6 +54,7 @@ nnoremap <S-H> <cmd>tabp<cr>
 nnoremap <leader><S-H> <cmd>tabm -1<cr>
 nnoremap <leader><S-L> <cmd>tabm +1<cr>
 
+" REF: https://vim.fandom.com/wiki/Move_current_window_between_tabs
 function MoveToPrevTab()
   "there is only one window
   if tabpagenr('$') == 1 && winnr('$') == 1
