@@ -46,12 +46,62 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
+"----------------------------------------------------------------
 " Tabs
 nnoremap T <cmd>tabnew<cr>
 nnoremap <S-L> <cmd>tabn<cr>
 nnoremap <S-H> <cmd>tabp<cr>
 nnoremap <leader><S-H> <cmd>tabm -1<cr>
 nnoremap <leader><S-L> <cmd>tabm +1<cr>
+
+function MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+nnoremap <leader><C-m> :call MoveToNextTab()<CR><C-w>H
+nnoremap <leader><C-n> :call MoveToPrevTab()<CR><C-w>H
+
+"----------------------------------------------------------------
 
 " In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vnoremap . :normal.<CR>
@@ -83,4 +133,5 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 runtime plugin-mappings/coc.vim
 
 " Terminal emulator
+" can press <Esc> to get out of terminal
 tnoremap <Esc> <C-\><C-n>
