@@ -3,6 +3,9 @@
 
 call plug#begin('~/.vim/plugged')
 
+" Sensible defaults
+Plug 'tpope/vim-sensible'
+
 " Telescope
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': '0.5-compat'}
 Plug 'nvim-telescope/telescope.nvim'
@@ -22,7 +25,8 @@ Plug 'liuchengxu/vim-clap'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Polyglot
-Plug 'sheerun/vim-polyglot'
+" Disabled because it causes a big slowdown switching from one tab to another
+"Plug 'sheerun/vim-polyglot'
 
 " Undotree
 Plug 'mbbill/undotree'
@@ -34,12 +38,12 @@ Plug 'romgrk/doom-one.vim'
 Plug 'vim-airline/vim-airline'
 
 " Automatic quote and bracket completion
-Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 
 " Comment plugin
 " To comment out a single line, use `<leader>cc`
 " To uncomment a line, use `<leader>cu`
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 
 " Code auto-format plugin
 Plug 'sbdchd/neoformat'
@@ -58,15 +62,8 @@ Plug 'terryma/vim-multiple-cursors'
 " Highlight your yank area
 Plug 'machakann/vim-highlightedyank'
 
-" Code folding plugin
-" For large code base, it is helpful to fold some part to get a better idea of the structure of the code.
-" zo: Open fold in current cursor position
-" zO: Open fold and sub-fold in current cursor position recursively
-" zc: Close the fold in current cursor position
-" zC: Close the fold and sub-fold in current cursor position recursively
-Plug 'tmhedberg/SimpylFold'
-
-" Vim git-gutter
+" Git
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()

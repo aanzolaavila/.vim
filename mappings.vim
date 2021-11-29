@@ -49,8 +49,8 @@ nnoremap <C-L> <C-W><C-L>
 "----------------------------------------------------------------
 " Tabs
 nnoremap T <cmd>tabnew<cr>
-nnoremap <S-L> <cmd>tabn<cr>
-nnoremap <S-H> <cmd>tabp<cr>
+nnoremap <S-L> gt
+nnoremap <S-H> gT
 nnoremap <leader><S-H> <cmd>tabm -1<cr>
 nnoremap <leader><S-L> <cmd>tabm +1<cr>
 
@@ -126,6 +126,7 @@ runtime plugin-mappings/todoist.vim
 " Buffer Next Previous
 nnoremap <leader>h <cmd>bprev<cr>
 nnoremap <leader>l <cmd>bnext<cr>
+nnoremap <silent> <C-x> :bdelete<CR>
 
 " NERDTree plugin
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -136,3 +137,9 @@ runtime plugin-mappings/coc.vim
 " Terminal emulator
 " can press <Esc> to get out of terminal
 tnoremap <Esc> <C-\><C-n>
+
+" Reload config
+nnoremap <silent> <leader>r :so ~/.vim/init.vim<CR>
+
+" NERDCommenter
+runtime plugin-mappings/nerdcommenter.vim

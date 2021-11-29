@@ -1,4 +1,4 @@
-" colorscheme murphy
+ "colorscheme murphy
 let g:doom_one_terminal_colors = v:true
 
 " Performance improvement
@@ -179,3 +179,13 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 " Maintain undo history between sessions
 set undofile
 set undodir=~/.vim/undodir
+
+" Save with LF, try to read as LF or as CRLF
+set fileformats=unix,dos
+
+" True color support
+if (has("termguicolors"))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
