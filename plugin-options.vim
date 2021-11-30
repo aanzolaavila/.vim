@@ -28,3 +28,6 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" CoC integration
+let g:airline#extensions#coc#enabled = 1
