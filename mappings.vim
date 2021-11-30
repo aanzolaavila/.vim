@@ -128,9 +128,6 @@ nnoremap <leader>h <cmd>bprev<cr>
 nnoremap <leader>l <cmd>bnext<cr>
 nnoremap <silent> <C-x> :bdelete<CR>
 
-" NERDTree plugin
-nnoremap <C-t> :NERDTreeToggle<CR>
-
 " Conquer of Completion plugin
 runtime plugin-mappings/coc.vim
 
@@ -143,3 +140,6 @@ nnoremap <silent> <leader>r :so ~/.vim/init.vim<CR>
 
 " NERDCommenter
 runtime plugin-mappings/nerdcommenter.vim
+
+" NERDTree plugin
+runtime plugin-mappings/nerdtree.vim
