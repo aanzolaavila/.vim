@@ -1,6 +1,7 @@
  "colorscheme murphy
 " let g:doom_one_terminal_colors = v:true
-colorscheme nord
+let ayucolor="dark"
+colorscheme ayu
 
 " Performance improvement
 set lazyredraw
