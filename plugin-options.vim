@@ -21,3 +21,10 @@ let g:neoformat_basic_format_trim = 1
 let g:neomake_python_enabled_makers = ['pylint']
 call neomake#configure#automake('nrwi', 500)
 
+"--------------------------------
+" AIRLINE
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'

@@ -47,60 +47,19 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
 "----------------------------------------------------------------
+" Buffers
+nnoremap T <cmd>enew<cr>
+nnoremap <S-L> <cmd>bnext<cr>
+nnoremap <S-H> <cmd>bprev<cr>
+nnoremap <silent> <C-x> <cmd>bdelete<CR>
+
+"----------------------------------------------------------------
 " Tabs
-nnoremap T <cmd>tabnew<cr>
-nnoremap <S-L> gt
-nnoremap <S-H> gT
+nnoremap <leader>l gt
+nnoremap <leader>h gT
+nnoremap <leader>T <cmd>tabnew<cr>
 nnoremap <leader><S-H> <cmd>tabm -1<cr>
 nnoremap <leader><S-L> <cmd>tabm +1<cr>
-
-" REF: https://vim.fandom.com/wiki/Move_current_window_between_tabs
-function MoveToPrevTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() != 1
-    close!
-    if l:tab_nr == tabpagenr('$')
-      tabprev
-    endif
-    sp
-  else
-    close!
-    exe "0tabnew"
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
-
-function MoveToNextTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() < tab_nr
-    close!
-    if l:tab_nr == tabpagenr('$')
-      tabnext
-    endif
-    sp
-  else
-    close!
-    tabnew
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
-
-nnoremap <leader><C-m> :call MoveToNextTab()<CR><C-w>H
-nnoremap <leader><C-n> :call MoveToPrevTab()<CR><C-w>H
 
 "----------------------------------------------------------------
 
@@ -123,11 +82,6 @@ runtime plugin-mappings/telescope.vim
 " Todoist plugin
 runtime plugin-mappings/todoist.vim
 
-" Buffer Next Previous
-nnoremap <leader>h <cmd>bprev<cr>
-nnoremap <leader>l <cmd>bnext<cr>
-nnoremap <silent> <C-x> :bdelete<CR>
-
 " Conquer of Completion plugin
 runtime plugin-mappings/coc.vim
 
@@ -136,7 +90,7 @@ runtime plugin-mappings/coc.vim
 tnoremap <Esc> <C-\><C-n>
 
 " Reload config
-nnoremap <silent> <leader>r :so ~/.vim/init.vim<CR>
+nnoremap <silent> <leader>r <cmd>source ~/.vim/init.vim<cr>
 
 " NERDCommenter
 runtime plugin-mappings/nerdcommenter.vim
