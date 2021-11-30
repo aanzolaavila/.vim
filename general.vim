@@ -1,5 +1,6 @@
  "colorscheme murphy
-let g:doom_one_terminal_colors = v:true
+" let g:doom_one_terminal_colors = v:true
+colorscheme nord
 
 " Performance improvement
 set lazyredraw
@@ -90,7 +91,10 @@ set shiftwidth=2
 set expandtab
 
 " enable search highlighting
-set hlsearch
+set nohlsearch
+
+" Mode is on airline
+set noshowmode
 
 " ignore case when searching
 set ignorecase

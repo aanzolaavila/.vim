@@ -32,7 +32,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 
 " Doom One colorscheme
-Plug 'romgrk/doom-one.vim'
+" Plug 'romgrk/doom-one.vim'
+
+" Nord Vim colorscheme
+Plug 'arcticicestudio/nord-vim'
 
 " Status bar plugin
 Plug 'vim-airline/vim-airline'
