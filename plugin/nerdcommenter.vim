@@ -13,5 +13,5 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-vnoremap <leader>c :call NERDComment("", "Toggle")<CR>
-nnoremap <leader>c :call NERDComment("", "Toggle")<CR>
+vnoremap <leader>c :call nerdcommenter#Comment("", "Toggle")<CR>
+nnoremap <leader>c :call nerdcommenter#Comment("", "Toggle")<CR>
