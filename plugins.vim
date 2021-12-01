@@ -84,4 +84,7 @@ Plug 'airblade/vim-gitgutter'
 " Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to split a new window left, up, right, or down, respectively, and edit the previous MRU buffer there.
 Plug 'jeetsukumaran/vim-buffergator'
 
+" Battery.vim
+Plug 'lambdalisue/battery.vim'
+
 call plug#end()
