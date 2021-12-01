@@ -197,3 +197,10 @@ endif
 
 " Map leader key to space
 let mapleader=" "
+
+" Highlight your yank area
+" I don't need the vim-highlightedyank plugin anymore (only neovim)
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+augroup END

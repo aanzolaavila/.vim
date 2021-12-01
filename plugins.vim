@@ -65,9 +65,6 @@ Plug 'neomake/neomake'
 " Now, press c (in Nvim, c means to change ) and enter insert mode. Input a new name and save.
 Plug 'terryma/vim-multiple-cursors'
 
-" Highlight your yank area
-Plug 'machakann/vim-highlightedyank'
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
