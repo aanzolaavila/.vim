@@ -29,7 +29,6 @@ npm install -g neovim
 # NeoVim
 mkdir -p swp
 mkdir -p undodir
-mkdir -p plugins
 mkdir -p autoload
 
 rm -rf ~/.config/nvim
@@ -42,3 +41,11 @@ nvim +PlugInstall +qall
 
 #nvim +CocInstall coc-json
 #nvim +CocInstall coc-go
+
+# TMUX config
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+ln -s ~/.vim/tmux.conf ~/.tmux.conf
+
+wget https://raw.githubusercontent.com/thoughtbot/dotfiles/master/bin/tat -O ~/.local/bin/tat
+chmod 755 ~/.local/bin/tat

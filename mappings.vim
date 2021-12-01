@@ -47,6 +47,13 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
+" Create vertical and horizontal splits
+" TODO still ugly
+nnoremap <S-Left> <cmd>vsplit<cr>
+nnoremap <S-Up> <cmd>split<cr>
+nnoremap <S-Down> <cmd>split<cr><C-W><C-J>
+nnoremap <S-Right> <cmd>vsplit<cr><C-W><C-L>
+
 " Buffers
 "----------------------------------------------------------------
 nnoremap T <cmd>enew<cr>
