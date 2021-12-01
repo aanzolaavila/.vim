@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Telescope
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': '0.5-compat'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sharkdp/fd'
