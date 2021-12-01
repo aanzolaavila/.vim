@@ -22,6 +22,7 @@ else
 endif
 
 " Stamping
+"----------------------------------------------------------------
 nnoremap S diw"0P
 
 " When going through search results keep match at the center
@@ -46,22 +47,20 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
-"----------------------------------------------------------------
 " Buffers
+"----------------------------------------------------------------
 nnoremap T <cmd>enew<cr>
 nnoremap <S-L> <cmd>bnext<cr>
 nnoremap <S-H> <cmd>bprev<cr>
 nnoremap <silent> <C-x> <cmd>bdelete<CR>
 
-"----------------------------------------------------------------
 " Tabs
+"----------------------------------------------------------------
 nnoremap <leader>l gt
 nnoremap <leader>h gT
 nnoremap <leader>T <cmd>tabnew<cr>
 nnoremap <leader><S-H> <cmd>tabm -1<cr>
 nnoremap <leader><S-L> <cmd>tabm +1<cr>
-
-"----------------------------------------------------------------
 
 " In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vnoremap . :normal.<CR>
@@ -71,19 +70,11 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " HARD MODE - Disable arrow keys in Normal mode
+"----------------------------------------------------------------
 noremap <left> <nop>
 noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
-
-" Telescope plugin
-runtime plugin-mappings/telescope.vim
-
-" Todoist plugin
-runtime plugin-mappings/todoist.vim
-
-" Conquer of Completion plugin
-runtime plugin-mappings/coc.vim
 
 " Terminal emulator
 " can press <Esc> to get out of terminal
@@ -91,9 +82,3 @@ tnoremap <Esc> <C-\><C-n>
 
 " Reload config
 nnoremap <silent> <leader>r <cmd>source ~/.vim/init.vim<cr>
-
-" NERDCommenter
-runtime plugin-mappings/nerdcommenter.vim
-
-" NERDTree plugin
-runtime plugin-mappings/nerdtree.vim
