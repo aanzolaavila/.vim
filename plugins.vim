@@ -72,4 +72,16 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" Vim buffergator
+" Use <Leader>b (typically: \b) to open a window listing all buffers. In this window, you can use normal movement keys to select a buffer and then:
+    " <ENTER> to edit the selected buffer in the previous window
+    " <C-V> to edit the selected buffer in a new vertical split
+    " <C-S> to edit the selected buffer in a new horizontal split
+    " <C-T> to edit the selected buffer in a new tab page
+"
+" Use gb (or <M-b>) and gB (or <M-S-b>) to flip through the most-recently used buffer stack without opening the buffer listing "drawer".
+"
+" Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to split a new window left, up, right, or down, respectively, and edit the previous MRU buffer there.
+Plug 'jeetsukumaran/vim-buffergator'
+
 call plug#end()
