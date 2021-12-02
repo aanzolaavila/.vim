@@ -53,8 +53,8 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-h> <c-w>h
 nnoremap <c-k> <c-w>k
-nnoremap <a-h> gT
-nnoremap <a-l> gt
+nnoremap <s-h> gT
+nnoremap <s-l> gt
 nnoremap <c-s-tab> gT
 nnoremap <c-tab> gt
 
