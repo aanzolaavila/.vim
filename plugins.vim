@@ -26,7 +26,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Polyglot
 " Disabled because it causes a big slowdown switching from one tab to another
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 " Undotree
 Plug 'mbbill/undotree'
@@ -80,8 +80,5 @@ Plug 'airblade/vim-gitgutter'
 "
 " Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to split a new window left, up, right, or down, respectively, and edit the previous MRU buffer there.
 Plug 'jeetsukumaran/vim-buffergator'
-
-" Battery.vim
-Plug 'lambdalisue/battery.vim'
 
 call plug#end()
