@@ -46,6 +46,9 @@ Plug 'vim-airline/vim-airline'
 " Automatic quote and bracket completion
 Plug 'tpope/vim-surround'
 
+" Auto-pairs
+Plug 'jiangmiao/auto-pairs'
+
 " Comment plugin
 " To comment out a single line, use `<leader>cc`
 " To uncomment a line, use `<leader>cu`

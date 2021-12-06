@@ -81,6 +81,7 @@ set number relativenumber
 
 " new lines inherit the indentation of previous lines
 set autoindent
+set cindent
 
 " indent using four spaces
 set tabstop=4
@@ -89,7 +90,13 @@ set tabstop=4
 set shiftwidth=2
 
 " on pressing tab, insert 4 space
-set expandtab
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
+set shiftwidth=4
+set tabstop=4
+set smartindent
 
 " enable search highlighting
 set nohlsearch
