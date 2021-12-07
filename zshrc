@@ -103,8 +103,8 @@ source $ZSH/oh-my-zsh.sh
 export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
 
 alias v="nvim"
-alias vconf="nvim ~/.vim/*.vim"
-alias vref="nvim ~/Documents/learning/learning-vim/*.md"
+alias vconf="pushd ~/.vim; nvim *.vim; popd"
+alias vref="pushd ~/Documents/learning/learning-vim/; nvim *.md; popd"
 alias doc="docker"
 alias zconf="nvim ~/.zshrc"
 alias notify='terminal-notifier -title "Terminal" -message'
