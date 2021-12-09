@@ -1,6 +1,12 @@
 " REFERENCES
 " https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/
 
+" If Plug is not installed, then install it
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 " Sensible defaults
@@ -83,5 +89,11 @@ Plug 'airblade/vim-gitgutter'
 "
 " Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to split a new window left, up, right, or down, respectively, and edit the previous MRU buffer there.
 " Plug 'jeetsukumaran/vim-buffergator'
+
+" Indent guides
+Plug 'thaerkh/vim-indentguides'
+
+" Vim Workspace
+Plug 'thaerkh/vim-workspace'
 
 call plug#end()
