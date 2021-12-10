@@ -89,3 +89,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " Reload config
 nnoremap <silent> <leader>r <cmd>source ~/.vim/init.vim<cr>
+
+" Newlines
+nnoremap <leader>] o<Esc>k
+nnoremap <leader>[ O<Esc>j
