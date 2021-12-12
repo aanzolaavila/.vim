@@ -211,3 +211,9 @@ augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
 augroup END
+
+nnoremap <S-p> :call ToggleListMode()<CR>
+function! ToggleListMode()
+  set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+  set list!
+endfunction
