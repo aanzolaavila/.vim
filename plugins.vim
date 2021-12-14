@@ -24,8 +24,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'wellle/targets.vim'
 
 " Todoist
-Plug 'romgrk/todoist.nvim', { 'do': ':TodoistInstall' }
-Plug 'liuchengxu/vim-clap'
+" Plug 'romgrk/todoist.nvim', { 'do': ':TodoistInstall' }
+" Plug 'liuchengxu/vim-clap'
 
 " Conquer of Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
