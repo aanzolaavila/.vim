@@ -96,4 +96,7 @@ Plug 'thaerkh/vim-indentguides'
 " Vim Workspace
 Plug 'thaerkh/vim-workspace'
 
+" Vim Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
