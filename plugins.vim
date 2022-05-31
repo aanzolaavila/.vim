@@ -103,4 +103,7 @@ Plug 'thaerkh/vim-workspace'
 " Vim Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Todo Comments
+Plug 'folke/todo-comments.nvim'
+
 call plug#end()
