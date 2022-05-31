@@ -41,10 +41,14 @@ Plug 'mbbill/undotree'
 " Plug 'romgrk/doom-one.vim'
 
 " Nord Vim colorscheme
-" Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 
 " ayu vim colorscheme
-Plug 'ayu-theme/ayu-vim'
+" Plug 'ayu-theme/ayu-vim'
+
+" Everforest colorscheme
+" Plug 'sainnhe/everforest'
+
 
 " Status bar plugin
 Plug 'vim-airline/vim-airline'
