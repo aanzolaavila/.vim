@@ -106,4 +106,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Todo Comments
 Plug 'folke/todo-comments.nvim'
 
+" LeetCode
+Plug 'ianding1/leetcode.vim'
+
 call plug#end()

@@ -213,3 +213,5 @@ augroup highlight_yank
 augroup END
 
 set colorcolumn=100
+
+let g:python3_host_prog="~/.pyenv/versions/neovim/bin/python3"
