@@ -20,6 +20,9 @@ Plug 'sharkdp/fd'
 Plug 'BurntSushi/ripgrep'
 Plug 'kyazdani42/nvim-web-devicons'
 
+" Telekasten
+" Plug 'renerocksai/telekasten.nvim'
+
 " Targets
 Plug 'wellle/targets.vim'
 
@@ -108,5 +111,8 @@ Plug 'folke/todo-comments.nvim'
 
 " LeetCode
 Plug 'ianding1/leetcode.vim'
+
+" Wakatime
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
