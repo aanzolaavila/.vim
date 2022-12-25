@@ -4,7 +4,6 @@ vim.opt.lazyredraw = true
 -- Display all matching files when we tab complete
 vim.opt.wildmenu = true
 
-vim.opt.clipboard = "unnamedplus"
 vim.opt.encoding = "utf-8"
 vim.opt.autoindent = true
 vim.opt.tabstop = 4

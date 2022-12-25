@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+ON_ATTACH = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -76,14 +76,26 @@ end
 
 -- Custom mappings ---------------------
 
+-- Clipboard mappings
+vim.keymap.set('x', '<leader>p', "\"_dP")
+vim.keymap.set('n', '<leader>y', "\"+y")
+vim.keymap.set('v', '<leader>y', "\"+y")
+vim.keymap.set('n', '<leader>Y', "\"+Y")
+
+vim.keymap.set('n', '<leader>p', "\"+p")
+vim.keymap.set('v', '<leader>p', "\"+p")
+vim.keymap.set('n', '<leader>P', "\"+P")
+
+-- Better line joining
+vim.keymap.set('n', 'J', "mzJ`z")
 
 -- When going through search results keep match at the center
-vim.keymap.set('n', 'n', 'nzz')
-vim.keymap.set('n', 'N', 'Nzz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- When going up or down also keep it at the center
-vim.keymap.set('n', '<C-U>', '<C-U>zz')
-vim.keymap.set('n', '<C-D>', '<C-D>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
 -- Common typos
 vim.api.nvim_create_user_command('WQ', 'wq', {})
@@ -141,7 +153,7 @@ vim.keymap.set('n', '<leader>]', 'o<Esc>k')
 vim.keymap.set('n', '<leader>[', 'O<Esc>j')
 
 -- NvimTree
-vim.keymap.set('n', '<C-t>', '<cmd>NvimTreeFocus<CR>', {remap = true})
+vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<CR>', {remap = true})
 
 -- UndoTree
-vim.keymap.set('n', '<leader><C-t>', ':UndotreeShow<CR>:UndotreeFocus<CR>', {remap = true})
+vim.keymap.set('n', '<leader>u', ':UndotreeShow<CR>:UndotreeFocus<CR>', {remap = true})

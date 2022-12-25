@@ -10,6 +10,7 @@ end
 require("plugins")
 require("general")
 require("autocommands")
+require("mappings")
 
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
@@ -25,4 +26,3 @@ if is_bootstrap then
 end
 
 require("setup")
-require("mappings")

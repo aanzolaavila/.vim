@@ -98,3 +98,4 @@ swp/
 plugged/
 sessions/
 .undodir/
+plugin/packer_compiled.lua
