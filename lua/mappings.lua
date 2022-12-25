@@ -74,5 +74,74 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Custom mappings
+-- Custom mappings ---------------------
 
+
+-- When going through search results keep match at the center
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
+
+-- When going up or down also keep it at the center
+vim.keymap.set('n', '<C-U>', '<C-U>zz')
+vim.keymap.set('n', '<C-D>', '<C-D>zz')
+
+-- Common typos
+vim.api.nvim_create_user_command('WQ', 'wq', {})
+vim.api.nvim_create_user_command('Wq', 'wq', {})
+vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command('Q', 'q', {})
+vim.api.nvim_create_user_command('Qa', 'qa', {})
+vim.api.nvim_create_user_command('QA', 'qa', {})
+
+-- Change from one windows to another directionally
+vim.keymap.set('n', '<C-H>', '<C-W><C-H>')
+vim.keymap.set('n', '<C-J>', '<C-W><C-J>')
+vim.keymap.set('n', '<C-K>', '<C-W><C-K>')
+vim.keymap.set('n', '<C-L>', '<C-W><C-L>')
+
+-- Create vertical and horizontal splits
+vim.keymap.set('n', '<S-Left>', '<cmd>vsplit<cr>')
+vim.keymap.set('n', '<S-Up>', '<cmd>split<cr>')
+vim.keymap.set('n', '<S-Down>', '<cmd>split<cr><C-W><C-J>')
+vim.keymap.set('n', '<S-Right>', '<cmd>vsplit<cr><C-W><C-L>')
+
+-- Buffers
+-- TODO install buffers plugin
+vim.keymap.set('n', 'T', '<cmd>enew<cr>')
+vim.keymap.set('n', '<S-L>', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>')
+vim.keymap.set('n', '<silent><C-x>', '<cmd>bdelete<CR>')
+
+-- Tabs
+vim.keymap.set('n', '<leader>l', 'gt')
+vim.keymap.set('n', '<leader>h', 'gT')
+vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>')
+vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>')
+vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>')
+
+-- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
+vim.keymap.set('v', '.', ':normal.<CR>')
+
+-- Move visual selection
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- HARD MODE - Disable arrow keys in Normal mode
+vim.keymap.set('n', '<left>', '<nop>')
+vim.keymap.set('n', '<right>', '<nop>')
+vim.keymap.set('n', '<up>', '<nop>')
+vim.keymap.set('n', '<down>', '<nop>')
+
+-- Terminal emulator
+-- can press <Esc> to get out of terminal
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
+-- Newlines
+vim.keymap.set('n', '<leader>]', 'o<Esc>k')
+vim.keymap.set('n', '<leader>[', 'O<Esc>j')
+
+-- NvimTree
+vim.keymap.set('n', '<C-t>', '<cmd>NvimTreeFocus<CR>', {remap = true})
+
+-- UndoTree
+vim.keymap.set('n', '<leader><C-t>', ':UndotreeShow<CR>:UndotreeFocus<CR>', {remap = true})
