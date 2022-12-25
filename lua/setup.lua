@@ -209,3 +209,10 @@ cmp.setup {
 
 -- File explorer setup
 require("nvim-tree").setup()
+
+-- Auto sessions setup
+require("sessions").setup({
+  events = { "VimLeavePre", "BufEnter" },
+  session_filepath = vim.fn.expand("$HOME") .. "/.vim/sessions",
+  absolute = true
+})

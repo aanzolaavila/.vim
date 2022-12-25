@@ -22,7 +22,7 @@ vim.opt.showmatch = true
 vim.opt.spelllang = "en,es"
 
 -- Swap and backup option
-vim.opt.directory = "$HOME/.vim/swp//"
+vim.opt.directory = vim.fn.expand("$HOME") .. "/.vim/swp//"
 vim.opt.wb = true -- TODO: maybe change this if necessary
 
 -- Text rendering options
@@ -41,7 +41,7 @@ vim.opt.fileformats = "unix,dos"
 
 vim.opt.colorcolumn = "100"
 
-vim.g.python3_host_prog = "~/.pyenv/versions/neovim/bin/python3"
+vim.g.python3_host_prog =  vim.fn.expand("~") .. "/.pyenv/versions/neovim/bin/python3"
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -62,7 +62,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
-vim.opt.undodir = "~/.vim/undodir"
+vim.opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true

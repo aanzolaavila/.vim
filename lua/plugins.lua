@@ -50,14 +50,14 @@ require('packer').startup(function(use)
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  -- use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'mbbill/undotree'
   use 'jiangmiao/auto-pairs'
   use 'thaerkh/vim-indentguides'
-  use 'thaerkh/vim-workspace'
   use 'wakatime/vim-wakatime'
   use 'folke/todo-comments.nvim'
+  use 'natecraddock/sessions.nvim'
 
   use({
     "gbprod/yanky.nvim",
