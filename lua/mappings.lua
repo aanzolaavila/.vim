@@ -78,12 +78,10 @@ end
 
 -- Clipboard mappings
 vim.keymap.set('x', '<leader>p', "\"_dP")
-vim.keymap.set('n', '<leader>y', "\"+y")
-vim.keymap.set('v', '<leader>y', "\"+y")
+vim.keymap.set({'n', 'v'}, '<leader>y', "\"+y")
 vim.keymap.set('n', '<leader>Y', "\"+Y")
 
-vim.keymap.set('n', '<leader>p', "\"+p")
-vim.keymap.set('v', '<leader>p', "\"+p")
+vim.keymap.set({'n', 'v'}, '<leader>p', "\"+p")
 vim.keymap.set('n', '<leader>P', "\"+P")
 
 -- Better line joining
@@ -106,10 +104,10 @@ vim.api.nvim_create_user_command('Qa', 'qa', {})
 vim.api.nvim_create_user_command('QA', 'qa', {})
 
 -- Change from one windows to another directionally
-vim.keymap.set('n', '<C-H>', '<C-W><C-H>')
-vim.keymap.set('n', '<C-J>', '<C-W><C-J>')
-vim.keymap.set('n', '<C-K>', '<C-W><C-K>')
-vim.keymap.set('n', '<C-L>', '<C-W><C-L>')
+vim.keymap.set('n', '<C-h>', '<C-W><C-h>')
+vim.keymap.set('n', '<C-j>', '<C-W><C-j>')
+vim.keymap.set('n', '<C-k>', '<C-W><C-k>')
+vim.keymap.set('n', '<C-l>', '<C-W><C-l>')
 
 -- Create vertical and horizontal splits
 vim.keymap.set('n', '<S-Left>', '<cmd>vsplit<cr>')
