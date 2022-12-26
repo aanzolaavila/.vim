@@ -36,7 +36,7 @@ vim.opt.statusline = "%F%m%r%h%w%=(%{&ff}/%Y) (line %l/%L, col %c)"
 -- Save with LF, try to read as LF or as CRLF
 vim.opt.fileformats = "unix,dos"
 
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
 
 vim.g.python3_host_prog =  vim.fn.expand("~") .. "/.pyenv/versions/neovim/bin/python3"
 
