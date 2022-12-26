@@ -21,7 +21,7 @@ vim.opt.showmatch = true
 vim.opt.spelllang = "en,es"
 
 -- Swap and backup option
-vim.opt.directory = vim.fn.expand("$HOME") .. "/.vim/swp//"
+vim.opt.directory = vim.fn.stdpath 'data' .. "/swp//"
 vim.opt.wb = true -- TODO: maybe change this if necessary
 
 -- Text rendering options
@@ -30,10 +30,8 @@ vim.opt.scrolloff = 3
 vim.opt.scrolljump = -100
 vim.opt.sidescrolloff = 5
 
-
 -- Status line
 vim.opt.statusline = "%F%m%r%h%w%=(%{&ff}/%Y) (line %l/%L, col %c)"
-
 
 -- Save with LF, try to read as LF or as CRLF
 vim.opt.fileformats = "unix,dos"
@@ -61,7 +59,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
-vim.opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
+vim.opt.undodir = vim.fn.stdpath 'data' .. "/undodir"
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
