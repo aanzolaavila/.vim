@@ -216,3 +216,5 @@ require("sessions").setup({
   session_filepath = vim.fn.expand("$HOME") .. "/.vim/sessions",
   absolute = true
 })
+
+require('colorizer').setup()
