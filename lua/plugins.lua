@@ -69,6 +69,7 @@ require('packer').startup(function(use)
   use 'natecraddock/sessions.nvim'
   use 'natecraddock/workspaces.nvim'
   use 'lervag/wiki.vim'
+  use 'lervag/wiki-ft.vim'
 
   use({
     "gbprod/yanky.nvim",
