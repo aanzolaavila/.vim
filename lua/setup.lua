@@ -213,10 +213,20 @@ require("nvim-tree").setup()
 -- Auto sessions setup
 require("sessions").setup({
   events = { "VimLeavePre", "BufEnter" },
-  session_filepath = vim.fn.stdpath'data' .. "/sessions",
+  session_filepath = vim.fn.stdpath 'data' .. "/sessions",
   absolute = true
 })
 
+require('workspaces').setup({
+  hooks = {
+    open = function()
+      require('sessions').load(nil, { silent = true })
+    end
+  }
+})
+
+pcall(require('telescope').load_extension, 'workspaces')
+
 require('colorizer').setup()
 
-vim.g.wiki_root = vim.fn.stdpath'data' .. '/wiki'
+vim.g.wiki_root = vim.fn.stdpath 'data' .. '/wiki'

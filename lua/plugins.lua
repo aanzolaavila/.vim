@@ -67,6 +67,7 @@ require('packer').startup(function(use)
   use 'wakatime/vim-wakatime'
   use 'folke/todo-comments.nvim'
   use 'natecraddock/sessions.nvim'
+  use 'natecraddock/workspaces.nvim'
   use 'lervag/wiki.vim'
 
   use({

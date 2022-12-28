@@ -78,10 +78,10 @@ end
 
 -- Clipboard mappings
 vim.keymap.set('x', '<leader>p', "\"_dP")
-vim.keymap.set({'n', 'v'}, '<leader>y', "\"+y")
+vim.keymap.set({ 'n', 'v' }, '<leader>y', "\"+y")
 vim.keymap.set('n', '<leader>Y', "\"+Y")
 
-vim.keymap.set({'n', 'v'}, '<leader>p', "\"+p")
+vim.keymap.set({ 'n', 'v' }, '<leader>p', "\"+p")
 vim.keymap.set('n', '<leader>P', "\"+P")
 
 -- Better line joining
@@ -151,7 +151,7 @@ vim.keymap.set('n', '<leader>]', 'o<Esc>k')
 vim.keymap.set('n', '<leader>[', 'O<Esc>j')
 
 -- NvimTree
-vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<CR>', {remap = true})
+vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<CR>', { remap = true })
 
 -- UndoTree
-vim.keymap.set('n', '<leader>u', ':UndotreeShow<CR>:UndotreeFocus<CR>', {remap = true})
+vim.keymap.set('n', '<leader>u', ':UndotreeShow<CR>:UndotreeFocus<CR>', { remap = true })
