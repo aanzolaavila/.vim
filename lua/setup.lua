@@ -213,8 +213,10 @@ require("nvim-tree").setup()
 -- Auto sessions setup
 require("sessions").setup({
   events = { "VimLeavePre", "BufEnter" },
-  session_filepath = vim.fn.expand("$HOME") .. "/.vim/sessions",
+  session_filepath = vim.fn.stdpath'data' .. "/sessions",
   absolute = true
 })
 
 require('colorizer').setup()
+
+vim.g.wiki_root = vim.fn.stdpath'data' .. '/wiki'
