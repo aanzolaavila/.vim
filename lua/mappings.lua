@@ -75,18 +75,20 @@ ON_ATTACH = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Custom mappings ---------------------
+-- ###############
+-- CUSTOM MAPPINGS
+-- ###############
 
 -- Clipboard mappings
-vim.keymap.set('x', '<leader>p', "\"_dP")
-vim.keymap.set({ 'n', 'v' }, '<leader>y', "\"+y")
-vim.keymap.set('n', '<leader>Y', "\"+Y")
+vim.keymap.set({ 'n', 'v' }, '<leader>y', "\"+y", { desc = '[y]ank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', "\"+Y", { desc = '[y]ank to system clipboard' })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>p', "\"+p")
-vim.keymap.set('n', '<leader>P', "\"+P")
+vim.keymap.set('x', '<leader>p', "\"_dP", { desc = '[P]aste from system clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', "\"+p", { desc = '[P]aste from system clipboard' })
+vim.keymap.set('n', '<leader>P', "\"+P", { desc = '[P]aste from system clipboard' })
 
 -- Better line joining
-vim.keymap.set('n', 'J', "mzJ`z")
+vim.keymap.set('n', 'J', "mzJ`z", { desc = '[J]oin current line with next line' })
 
 -- When going through search results keep match at the center
 vim.keymap.set('n', 'n', 'nzzzv')
@@ -111,21 +113,20 @@ vim.keymap.set('n', '<C-k>', '<C-W><C-k>')
 vim.keymap.set('n', '<C-l>', '<C-W><C-l>')
 
 -- Create vertical and horizontal splits
-vim.keymap.set('n', '<S-Left>', '<cmd>vsplit<cr>')
-vim.keymap.set('n', '<S-Up>', '<cmd>split<cr>')
-vim.keymap.set('n', '<S-Down>', '<cmd>split<cr><C-W><C-J>')
-vim.keymap.set('n', '<S-Right>', '<cmd>vsplit<cr><C-W><C-L>')
+vim.keymap.set('n', '<leader>h', '<cmd>vsplit<cr>')
+vim.keymap.set('n', '<leader>k', '<cmd>split<cr>')
+vim.keymap.set('n', '<leader>j', '<cmd>split<cr><C-W><C-J>')
+vim.keymap.set('n', '<leader>l', '<cmd>vsplit<cr><C-W><C-L>')
 
 -- Buffers
 -- TODO install buffers plugin
 vim.keymap.set('n', 'T', '<cmd>enew<cr>')
-vim.keymap.set('n', '<S-L>', '<cmd>bnext<cr>')
-vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>')
-vim.keymap.set('n', '<silent><C-x>', '<cmd>bdelete<CR>')
+--[[ vim.keymap.set('n', '<S-L>', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>') ]]
+vim.keymap.set('n', '<C-x>', '<cmd>bdelete<CR>', { silent = true })
 
 -- Tabs
-vim.keymap.set('n', '<leader>l', 'gt')
-vim.keymap.set('n', '<leader>h', 'gT')
+-- Remember gt (forward) and gT (backward)
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>')
 vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>')
 vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>')
