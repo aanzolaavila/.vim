@@ -229,4 +229,5 @@ pcall(require('telescope').load_extension, 'workspaces')
 
 require('colorizer').setup()
 
+-- TODO: add command to create directory as wiki does not create it
 vim.g.wiki_root = vim.fn.stdpath 'data' .. '/wiki'
