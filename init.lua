@@ -1,5 +1,4 @@
 require("plugins")
 require("general")
 require("mappings")
-require("setup")
 require("autocommands")

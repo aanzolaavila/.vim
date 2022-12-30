@@ -24,17 +24,30 @@ require('packer').startup(function(use)
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
+    config = function()
+      require 'config.nvim-lspconfig'.setup()
+    end,
   }
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip'
+    },
+    config = function()
+      require 'config.nvim-cmp'.setup()
+    end
   }
 
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+    config = function()
+      require 'config.nvim-treesitter'.setup()
     end,
   }
 
@@ -49,44 +62,110 @@ require('packer').startup(function(use)
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
+    config = function()
+      require 'config.nvim-tree'.setup()
+    end
   }
 
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
-  use 'lewis6991/gitsigns.nvim'
 
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require 'config.gitsigns'.setup()
+    end
+  }
+
+  use {
+    'navarasu/onedark.nvim', -- Theme inspired by Atom
+    config = function()
+      vim.cmd 'colorscheme onedark'
+    end
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim', -- Fancier statusline
+    config = function()
+      require 'config.lualine'.setup()
+    end,
+  }
+
+  use {
+    'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+    config = function()
+      require 'config.indent_blankline'.setup()
+    end,
+  }
+
+  use {
+    'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+    config = function()
+      require 'config.comment'.setup()
+    end,
+  }
+
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'norcalli/nvim-colorizer.lua' -- Blazing fast colors
+
+  use { -- Autopairs
+    "windwp/nvim-autopairs",
+    config = function()
+      require 'config.nvim-autopairs'.setup()
+    end
+  }
+
   use 'mbbill/undotree'
   use 'thaerkh/vim-indentguides'
   use 'wakatime/vim-wakatime'
   use 'folke/todo-comments.nvim'
-  use 'natecraddock/sessions.nvim'
-  use 'natecraddock/workspaces.nvim'
-  use 'lervag/wiki.vim'
+
+  use {
+    'natecraddock/sessions.nvim',
+    config = function()
+      require 'config.sessions'.setup()
+    end
+  }
+
+  use {
+    'natecraddock/workspaces.nvim',
+    config = function()
+      require 'config.workspaces'.setup()
+    end
+  }
+
+  use {
+    'lervag/wiki.vim',
+    config = function()
+      require 'config.wiki'.setup()
+    end
+  }
   use 'lervag/wiki-ft.vim'
 
   use({
     "gbprod/yanky.nvim",
     config = function()
-      require("yanky").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
+      require("config.yanky").setup()
     end
   })
 
   -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require 'config.telescope'.setup()
+    end
+  }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    cond = vim.fn.executable 'make' == 1
+  }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

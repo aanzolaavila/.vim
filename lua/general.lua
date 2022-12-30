@@ -20,10 +20,6 @@ vim.opt.sw = 2
 vim.opt.showmatch = true
 vim.opt.spelllang = "en,es"
 
--- Swap and backup option
-vim.opt.directory = vim.fn.stdpath 'data' .. "/swp//"
-vim.opt.wb = true -- TODO: maybe change this if necessary
-
 -- Text rendering options
 vim.opt.linebreak = true
 vim.opt.scrolloff = 3
@@ -38,7 +34,7 @@ vim.opt.fileformats = "unix,dos"
 
 vim.opt.colorcolumn = "80"
 
-vim.g.python3_host_prog =  vim.fn.expand("~") .. "/.pyenv/versions/neovim/bin/python3"
+vim.g.python3_host_prog = vim.fn.expand("~") .. "/.pyenv/versions/neovim/bin/python3"
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -59,7 +55,6 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
-vim.opt.undodir = vim.fn.stdpath 'data' .. "/undodir"
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -71,7 +66,6 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-pcall(vim.cmd, [[colorscheme onedark]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -82,3 +76,6 @@ vim.o.completeopt = 'menuone,noselect'
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
