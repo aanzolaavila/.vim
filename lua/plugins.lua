@@ -141,7 +141,6 @@ require('packer').startup(function(use)
       require 'config.wiki'.setup()
     end
   }
-  use 'lervag/wiki-ft.vim'
 
   use({
     "gbprod/yanky.nvim",
