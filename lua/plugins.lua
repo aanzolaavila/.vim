@@ -136,7 +136,7 @@ require('packer').startup(function(use)
   }
 
   use {
-    'lervag/wiki.vim',
+    'vimwiki/vimwiki',
     config = function()
       require 'config.wiki'.setup()
     end

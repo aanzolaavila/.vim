@@ -18,15 +18,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = wiki_group,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "*.wiki",
-  callback = function ()
-    vim.opt.filetype = 'markdown'
-  end,
-  group = wiki_group,
-})
-
-
 -- Automatically rebalance windows on vim resize
 vim.api.nvim_create_autocmd("VimResized", {
   pattern = "*",
