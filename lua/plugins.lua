@@ -122,6 +122,13 @@ require('packer').startup(function(use)
   use 'folke/todo-comments.nvim'
 
   use {
+    'ggandor/leap.nvim',
+    config = function ()
+      require 'config.leap'.setup()
+    end
+  }
+
+  use {
     'natecraddock/sessions.nvim',
     config = function()
       require 'config.sessions'.setup()
