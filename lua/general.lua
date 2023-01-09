@@ -83,14 +83,5 @@ vim.g.vim_json_syntax_conceal = 0
 vim.g.vim_markdown_conceal = 0
 vim.g.vim_markdown_conceal_code_blocks = 0
 
--- Show custom characters for non-printable characters
-vim.opt.listchars = {
-	tab = '»·',
-	trail = '·',
-	extends = '<',
-	precedes = '>',
-	conceal = '┊',
-}
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
