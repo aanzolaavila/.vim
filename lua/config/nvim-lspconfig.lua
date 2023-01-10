@@ -19,10 +19,20 @@ function M.setup()
     -- rust_analyzer = {},
     -- tsserver = {},
 
+    -- This allow LSP for Neovim lua configurations
+    -- Reference: https://jdhao.github.io/2021/08/12/nvim_sumneko_lua_conf/
     sumneko_lua = {
       Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
+        workspace = {
+          checkThirdParty = true,
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false
+        },
+        diagnostics = {
+          globals = { 'vim' },
+        },
       },
     },
   }
@@ -30,6 +40,10 @@ function M.setup()
   mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
   }
+
+  -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
   mason_lspconfig.setup_handlers {
     function(server_name)
@@ -43,10 +57,6 @@ function M.setup()
 
   -- Setup neovim lua configuration
   require('neodev').setup()
-  --
-  -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
   -- Turn on lsp status information
   require('fidget').setup()
