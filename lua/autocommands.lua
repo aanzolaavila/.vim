@@ -10,14 +10,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   command = [[%s/$\n\+\%$//e]]
 })
 
--- Auto format lines on wiki files
-local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.wiki",
-  command = [[g/./ normal gqq``]],
-  group = wiki_group,
-})
-
 -- Automatically rebalance windows on vim resize
 vim.api.nvim_create_autocmd("VimResized", {
   pattern = "*",

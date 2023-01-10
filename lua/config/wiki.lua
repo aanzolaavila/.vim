@@ -13,7 +13,25 @@ function M.setup()
   local wiki = {}
   wiki.path = wiki_dir
   vim.g.vimwiki_list = { wiki }
-  vim.g.vimwiki_conceallevel = 0
+
+  local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
+
+  -- Auto format lines on wiki files
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.wiki",
+    command = [[g/./ normal gqq``]],
+    group = wiki_group,
+  })
+
+  -- no conceal on cursor
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "vimwiki",
+    callback = function()
+      vim.opt.concealcursor = 'c'
+    end,
+    group = wiki_group,
+  })
+
 end
 
 return M
