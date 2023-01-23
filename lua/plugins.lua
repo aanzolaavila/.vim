@@ -78,6 +78,7 @@ require('packer').startup(function(use)
     end
   }
 
+  -- Appearance related plugins
   use {
     'navarasu/onedark.nvim', -- Theme inspired by Atom
     config = function()
@@ -97,10 +98,21 @@ require('packer').startup(function(use)
     config = function()
       require 'config.indent_blankline'.setup()
     end,
+    requires = {
+      'nvim-treesitter/nvim-treesitter',
+    }
   }
 
   use {
-    'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+    'folke/twilight.nvim',
+    config = function()
+      require 'twilight'.setup()
+    end
+  }
+
+  -- "gc" to comment visual regions/lines
+  use {
+    'numToStr/Comment.nvim',
     config = function()
       require 'config.comment'.setup()
     end,
@@ -123,7 +135,7 @@ require('packer').startup(function(use)
 
   use {
     'ggandor/leap.nvim',
-    config = function ()
+    config = function()
       require 'config.leap'.setup()
     end
   }

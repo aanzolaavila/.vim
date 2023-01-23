@@ -63,6 +63,8 @@ function M.setup()
       },
     },
   }
+
+  require("nvim-treesitter.install").prefer_git = true
 end
 
 return M
