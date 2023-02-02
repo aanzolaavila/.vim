@@ -105,6 +105,8 @@ vim.api.nvim_create_user_command('W', 'w', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('Qa', 'qa', {})
 vim.api.nvim_create_user_command('QA', 'qa', {})
+vim.api.nvim_create_user_command('WA', 'wa', {})
+vim.api.nvim_create_user_command('Wa', 'wa', {})
 
 -- Change from one windows to another directionally
 vim.keymap.set('n', '<C-h>', '<C-W><C-h>')
