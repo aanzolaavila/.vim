@@ -21,7 +21,7 @@ function M.setup()
 
     -- This allow LSP for Neovim lua configurations
     -- Reference: https://jdhao.github.io/2021/08/12/nvim_sumneko_lua_conf/
-    sumneko_lua = {
+    lua_ls = {
       Lua = {
         workspace = {
           checkThirdParty = true,
