@@ -154,7 +154,7 @@ require('lazy').setup({
   {
     'natecraddock/sessions.nvim',
     config = function()
-      require 'config.sessions'.setup()
+      require 'config.nvim-sessions'.setup()
     end
   },
 
@@ -186,7 +186,7 @@ require('lazy').setup({
     tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require 'config.telescope'.setup()
+      require 'config.nvim-telescope'.setup()
     end
   },
 
