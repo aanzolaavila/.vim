@@ -2,7 +2,7 @@ local M = {}
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-ON_ATTACH = function(_, bufnr)
+ON_ATTACH = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -39,10 +39,19 @@ ON_ATTACH = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
+  if client.supports_method("textDocument/formatting") then
+    -- Create a command `:Format` local to the LSP buffer
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+      vim.lsp.buf.format()
+    end, { desc = 'Format current buffer with LSP' })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+  end
 end
 
 function M.setup()
@@ -59,7 +68,7 @@ function M.setup()
   --  the `settings` field of the server config. You must look up that documentation yourself.
   local servers = {
     -- clangd = {},
-    gopls = {},
+    -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
     -- tsserver = {},
