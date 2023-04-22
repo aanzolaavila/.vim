@@ -69,7 +69,7 @@ function M.setup()
     lua_ls = {
       Lua = {
         workspace = {
-          checkThirdParty = true,
+          checkThirdParty = false,
           library = vim.api.nvim_get_runtime_file("", true),
         },
         telemetry = {
