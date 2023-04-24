@@ -21,10 +21,13 @@ function M.setup()
       },
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
+          -- print 'select'
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+          -- elseif luasnip.expand_or_jumpable() then
+          --   print 'expand'
+          --   luasnip.expand_or_jump()
         else
+          -- print 'fallback'
           fallback()
         end
       end, { 'i', 's' }),
