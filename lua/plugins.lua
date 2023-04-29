@@ -142,7 +142,16 @@ require('lazy').setup({
   'mbbill/undotree',
   'thaerkh/vim-indentguides',
   'wakatime/vim-wakatime',
-  'folke/todo-comments.nvim',
+
+  {
+    'folke/todo-comments.nvim',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require 'config.todo-comments'.setup()
+    end
+  },
 
   {
     'ggandor/leap.nvim',
