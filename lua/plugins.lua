@@ -206,6 +206,16 @@ require('lazy').setup({
     build = 'make',
     cond = vim.fn.executable 'make' == 1
   },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require 'config.trouble'.setup()
+    end
+  }
 })
 
 -- When we are bootstrapping a configuration, it doesn't
