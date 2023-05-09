@@ -83,7 +83,11 @@ function M.setup()
       }
     },
     -- pyright = {},
-    -- rust_analyzer = {},
+    rust_analyzer = {
+      checkOnSave = {
+        command = "clippy"
+      }
+    },
     -- tsserver = {},
 
     -- This allow LSP for Neovim lua configurations
@@ -121,6 +125,18 @@ function M.setup()
       }
     end,
   }
+
+  require('rust-tools').setup({
+    server = {
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        ON_ATTACH(client, bufnr)
+        vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
+      end,
+    }
+  })
 
   -- Setup neovim lua configuration
   require('neodev').setup()

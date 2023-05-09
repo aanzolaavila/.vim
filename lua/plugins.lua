@@ -254,6 +254,16 @@ require('lazy').setup({
       require("config.nvim-gopher").setup()
     end
   },
+
+  {
+    'simrat39/rust-tools.nvim',
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim'
+    },
+    config = function()
+      require 'config.nvim-telescope'.setup()
+    end
+  }
 })
 
 -- When we are bootstrapping a configuration, it doesn't
