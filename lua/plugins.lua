@@ -92,6 +92,9 @@ require('lazy').setup({
   {
     'navarasu/onedark.nvim', -- Theme inspired by Atom
     config = function()
+      require 'onedark'.setup {
+        style = 'warm'
+      }
       vim.cmd 'colorscheme onedark'
     end
   },
@@ -191,7 +194,6 @@ require('lazy').setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
-    lazy = true,
     tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -215,7 +217,43 @@ require('lazy').setup({
     config = function()
       require 'config.trouble'.setup()
     end
-  }
+  },
+
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require 'config.refactoring'.setup()
+    end
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("config.null-ls").setup()
+    end
+  },
+
+  {
+    "olexsmir/gopher.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    build = function()
+      vim.cmd [[GoInstallDeps]]
+    end,
+    config = function()
+      require("config.nvim-gopher").setup()
+    end
+  },
 })
 
 -- When we are bootstrapping a configuration, it doesn't
