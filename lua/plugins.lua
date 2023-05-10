@@ -51,13 +51,19 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    lazy = true,
     build = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
     config = function()
       require 'config.nvim-treesitter'.setup()
     end,
+  },
+
+  {
+    'p00f/nvim-ts-rainbow',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter'
+    }
   },
 
   {
@@ -263,7 +269,7 @@ require('lazy').setup({
     config = function()
       require 'config.nvim-telescope'.setup()
     end
-  }
+  },
 })
 
 -- When we are bootstrapping a configuration, it doesn't
