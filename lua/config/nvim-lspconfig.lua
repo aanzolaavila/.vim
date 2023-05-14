@@ -69,18 +69,20 @@ function M.setup()
   local servers = {
     -- clangd = {},
     gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedparam = true,
-        unreachable = true,
-        fieldalignment = true,
-        nilness = true,
-        shadow = true,
-        unusedwrite = true,
-        useany = true,
-        unusedvariable = true,
-      }
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+          unusedparam = true,
+          unreachable = true,
+          fieldalignment = true,
+          nilness = true,
+          shadow = true,
+          unusedwrite = true,
+          useany = true,
+          unusedvariable = true,
+        },
+      },
     },
     -- pyright = {},
     rust_analyzer = {
