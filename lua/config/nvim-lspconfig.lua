@@ -71,7 +71,6 @@ function M.setup()
     gopls = {
       gopls = {
         completeUnimported = true,
-        usePlaceholders = true,
         analyses = {
           unusedparam = true,
           unreachable = true,
