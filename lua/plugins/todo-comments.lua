@@ -4,6 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
-    require 'config.todo-comments'.setup()
+    -- File explorer setup
+    require("todo-comments").setup()
   end
 }

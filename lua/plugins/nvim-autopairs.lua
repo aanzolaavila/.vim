@@ -2,6 +2,8 @@ return {
   -- Autopairs
   "windwp/nvim-autopairs",
   config = function()
-    require 'config.nvim-autopairs'.setup()
+    require("nvim-autopairs").setup {
+      check_ts = true
+    }
   end
 }

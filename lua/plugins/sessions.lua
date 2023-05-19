@@ -1,6 +1,11 @@
 return {
   'natecraddock/sessions.nvim',
   config = function()
-    require 'config.nvim-sessions'.setup()
+    -- Auto sessions setup
+    require("sessions").setup({
+      events = { "VimLeavePre", "BufEnter" },
+      session_filepath = vim.fn.stdpath 'state' .. "/sessions",
+      absolute = true
+    })
   end
 }

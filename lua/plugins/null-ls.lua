@@ -4,6 +4,13 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
-    require("config.null-ls").setup()
+    local null_ls = require("null-ls")
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.gofumpt,
+        null_ls.builtins.formatting.goimports_reviser,
+        null_ls.builtins.formatting.golines,
+      }
+    })
   end
 }

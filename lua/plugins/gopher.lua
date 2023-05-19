@@ -8,6 +8,13 @@ return {
     vim.cmd [[GoInstallDeps]]
   end,
   config = function()
-    require("config.nvim-gopher").setup()
+    require("gopher").setup {
+      commands = {
+        go = "go",
+        gomodifytags = "gomodifytags",
+        impl = "impl",
+        iferr = "iferr",
+      },
+    }
   end
 }
