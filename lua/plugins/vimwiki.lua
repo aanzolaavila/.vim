@@ -1,6 +1,6 @@
 return {
   'vimwiki/vimwiki',
-  config = function()
+  init = function()
     local wiki_dir = vim.fn.expand '~' .. '/wiki'
     if vim.fn.empty(vim.fn.glob(wiki_dir)) > 0 then
       vim.fn.system { 'mkdir', '-p', wiki_dir }
