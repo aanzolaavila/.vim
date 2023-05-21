@@ -9,9 +9,26 @@ return {
     -- See `:help nvim-treesitter`
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = { 'c', 'cpp', 'go', 'gomod', 'gosum', 'lua', 'python', 'rust', 'typescript', 'dockerfile',
+      ensure_installed = {
+        'c',
+        'cpp',
+        'go',
+        'gomod',
+        'gosum',
+        'lua',
+        'python',
+        'rust',
+        'typescript',
+        'dockerfile',
         'bash',
-        'gitignore', 'terraform', 'toml', 'yaml', 'json', 'sql', 'make' },
+        'gitignore',
+        'terraform',
+        'toml',
+        'yaml',
+        'json',
+        'sql',
+        'make'
+      },
 
       highlight = {
         enable = true,
