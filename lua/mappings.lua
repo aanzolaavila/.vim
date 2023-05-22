@@ -24,10 +24,6 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
 
--- refactoring.nvim
-vim.keymap.set('v', '<leader>rr', "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-  { desc = '[R]refactor' })
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
@@ -112,9 +108,3 @@ vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 -- Newlines
 vim.keymap.set('n', '<leader>]', 'o<Esc>k')
 vim.keymap.set('n', '<leader>[', 'O<Esc>j')
-
--- NvimTree
-vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeFocus<CR>', { remap = true })
-
--- UndoTree
-vim.keymap.set('n', '<leader>u', ':UndotreeShow<CR>:UndotreeFocus<CR>', { remap = true })
