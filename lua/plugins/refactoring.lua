@@ -1,9 +1,13 @@
 return {
   "ThePrimeagen/refactoring.nvim",
+  lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-treesitter/nvim-treesitter",
+  },
+  keys = {
+    { '<leader>rr', "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", { desc = '[R]refactor' } },
   },
   config = function()
     require("refactoring").setup({
