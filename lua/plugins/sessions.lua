@@ -1,5 +1,6 @@
 return {
   'natecraddock/sessions.nvim',
+  event = "VeryLazy",
   config = function()
     -- Auto sessions setup
     require("sessions").setup({
