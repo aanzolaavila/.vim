@@ -27,6 +27,7 @@ return {
       },
       extensions = {
         'nvim-tree',
+        'trouble',
       },
     }
   end,
