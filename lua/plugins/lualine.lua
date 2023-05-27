@@ -9,8 +9,23 @@ return {
     -- See `:help lualine.txt`
     require('lualine').setup {
       options = {
+        fmt = string.lower,
         icons_enabled = true,
         theme = 'jellybeans',
+        sections = {
+          lualine_a = {
+            'mode',
+            fmt = function(str)
+              return str:sub(1, 1)
+            end
+          },
+          lualine_b = {
+            'branch',
+          },
+        },
+      },
+      extensions = {
+        'nvim-tree',
       },
     }
   end,
