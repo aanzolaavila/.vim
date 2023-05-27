@@ -9,6 +9,7 @@ return {
     -- See `:help lualine.txt`
     require('lualine').setup {
       options = {
+        globalstatus = true,
         fmt = string.lower,
         icons_enabled = true,
         theme = 'jellybeans',
