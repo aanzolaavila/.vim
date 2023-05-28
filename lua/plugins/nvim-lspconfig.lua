@@ -97,9 +97,10 @@ return {
       },
       -- pyright = {},
       rust_analyzer = {
-        checkOnSave = {
-          command = "clippy"
-        }
+        check = {
+          command = "clippy",
+        },
+        checkOnSave = true,
       },
       -- tsserver = {},
 
@@ -117,6 +118,15 @@ return {
           diagnostics = {
             globals = { 'vim' },
           },
+        },
+      },
+
+      -- yaml kubernetes
+      yamlls = {
+        yaml = {
+          schemas = {
+            kubernetes = "globPattern",
+          }
         },
       },
     }
