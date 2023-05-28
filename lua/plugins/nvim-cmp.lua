@@ -27,14 +27,10 @@ return {
           select = true,
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
-          local copilot_keys = vim.fn['copilot#Accept']()
-
           if cmp.visible() then
             cmp.select_next_item()
             -- elseif luasnip.expand_or_jumpable() then
             --   luasnip.expand_or_jump()
-          elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
           else
             fallback()
           end
@@ -48,6 +44,15 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
+        ['<C-j>'] = cmp.mapping(function(fallback)
+          cmp.mapping.abort()
+          local copilot_keys = vim.fn['copilot#Accept']()
+          if copilot_keys ~= '' then
+            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+          else
+            fallback()
+          end
+        end, { 'i', 's' })
       },
       sources = {
         { name = 'nvim_lsp' },
