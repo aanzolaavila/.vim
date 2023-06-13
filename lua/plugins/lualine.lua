@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim', -- Fancier statusline
-  event = "VeryLazy",
+  priority = 1000,
   dependencies = {
     'nvim-tree/nvim-web-devicons'
   },
