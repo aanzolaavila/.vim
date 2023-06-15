@@ -1,6 +1,7 @@
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  event = 'VeryLazy',
   build = function()
     pcall(require('nvim-treesitter.install').update { with_sync = true })
   end,
