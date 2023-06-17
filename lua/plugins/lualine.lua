@@ -12,7 +12,7 @@ return {
         globalstatus = true,
         fmt = string.lower,
         icons_enabled = true,
-        theme = 'jellybeans',
+        theme = 'nightfly',
         sections = {
           lualine_a = {
             'mode',

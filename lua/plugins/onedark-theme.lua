@@ -6,5 +6,6 @@ return {
       style = 'warm'
     }
     vim.cmd 'colorscheme onedark'
-  end
+  end,
+  cond = false,
 }
