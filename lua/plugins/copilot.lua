@@ -1,20 +1,25 @@
 return {
-  'github/copilot.vim',
-  event = "VeryLazy",
+  'zbirenbaum/copilot.lua',
+  event = "InsertEnter",
+  cmd = "Copilot",
   config = function()
-    vim.g.copilot_no_tab_map = true
-    vim.g.copilot_assume_mapped = true
-    vim.g.copilot_filetypes = {
-      ["*"] = false,
-      ["lua"] = false,
-      ["javascript"] = true,
-      ["typescript"] = true,
-      ["rust"] = true,
-      ["c"] = true,
-      ["c#"] = true,
-      ["c++"] = true,
-      ["go"] = true,
-      ["python"] = true,
-    }
+    require('copilot').setup({
+      suggestion = { enabled = true },
+      panel = { enabled = true },
+      filetype = {
+        javascript = true,
+        typescript = true,
+        javascriptreact = true,
+        typescriptreact = true,
+        rust = true,
+        c = true,
+        cpp = true,
+        go = true,
+        python = true,
+        lua = true,
+        c_sharp = true,
+        ["*"] = false,
+      },
+    })
   end
 }
