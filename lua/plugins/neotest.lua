@@ -10,20 +10,48 @@ return {
   },
 
   config = function()
+    local neotest = require('neotest')
     vim.api.nvim_create_user_command('TestNearest', function()
-      require("neotest").run.run()
+      neotest.run.run()
+    end, {})
+    vim.api.nvim_create_user_command('TestNearestDebug', function()
+      neotest.run.run({ strategy = "dap" })
+    end, {})
+
+    vim.api.nvim_create_user_command('TestLast', function()
+      neotest.run.run_last()
+    end, {})
+    vim.api.nvim_create_user_command('TestLastDebug', function()
+      neotest.run.run_last({ strategy = "dap" })
     end, {})
 
     vim.api.nvim_create_user_command('TestStop', function()
-      require("neotest").run.stop()
+      neotest.run.stop()
     end, {})
 
     vim.api.nvim_create_user_command('TestFile', function()
-      require("neotest").run.run(vim.fn.expand("%"))
+      neotest.run.run(vim.fn.expand("%"))
+    end, {})
+    vim.api.nvim_create_user_command('TestFileDebug', function()
+      neotest.run.run({ vim.fn.expand("%"), strategy = "dap" })
     end, {})
 
     vim.api.nvim_create_user_command('TestSuite', function()
-      require('neotest').run.run(vim.fn.getcwd())
+      neotest.run.run(vim.fn.getcwd())
+    end, {})
+
+    vim.api.nvim_create_user_command('TestOutput', function()
+      neotest.output.open({ enter = true })
+    end, {})
+    vim.api.nvim_create_user_command('TestSummary', function()
+      neotest.summary.toggle()
+    end, {})
+
+    vim.api.nvim_create_user_command('TestWatch', function()
+      neotest.watch.watch()
+    end, {})
+    vim.api.nvim_create_user_command('TestWatchStop', function()
+      neotest.watch.stop()
     end, {})
 
     -- get neotest namespace (api call creates or returns namespace)
