@@ -43,10 +43,17 @@ ON_ATTACH = function(client, bufnr)
       vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
 
+    local enabled = true;
+    vim.api.nvim_buf_create_user_command(bufnr, 'ToggleBufAutoFormat', function(_)
+      enabled = not enabled
+    end, { desc = 'Format current buffer with LSP' })
+
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.format()
+        if enabled then
+          vim.lsp.buf.format()
+        end
       end,
     })
   end
