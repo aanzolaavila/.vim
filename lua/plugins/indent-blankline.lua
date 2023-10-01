@@ -4,9 +4,9 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
   },
+  main = "ibl",
   config = function()
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    -- See `:help ibl`
 
     -- Show custom characters for non-printable characters
     vim.opt.listchars = {
@@ -17,13 +17,20 @@ return {
       precedes = '>',
     }
 
-    require('indent_blankline').setup {
+    require('ibl').setup {
       show_trailing_blankline_indent = false,
       space_char_blankline = " ",
       show_current_context = true,
       show_current_context_start = true,
       indent_blankline_use_treesitter = true,
       indent_blankline_show_end_of_line = true,
+      indent = {
+        char = '┊',
+        smart_indent_cap = true,
+      },
+      whitespace = {
+        remove_blankline_trail = true,
+      },
     }
 
     -- Remove eol for vimwiki files
