@@ -18,18 +18,24 @@ return {
     }
 
     require('ibl').setup {
-      show_trailing_blankline_indent = false,
-      space_char_blankline = " ",
-      show_current_context = true,
-      show_current_context_start = true,
-      indent_blankline_use_treesitter = true,
-      indent_blankline_show_end_of_line = true,
       indent = {
         char = '┊',
         smart_indent_cap = true,
+        tab_char = { '»', '·' },
       },
       whitespace = {
         remove_blankline_trail = true,
+      },
+      scope = {
+        show_exact_scope = true,
+        include = {
+          node_type = {
+            lua = {
+              'return_statement',
+              'table_constructor',
+            }
+          },
+        }
       },
     }
 
