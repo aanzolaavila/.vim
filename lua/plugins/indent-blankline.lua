@@ -9,9 +9,10 @@ return {
     -- See `:help ibl`
 
     -- Show custom characters for non-printable characters
+    vim.opt.list = true
     vim.opt.listchars = {
       eol = '↴',
-      tab = '»·',
+      tab = '┊·',
       trail = '·',
       extends = '<',
       precedes = '>',
@@ -19,9 +20,8 @@ return {
 
     require('ibl').setup {
       indent = {
-        char = '┊',
+        char = { '┊' },
         smart_indent_cap = true,
-        tab_char = { '»', '·' },
       },
       whitespace = {
         remove_blankline_trail = true,
@@ -44,7 +44,7 @@ return {
       pattern = "vimwiki",
       callback = function()
         vim.opt_local.listchars = {
-          tab = '»·',
+          tab = '┊·',
           trail = '·',
           extends = '<',
           precedes = '>',
