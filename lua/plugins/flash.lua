@@ -1,5 +1,6 @@
 return {
   "folke/flash.nvim",
+  enabled = false, -- replaced back to leap.nvim
   event = "VeryLazy",
   ---@type Flash.Config
   opts = {},
