@@ -1,5 +1,8 @@
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
+
+local globalAutoFmtEnabled = true;
+
 ON_ATTACH = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -43,15 +46,19 @@ ON_ATTACH = function(client, bufnr)
       vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
 
-    local enabled = true;
+    local localAutoFmtEnabled = true;
     vim.api.nvim_buf_create_user_command(bufnr, 'ToggleBufAutoFormat', function(_)
-      enabled = not enabled
-    end, { desc = 'Format current buffer with LSP' })
+      localAutoFmtEnabled = not localAutoFmtEnabled
+    end, { desc = 'Format current buffer with LSP on save' })
+
+    vim.api.nvim_buf_create_user_command(bufnr, 'ToggleGlobalAutoFormat', function(_)
+      globalAutoFmtEnabled = not globalAutoFmtEnabled
+    end, { desc = 'Format current buffer with LSP on save globally' })
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       callback = function()
-        if enabled then
+        if globalAutoFmtEnabled and localAutoFmtEnabled then
           vim.lsp.buf.format()
         end
       end,
