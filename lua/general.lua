@@ -84,3 +84,6 @@ vim.g.vim_markdown_conceal_code_blocks = 0
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- THEME
+vim.cmd [[colorscheme habamax]]

@@ -12,7 +12,7 @@ return {
         globalstatus = true,
         fmt = string.lower,
         icons_enabled = true,
-        theme = 'nightfly',
+        -- theme = 'habamax', -- use default one instead
         sections = {
           lualine_a = {
             'mode',

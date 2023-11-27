@@ -5,5 +5,6 @@ return {
   priority = 1000,
   config = function()
     vim.cmd [[colorscheme nightfly]]
-  end
+  end,
+  cond = false,
 }
