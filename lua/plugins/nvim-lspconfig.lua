@@ -121,12 +121,8 @@ return {
         },
       },
 
-      rust_analyzer = {
-        check = {
-          command = "clippy",
-        },
-        checkOnSave = true,
-      },
+      rust_analyzer = {},
+
       -- tsserver = {},
 
       -- This allow LSP for Neovim lua configurations
@@ -156,6 +152,11 @@ return {
       },
     }
 
+    -- skips setup for these LSPs
+    local skip_setup = {
+      "rust_analyzer",
+    }
+
     mason_lspconfig.setup {
       ensure_installed = vim.tbl_keys(servers),
     }
@@ -166,6 +167,12 @@ return {
 
     mason_lspconfig.setup_handlers {
       function(server_name)
+        for _, v in pairs(skip_setup) do
+          if v == server_name then
+            return true
+          end
+        end
+
         require('lspconfig')[server_name].setup {
           capabilities = capabilities,
           on_attach = ON_ATTACH,
@@ -173,18 +180,6 @@ return {
         }
       end,
     }
-
-    require('rust-tools').setup({
-      server = {
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          ON_ATTACH(client, bufnr)
-          vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-          vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
-        end,
-      }
-    })
 
     -- Setup neovim lua configuration
     require('neodev').setup()
