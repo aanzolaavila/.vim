@@ -1,5 +1,6 @@
 return {
   "gbprod/yanky.nvim",
+  enable = false, -- not really using it
   event = "VeryLazy",
   config = function()
     require("yanky").setup({
