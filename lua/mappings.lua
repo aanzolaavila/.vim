@@ -25,9 +25,9 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic floating text" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- ###############
@@ -76,17 +76,16 @@ vim.keymap.set('n', '<leader>j', '<cmd>split<cr><C-W><C-J>')
 vim.keymap.set('n', '<leader>l', '<cmd>vsplit<cr><C-W><C-L>')
 
 -- Buffers
--- TODO install buffers plugin
-vim.keymap.set('n', 'T', '<cmd>enew<cr>')
+vim.keymap.set('n', 'T', '<cmd>enew<cr>', { desc = "Edit a new unedited buffer" })
 --[[ vim.keymap.set('n', '<S-L>', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>') ]]
-vim.keymap.set('n', '<C-x>', '<cmd>bdelete<CR>', { silent = true })
+vim.keymap.set('n', '<C-x>', '<cmd>bdelete<CR>', { desc = "Delete buffer", silent = true })
 
 -- Tabs
 -- Remember gt (forward) and gT (backward)
-vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>')
-vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>')
-vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>')
+vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>', { desc = "Create new tab" })
+vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>', { desc = "Go to previous tab" })
+vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Go to next tab" })
 
 -- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vim.keymap.set('v', '.', ':normal.<CR>')
@@ -106,5 +105,5 @@ vim.keymap.set('n', '<down>', '<nop>')
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
 -- Newlines
-vim.keymap.set('n', '<leader>]', 'o<Esc>k')
-vim.keymap.set('n', '<leader>[', 'O<Esc>j')
+vim.keymap.set('n', '<leader>]', 'o<Esc>k', { desc = "Adds new line below current" })
+vim.keymap.set('n', '<leader>[', 'O<Esc>j', { desc = "Adds new line above current" })
