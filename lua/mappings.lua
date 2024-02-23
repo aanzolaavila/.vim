@@ -84,8 +84,8 @@ vim.keymap.set('n', '<C-x>', '<cmd>bdelete<CR>', { desc = "Delete buffer", silen
 -- Tabs
 -- Remember gt (forward) and gT (backward)
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>', { desc = "Create new tab" })
-vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>', { desc = "Go to previous tab" })
-vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Go to next tab" })
+vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>', { desc = "Move current tab left" })
+vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Move current tab right" })
 
 -- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vim.keymap.set('v', '.', ':normal.<CR>')
