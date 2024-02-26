@@ -22,7 +22,6 @@ require('lazy').setup({
       { import = "plugins.extras.coding" },
       { import = "plugins.extras.util" },
       { import = "plugins.lang" },
-      { import = "plugins.lang.go" },
       { import = "plugins.lsp" },
       { import = "plugins.telescope" },
       { import = "plugins.theme" },

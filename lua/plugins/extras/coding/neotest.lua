@@ -4,9 +4,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "antoinemadec/FixCursorHold.nvim",
-
-    -- Adapters
-    'nvim-neotest/neotest-go',
   },
 
   config = function()
@@ -65,19 +62,5 @@ return {
         end,
       },
     }, neotest_ns)
-
-    require('neotest').setup({
-      adapters = {
-        require("neotest-go")({
-          args = {
-            '-covermode=atomic',
-            '-count=1',
-            '-race',
-            '-timeout=10m',
-            '-shuffle=on'
-          },
-        }),
-      }
-    })
   end
 }

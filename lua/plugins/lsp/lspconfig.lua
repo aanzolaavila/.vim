@@ -72,61 +72,6 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  clangd = {},
-
-  gopls = {
-    gopls = {
-      completeUnimported = true,
-      analyses = {
-        unusedparam = true,
-        unreachable = true,
-        fieldalignment = true,
-        nilness = true,
-        shadow = true,
-        unusedwrite = true,
-        useany = true,
-        unusedvariable = true,
-      },
-    },
-  },
-
-  pyright = {
-    pyright = {
-      typeCheckingMode = "strict",
-    },
-  },
-
-  rust_analyzer = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-        loadOutDirsFromCheck = true,
-        runBuildScripts = true,
-      },
-      -- Add clippy lints for Rust.
-      checkOnSave = {
-        allFeatures = true,
-        command = "clippy",
-        extraArgs = { "--no-deps" },
-      },
-      procMacro = {
-        enable = true,
-        ignored = {
-          ["async-trait"] = { "async_trait" },
-          ["napi-derive"] = { "napi" },
-          ["async-recursion"] = { "async_recursion" },
-        },
-      },
-      diagnostics = {
-        enable = true,
-        enableExperimental = true,
-        disabled = { "unresolved-proc-macro" },
-      },
-    },
-  },
-
-  -- tsserver = {},
-
   -- This allow LSP for Neovim lua configurations
   -- Reference: https://jdhao.github.io/2021/08/12/nvim_sumneko_lua_conf/
   lua_ls = {
@@ -143,89 +88,50 @@ local servers = {
       },
     },
   },
-
-  -- yaml kubernetes
-  yamlls = {
-    yaml = {
-      schemas = {
-        kubernetes = "globPattern",
-      }
-    },
-  },
 }
 
 return {
-  -- LSP Configuration & Plugins
-  'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
-  dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+  {
+    -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    event = 'VeryLazy',
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
 
-    -- Useful status updates for LSP
-    {
-      'j-hui/fidget.nvim',
-      branch = 'legacy',
+      -- Useful status updates for LSP
+      {
+        'j-hui/fidget.nvim',
+        branch = 'legacy',
+      },
+
+      -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
     },
+    config = function()
+      -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-    -- Additional lua configuration, makes nvim stuff amazing
-    'folke/neodev.nvim',
+      -- Setup mason so it can manage external tooling
+      require('mason').setup()
+
+      -- Ensure the servers above are installed
+      local mason_lspconfig = require 'mason-lspconfig'
+      mason_lspconfig.setup {
+        ensure_installed = vim.tbl_keys(servers),
+      }
+
+      mason_lspconfig.setup_handlers {
+        function(server_name)
+          require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            on_attach = ON_ATTACH,
+            settings = servers[server_name],
+          }
+        end,
+      }
+    end,
   },
-  config = function()
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-    -- Setup mason so it can manage external tooling
-    require('mason').setup()
-
-    -- Ensure the servers above are installed
-    local mason_lspconfig = require 'mason-lspconfig'
-    mason_lspconfig.setup {
-      ensure_installed = vim.tbl_keys(servers),
-    }
-
-    -- skips setup for these LSPs
-    local skip_setup = {
-      -- "rust_analyzer",
-    }
-
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        for _, v in pairs(skip_setup) do
-          if v == server_name then
-            return true -- skip server setup
-          end
-        end
-
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = ON_ATTACH,
-          settings = servers[server_name],
-        }
-      end,
-    }
-
-    -- Setup neovim lua configuration
-    require('neodev').setup()
-
-    -- Turn on lsp status information
-    require('fidget').setup()
-  end,
-  -- },
-  -- {
-  --   'mrcjkb/rustaceanvim',
-  --   version = '^3', -- Recommended
-  --   ft      = { 'rust' },
-  --   opts    = {
-  --     on_attach = ON_ATTACH,
-  --     settings = servers["rust_analyzer"],
-  --     capabilities = capabilities,
-  --   },
-  --   config  = function(_, opts)
-  --     vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
-  --   end,
-  --   enabled = false, -- while I can figure out how to make it work
-  -- }
 }
