@@ -154,79 +154,78 @@ local servers = {
   },
 }
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
 return {
-  {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+  -- LSP Configuration & Plugins
+  'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
+  dependencies = {
+    -- Automatically install LSPs to stdpath for neovim
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
-      {
-        'j-hui/fidget.nvim',
-        branch = 'legacy',
-      },
-
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
+    -- Useful status updates for LSP
+    {
+      'j-hui/fidget.nvim',
+      branch = 'legacy',
     },
-    config = function()
-      -- Setup mason so it can manage external tooling
-      require('mason').setup()
 
-      -- Ensure the servers above are installed
-      local mason_lspconfig = require 'mason-lspconfig'
-      mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
-      }
-
-      -- skips setup for these LSPs
-      local skip_setup = {
-        -- "rust_analyzer",
-      }
-
-      mason_lspconfig.setup_handlers {
-        function(server_name)
-          for _, v in pairs(skip_setup) do
-            if v == server_name then
-              return true -- skip server setup
-            end
-          end
-
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = ON_ATTACH,
-            settings = servers[server_name],
-          }
-        end,
-      }
-
-      -- Setup neovim lua configuration
-      require('neodev').setup()
-
-      -- Turn on lsp status information
-      require('fidget').setup()
-    end,
+    -- Additional lua configuration, makes nvim stuff amazing
+    'folke/neodev.nvim',
   },
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^3', -- Recommended
-    ft      = { 'rust' },
-    opts    = {
-      on_attach = ON_ATTACH,
-      settings = servers["rust_analyzer"],
-      capabilities = capabilities,
-    },
-    config  = function(_, opts)
-      vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
-    end,
-    enabled = false, -- while I can figure out how to make it work
-  }
+  config = function()
+    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+    -- Setup mason so it can manage external tooling
+    require('mason').setup()
+
+    -- Ensure the servers above are installed
+    local mason_lspconfig = require 'mason-lspconfig'
+    mason_lspconfig.setup {
+      ensure_installed = vim.tbl_keys(servers),
+    }
+
+    -- skips setup for these LSPs
+    local skip_setup = {
+      -- "rust_analyzer",
+    }
+
+    mason_lspconfig.setup_handlers {
+      function(server_name)
+        for _, v in pairs(skip_setup) do
+          if v == server_name then
+            return true -- skip server setup
+          end
+        end
+
+        require('lspconfig')[server_name].setup {
+          capabilities = capabilities,
+          on_attach = ON_ATTACH,
+          settings = servers[server_name],
+        }
+      end,
+    }
+
+    -- Setup neovim lua configuration
+    require('neodev').setup()
+
+    -- Turn on lsp status information
+    require('fidget').setup()
+  end,
+  -- },
+  -- {
+  --   'mrcjkb/rustaceanvim',
+  --   version = '^3', -- Recommended
+  --   ft      = { 'rust' },
+  --   opts    = {
+  --     on_attach = ON_ATTACH,
+  --     settings = servers["rust_analyzer"],
+  --     capabilities = capabilities,
+  --   },
+  --   config  = function(_, opts)
+  --     vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
+  --   end,
+  --   enabled = false, -- while I can figure out how to make it work
+  -- }
 }
