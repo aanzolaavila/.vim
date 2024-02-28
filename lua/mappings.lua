@@ -55,7 +55,6 @@ vim.keymap.set('n', '<leader>P', "\"+P", { desc = '[P]aste from system clipboard
 -- Better line joining
 vim.keymap.set('n', 'J', "mzJ`z", { desc = '[J]oin current line with next line' })
 
-
 -- Common typos
 vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
@@ -115,6 +114,7 @@ vim.keymap.set('n', '<leader>[', 'O<Esc>j', { desc = "Adds new line above curren
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- When using `/` or `?` it does not matter, it will always be forward search
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
 vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })

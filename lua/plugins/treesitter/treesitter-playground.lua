@@ -1,5 +1,6 @@
 return {
   'nvim-treesitter/playground',
+  disabled = true,
   event = 'VeryLazy',
   dependencies = {
     'nvim-treesitter/nvim-treesitter',

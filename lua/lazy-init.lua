@@ -42,8 +42,8 @@ require('lazy').setup({
         "logipat",
         -- "netrw",
         -- "netrwPlugin",
-        -- "netrwSettings",
-        -- "netrwFileHandlers",
+        "netrwSettings",
+        "netrwFileHandlers",
         "matchit",
         "tar",
         "tarPlugin",
@@ -67,16 +67,3 @@ require('lazy').setup({
   }
 }
 )
-
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
--- You'll need to restart nvim, and then it will work.
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Lazy completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end

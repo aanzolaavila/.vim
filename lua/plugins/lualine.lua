@@ -4,31 +4,27 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons'
   },
-  config = function()
-    -- Set lualine as statusline
-    -- See `:help lualine.txt`
-    require('lualine').setup {
-      options = {
-        globalstatus = true,
-        fmt = string.lower,
-        icons_enabled = true,
-        -- theme = 'habamax', -- use default one instead
-        sections = {
-          lualine_a = {
-            'mode',
-            fmt = function(str)
-              return str:sub(1, 1)
-            end
-          },
-          lualine_b = {
-            'branch',
-          },
+  opts = {
+    options = {
+      globalstatus = true,
+      fmt = string.lower,
+      icons_enabled = true,
+      -- theme = 'habamax', -- use default one instead
+      sections = {
+        lualine_a = {
+          'mode',
+          fmt = function(str)
+            return str:sub(1, 1)
+          end
+        },
+        lualine_b = {
+          'branch',
         },
       },
-      extensions = {
-        'nvim-tree',
-        'trouble',
-      },
-    }
-  end,
+    },
+    extensions = {
+      'nvim-tree',
+      'trouble',
+    },
+  },
 }
