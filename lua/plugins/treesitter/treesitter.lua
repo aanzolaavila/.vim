@@ -39,7 +39,9 @@ return {
             local max_filesize = max_size_kb * 1024
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
-              print(string.format("Disabled Treesitter for the current buffer, as it is bigger than %dKB", max_size_kb))
+              vim.notify(
+                string.format("Disabled Treesitter for the current buffer, as it is bigger than %dKB", max_size_kb),
+                vim.log.levels.WARN, { title = "Warning" })
               return true
             end
           end,
