@@ -25,7 +25,7 @@ vim.opt.spelllang = "en,es"
 
 -- Text rendering options
 vim.opt.linebreak = true
-vim.opt.scrolloff = 3
+vim.opt.scrolloff = 8
 vim.opt.scrolljump = -100
 vim.opt.sidescrolloff = 5
 
