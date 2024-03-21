@@ -9,6 +9,7 @@ return {
 
     -- this is only useful for lervag/wiki.vim
     vim.g.wiki_root = wiki_dir
+    vim.g.vimwiki_global_ext = 0
 
     -- this is for vimwiki/vimwiki
     local wiki = {}
