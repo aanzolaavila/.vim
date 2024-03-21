@@ -64,6 +64,7 @@ return {
 
   {
     "lukas-reineke/headlines.nvim",
+    enabled = false, -- I don't really like it, I want to see what I write
     opts = function()
       local opts = {}
       for _, ft in ipairs({ "markdown", "norg", "rmd", "org" }) do
