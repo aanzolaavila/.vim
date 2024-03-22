@@ -8,7 +8,17 @@ return {
     config = function()
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup {}
+      local telescope = require('telescope')
+      local themes = require('telescope.themes')
+      telescope.setup {
+        defaults = {},
+        pickers = {
+          find_files = {
+            theme = "ivy",
+          },
+        },
+        extensions = {},
+      }
     end
   },
   {
