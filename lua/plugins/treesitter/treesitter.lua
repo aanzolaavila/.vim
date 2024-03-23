@@ -18,21 +18,9 @@ return {
           'vimdoc',
           'lua',
           -- end required
-          -- 'cpp',
-          'go',
-          'gomod',
-          'gosum',
-          'python',
-          'rust',
-          -- 'typescript',
-          'dockerfile',
           'bash',
-          -- 'gitignore',
-          'terraform',
-          -- 'toml',
-          -- 'yaml',
-          'json',
-          -- 'sql',
+          'gitignore',
+          'gitcommit',
           'make',
         },
 
@@ -57,12 +45,13 @@ return {
         },
 
         indent = { enable = true, disable = { 'python' } },
+
         incremental_selection = {
           enable = true,
           keymaps = {
             init_selection = '<c-space>',
             node_incremental = '<c-space>',
-            scope_incremental = '<c-s>',
+            scope_incremental = '<c-space>',
             node_decremental = '<c-backspace>',
           },
         },
