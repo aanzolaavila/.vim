@@ -16,6 +16,9 @@ return {
           find_files = {
             theme = "ivy",
           },
+          lsp_references = {
+            theme = "ivy",
+          },
         },
         extensions = {},
       }

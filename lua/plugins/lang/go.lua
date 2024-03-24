@@ -163,12 +163,59 @@ return {
     config = function()
       require('dap-go').setup()
 
+      local godap_config = {
+        go = {
+          {
+            type = "go",
+            name = "Debug",
+            request = "launch",
+            program = "${file}",
+          },
+          {
+            type = "go",
+            name = "Debug test (go.mod)",
+            request = "launch",
+            mode = "test",
+            program = "./${relativeFileDirname}",
+          },
+          {
+            type = "go",
+            name = "Attach (Pick Process)",
+            mode = "local",
+            request = "attach",
+            processId = require('dap.utils').pick_process,
+          },
+          {
+            type = "go",
+            name = "Attach (127.0.0.1:9080)",
+            mode = "remote",
+            request = "attach",
+            port = "9080"
+          },
+          {
+            -- Must be "go" or it will be ignored by the plugin
+            type = "go",
+            name = "Attach remote to curlew (127.0.0.1:18080)",
+            mode = "remote",
+            request = "attach",
+            port = 18080,
+            substitutePath = {
+              { from = "${workspaceFolder}", to = "/go/src/curlew" }
+            }
+          }
+        }
+      }
+
+      local dap = require('dap')
+      local dap_cfg = dap.configurations or {}
+      dap.configurations.go = godap_config.go
+
       local dapgo_group = vim.api.nvim_create_augroup('DapGo', { clear = true })
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "go",
         callback = function()
-          vim.keymap.set("n", "<leader>dt", function()
+          vim.keymap.set("n", "<localleader>dt", function()
             require('dap-go').debug_test()
           end, {
             silent = true,
