@@ -36,4 +36,26 @@ return {
       require('telescope').load_extension('fzf')
     end
   },
+  {
+    'tom-anders/telescope-vim-bookmarks.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      {
+        'MattesGroeger/vim-bookmarks',
+        config = function()
+          vim.cmd [[
+            highlight BookmarkSign ctermbg=NONE ctermfg=160
+            highlight BookmarkLine ctermbg=194 ctermfg=NONE
+
+            let g:bookmark_save_per_working_dir = 1
+            let g:bookmark_auto_save = 1
+          ]]
+        end
+      }
+    },
+    event = 'VeryLazy',
+    config = function()
+      require('telescope').load_extension('vim_bookmarks')
+    end,
+  }
 }
