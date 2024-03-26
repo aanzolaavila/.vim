@@ -82,7 +82,7 @@ vim.keymap.set('n', '<leader>l', '<cmd>vsplit<cr><C-W><C-L>')
 vim.keymap.set('n', 'T', '<cmd>enew<cr>', { desc = "Edit a new unedited buffer" })
 --[[ vim.keymap.set('n', '<S-L>', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>') ]]
-vim.keymap.set('n', '<C-x>', '<cmd>bdelete<CR>', { desc = "Delete buffer", silent = true })
+vim.keymap.set('n', '<C-x>', '<cmd>bn<cr>bd#<cr>', { desc = "Delete buffer", silent = true })
 
 -- Tabs
 -- Remember gt (forward) and gT (backward)
