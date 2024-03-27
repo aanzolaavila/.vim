@@ -41,6 +41,24 @@ return {
     vim.api.nvim_create_user_command('TestOutput', function()
       neotest.output.open({ enter = true })
     end, {})
+
+    vim.api.nvim_create_user_command('TestOutputPanel', function()
+      neotest.output_panel.toggle()
+    end, {})
+
+    vim.api.nvim_create_user_command('TestOutputPanelClose', function()
+      neotest.output_panel.close()
+    end, {})
+
+    vim.api.nvim_create_user_command('TestOutputPanelClear', function()
+      neotest.output_panel.clear()
+    end, {})
+
+    vim.api.nvim_create_user_command('TestOutputPanelReset', function()
+      neotest.output_panel.clear()
+      neotest.output_panel.close()
+    end, {})
+
     vim.api.nvim_create_user_command('TestSummary', function()
       neotest.summary.toggle()
     end, {})
