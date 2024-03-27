@@ -1,8 +1,6 @@
 return {
   "folke/flash.nvim",
-  enabled = false, -- replaced back to leap.nvim
   event = "VeryLazy",
-  ---@type Flash.Config
   opts = {},
   keys = {
     {
@@ -21,7 +19,7 @@ return {
       end,
       desc = "Flash Treesitter",
     },
-    {
+    --[[ {
       "r",
       mode = "o",
       function()
@@ -44,6 +42,6 @@ return {
         require("flash").toggle()
       end,
       desc = "Toggle Flash Search",
-    },
+    }, ]]
   },
 }
