@@ -1,5 +1,1 @@
-require("general")
-require('filetypes')
-require('lazy-init')
-require("mappings")
-require("autocommands")
+require("options")
