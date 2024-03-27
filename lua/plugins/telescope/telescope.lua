@@ -41,7 +41,7 @@ return {
         { desc = '[ ] Find existing buffers' })
 
       vim.keymap.set('n', '<leader>sf',
-        with_cfg(telescope.find_files, themes.get_ivy, { initial_mode = 'insert', hidden = true, winblend = 10 }),
+        with_cfg(telescope.find_files, themes.get_ivy, { initial_mode = 'insert', winblend = 10 }),
         { desc = '[S]earch [F]iles' })
 
       vim.keymap.set('n', '<leader>sj', with_cfg(telescope.jumplist, themes.get_dropdown, {
