@@ -3,7 +3,12 @@ return {
   event = "VeryLazy",
   opts = {
     modes = {
+      search = {
+        -- to use / and ?
+        enabled = true,
+      },
       char = {
+        -- to disable use of ftFT motions in flash
         enabled = false,
       },
     }
