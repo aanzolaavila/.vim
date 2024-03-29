@@ -5,7 +5,7 @@ return {
     modes = {
       search = {
         -- to use / and ?
-        enabled = true,
+        enabled = false,
       },
       char = {
         -- to disable use of ftFT motions in flash
