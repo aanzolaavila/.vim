@@ -23,13 +23,14 @@ ON_ATTACH = function(client, bufnr)
 
   local telescope = require('telescope.builtin')
 
-  nmap('gd', telescope.lsp_definitions, '[G]oto [d]efinition')
-  nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
-  nmap('gr', telescope.lsp_references, '[g]oto [r]eferences')
-  nmap('gI', telescope.lsp_implementations, '[g]oto [I]mplementation')
+  nmap('gd', function() telescope.lsp_definitions({ initial_mode = 'normal' }) end, '[G]oto [d]efinition')
+  nmap('gD', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
+  nmap('gr', function() telescope.lsp_references({ initial_mode = 'normal' }) end, '[g]oto [r]eferences')
+  nmap('gI', function() telescope.lsp_implementations({ initial_mode = 'normal' }) end, '[g]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', telescope.lsp_document_symbols, '[d]ocument [s]ymbols')
-  nmap('<leader>ws', telescope.lsp_dynamic_workspace_symbols, '[w]orkspace [s]ymbols')
+  nmap('<leader>ds', function() telescope.lsp_document_symbols({ initial_mode = 'normal' }) end, '[d]ocument [s]ymbols')
+  nmap('<leader>ws', function() telescope.lsp_dynamic_workspace_symbols({ initial_mode = 'normal' }) end,
+    '[w]orkspace [s]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
