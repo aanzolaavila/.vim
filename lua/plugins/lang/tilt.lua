@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre Tiltfile*" },
+    event = "VeryLazy",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
@@ -15,13 +15,11 @@ return {
       -- Change to table with settings if required
       local settings = vim.empty_dict()
 
-      vim.api.nvim_create_autocmd("BufRead", {
+      vim.api.nvim_create_autocmd("BufReadPost", {
         pattern = pattern,
         callback = function(args)
           local match = vim.fs.find(root_markers, { path = args.file, upward = true })[1]
           local root_dir = match and vim.fn.fnamemodify(match, ":p:h") or nil
-
-          vim.cmd [[ setlocal filetype=starlark ]]
 
           vim.lsp.start({
             name = "tiltlsp",
