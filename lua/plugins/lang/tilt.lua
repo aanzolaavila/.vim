@@ -8,18 +8,18 @@ return {
         "starlark",
       })
 
-      local pattern = "Tiltfile*"
-      local cmd = { 'tilt', 'lsp', 'start' }
-      -- Add files/folders here that indicate the root of a project
-      local root_markers = { ".git", "Tiltfile" }
-      -- Change to table with settings if required
-      local settings = vim.empty_dict()
-
       vim.api.nvim_create_autocmd("BufReadPost", {
-        pattern = pattern,
+        pattern = "Tiltfile*",
         callback = function(args)
+          -- Add files/folders here that indicate the root of a project
+          local root_markers = { ".git", "Tiltfile" }
           local match = vim.fs.find(root_markers, { path = args.file, upward = true })[1]
           local root_dir = match and vim.fn.fnamemodify(match, ":p:h") or nil
+
+          local cmd = { 'tilt', 'lsp', 'start' }
+
+          -- Change to table with settings if required
+          local settings = vim.empty_dict()
 
           vim.lsp.start({
             name = "tiltlsp",
