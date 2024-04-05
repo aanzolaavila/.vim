@@ -119,3 +119,16 @@ au("FileType", {
     vim.cmd([[LspStart yamlls]])
   end
 })
+
+-- Remove eol for vimwiki files
+au("FileType", {
+  pattern = "vimwiki",
+  callback = function()
+    vim.opt_local.listchars = {
+      tab = '┊·',
+      trail = '·',
+      extends = '<',
+      precedes = '>',
+    }
+  end
+})

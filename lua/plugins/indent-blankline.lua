@@ -38,18 +38,5 @@ return {
         }
       },
     }
-
-    -- Remove eol for vimwiki files
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "vimwiki",
-      callback = function()
-        vim.opt_local.listchars = {
-          tab = '┊·',
-          trail = '·',
-          extends = '<',
-          precedes = '>',
-        }
-      end
-    })
   end
 }
