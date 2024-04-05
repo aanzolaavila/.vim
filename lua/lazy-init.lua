@@ -1,7 +1,5 @@
-local is_bootstrap = false
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  is_bootstrap = true
   vim.fn.system({
     "git",
     "clone",
