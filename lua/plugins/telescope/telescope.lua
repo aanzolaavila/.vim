@@ -37,7 +37,7 @@ return {
         { desc = '[/] Fuzzily search in current buffer]' })
 
       vim.keymap.set('n', '<leader><space>',
-        with_cfg(telescope.buffers, themes.get_ivy, { initial_mode = 'normal', only_cwd = true, winblend = 10 }),
+        with_cfg(telescope.buffers, themes.get_ivy, { initial_mode = 'normal', winblend = 10 }),
         { desc = '[ ] Find existing buffers' })
 
       vim.keymap.set('n', '<leader>sf',
