@@ -5,12 +5,15 @@ return {
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
     'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip'
+    'saadparwaiz1/cmp_luasnip',
+    'zbirenbaum/copilot-cmp',
+    'onsails/lspkind.nvim',
   },
   config = function()
     -- nvim-cmp setup
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+    local lspkind = require 'lspkind'
 
     local has_words_before = function()
       -- TODO: Check deprecation
@@ -20,14 +23,25 @@ return {
     end
 
     cmp.setup {
+      -- lspkind
+      -- taken from https://github.com/onsails/lspkind.nvim
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = 'symbol_text', -- show symbol and text annotations
+          maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          -- can also be a function to dynamically calculate max width such as
+          -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+          ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+        })
+      },
+      -- end lspkind
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
@@ -54,6 +68,7 @@ return {
         { name = 'copilot',  group_index = 2 },
         { name = 'nvim_lsp', group_index = 2 },
         { name = 'luasnip',  group_index = 2 },
+        { name = 'buffer',   group_index = 2 },
       },
       sorting = {
         priority_weight = 2,
