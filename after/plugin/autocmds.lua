@@ -3,7 +3,8 @@ local augroup = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
 
 local exit_if_last = function()
-  if vim.fn.winnr("$") == 1 then vim.cmd("q") end
+  -- TODO: fix this
+  -- if vim.fn.winnr("$") == 1 then vim.cmd("q") end
 end
 
 -- Trim whitespace
