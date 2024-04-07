@@ -207,7 +207,6 @@ return {
       }
 
       local dap = require('dap')
-      local dap_cfg = dap.configurations or {}
       dap.configurations.go = godap_config.go
 
       local dapgo_group = vim.api.nvim_create_augroup('DapGo', { clear = true })
@@ -259,15 +258,14 @@ return {
     build = function()
       vim.cmd [[GoInstallDeps]]
     end,
-    config = function()
-      require("gopher").setup {
-        commands = {
-          go = "go",
-          gomodifytags = "gomodifytags",
-          impl = "impl",
-          iferr = "iferr",
-        },
-      }
-    end
+    main = 'gopher',
+    opts = {
+      commands = {
+        go = "go",
+        gomodifytags = "gomodifytags",
+        impl = "impl",
+        iferr = "iferr",
+      },
+    },
   }
 }
