@@ -9,6 +9,9 @@ return {
         require('lsp-progress').setup()
       end
     },
+    {
+      'AndreM222/copilot-lualine',
+    }
   },
 
   config = function()
@@ -26,13 +29,17 @@ return {
         lualine_b = {
           'branch',
           'diff',
-          'diagnostics',
+          {
+            'diagnostics',
+            sources = { "nvim_diagnostic" },
+            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
+          }
         },
         lualine_c = {
           'filename',
           require('lsp-progress').progress,
         },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { 'copilot', 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
       },
