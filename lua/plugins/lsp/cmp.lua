@@ -10,19 +10,23 @@ return {
     'onsails/lspkind.nvim',
   },
   config = function()
-    -- nvim-cmp setup
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
 
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
     local has_words_before = function()
-      -- TODO: Check deprecation
       if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+      -- TODO: Check deprecation
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
     end
 
     cmp.setup {
+      -- ensure that the first option is not selected by default
+      preselect = cmp.PreselectMode.None,
+
       -- lspkind
       -- taken from https://github.com/onsails/lspkind.nvim
       formatting = {
@@ -33,28 +37,32 @@ return {
           -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
           ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
           show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+          symbol_map = { Copilot = "" }
         })
       },
+
       -- end lspkind
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
+
       mapping = cmp.mapping.preset.insert {
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
+        ['<CR>'] = cmp.config.disable,
+        ['<C-j>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        ['<Tab>'] = vim.schedule_wrap(function(fallback)
+        ['<C-n>'] = vim.schedule_wrap(function(fallback)
           if cmp.visible() and has_words_before() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           else
             fallback()
           end
         end),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
+        ['<C-p>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
             -- elseif luasnip.jumpable(-1) then
@@ -64,12 +72,14 @@ return {
           end
         end, { 'i', 's' }),
       },
+
       sources = {
         { name = 'copilot',  group_index = 2 },
         { name = 'nvim_lsp', group_index = 2 },
         { name = 'luasnip',  group_index = 2 },
         { name = 'buffer',   group_index = 2 },
       },
+
       sorting = {
         priority_weight = 2,
         comparators = {
@@ -86,6 +96,14 @@ return {
           cmp.config.compare.length,
           cmp.config.compare.order,
         }
+      },
+
+      completion = {
+        keyboard_length = 3,
+      },
+
+      experimental = {
+        ghost_text = true,
       }
     }
   end
