@@ -68,7 +68,11 @@ ON_ATTACH = function(client, bufnr)
     buffer = bufnr,
     callback = function()
       if globalAutoFmtEnabled and localAutoFmtEnabled then
-        vim.lsp.buf.format()
+        vim.lsp.buf.format {
+          async = false,
+        }
+        -- workaround for hidden diagnostics after file format
+        vim.diagnostic.enable(bufnr)
       end
     end,
   })
@@ -102,7 +106,7 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    event = { 'BufWritePre', 'BufNewFile', 'BufReadPost' },
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
@@ -147,8 +151,10 @@ return {
         local clients = vim.lsp.get_clients()
 
         for _, client in pairs(clients) do
+          ---@diagnostic disable-next-line: undefined-field
           if client.name ~= "null-ls" then
             local capAsList = {}
+            ---@diagnostic disable-next-line: undefined-field
             for key, value in pairs(client.server_capabilities) do
               if value and key:find("Provider") then
                 local capability = key:gsub("Provider$", "")
@@ -157,6 +163,7 @@ return {
             end
 
             table.sort(capAsList) -- sorts alphabetically
+            ---@diagnostic disable-next-line: undefined-field
             local msg = "# " .. client.name .. "\n" .. table.concat(capAsList, "\n")
             print(msg)
 
@@ -182,7 +189,7 @@ return {
       "mfussenegger/nvim-dap",
     },
     opts = {
-      ensure_installed = { "delve" },
+      ensure_installed = {},
       automatic_installation = true,
     },
   }
