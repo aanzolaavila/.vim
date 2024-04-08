@@ -7,5 +7,6 @@ vim.filetype.add({
 	},
 	pattern = {
 		['rfc[0-9]+.txt'] = 'rfc',
+		['.*tmux.conf.*'] = 'tmux',
 	}
 })
