@@ -52,7 +52,7 @@ return {
           keymaps = {
             init_selection = '<C-n>',
             node_incremental = '<C-n>',
-            scope_incremental = '<C-n>',
+            scope_incremental = '<C-m>',
             node_decremental = '<backspace>',
           },
         },
