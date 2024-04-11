@@ -4,8 +4,24 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  config = function()
-    -- File explorer setup
-    require("todo-comments").setup()
-  end
+  opts = {
+    highlight = {
+      before = "fg",
+      keyword = "bg",
+      pattern = [[.*<(KEYWORDS)\s*]],
+    },
+
+    search = {
+      command = 'rg',
+      args = {
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--case-sensitive",
+      },
+      pattern = [[\b(KEYWORDS)\b]],
+    }
+  },
 }
