@@ -107,7 +107,6 @@ return {
     event = 'VeryLazy',
     config = function()
       local telescope = require('telescope')
-      local themes = require('telescope.themes')
 
       telescope.load_extension('vim_bookmarks')
 

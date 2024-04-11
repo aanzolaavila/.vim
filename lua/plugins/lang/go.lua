@@ -50,7 +50,7 @@ return {
           semanticTokens = true,
         },
       },
-      setup = { -- XXX: This seems to be unused
+      setup = { -- TODO: figure out if this is actually needed
         gopls = function(_, _)
           -- workaround for gopls not supporting semanticTokensProvider
           -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
