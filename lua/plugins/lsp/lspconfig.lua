@@ -92,9 +92,6 @@ return {
       {
         'j-hui/fidget.nvim',
         branch = 'legacy',
-        -- version = '^1.4.1',
-        main = 'fidget',
-        config = true,
       },
 
       -- Additional lua configuration, makes nvim stuff amazing
