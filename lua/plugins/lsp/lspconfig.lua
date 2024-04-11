@@ -3,11 +3,11 @@
 
 local globalAutoFmtEnabled = true;
 
-ON_ATTACH = function(client, bufnr)
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
-  --
+  -- ...
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
@@ -18,12 +18,12 @@ ON_ATTACH = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
 
   local telescope = require('telescope.builtin')
 
-  nmap('gd', function() telescope.lsp_definitions({ initial_mode = 'normal' }) end, '[G]oto [d]efinition')
+  nmap('gd', function() telescope.lsp_definitions({ initial_mode = 'normal' }) end, '[g]oto [d]efinition')
   nmap('gD', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
   nmap('gr', function() telescope.lsp_references({ initial_mode = 'normal' }) end, '[g]oto [r]eferences')
   nmap('gI', function() telescope.lsp_implementations({ initial_mode = 'normal' }) end, '[g]oto [I]mplementation')
@@ -78,69 +78,72 @@ ON_ATTACH = function(client, bufnr)
   })
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-  -- This allow LSP for Neovim lua configurations
-  -- Reference: https://jdhao.github.io/2021/08/12/nvim_sumneko_lua_conf/
-  lua_ls = {
-    Lua = {
-      workspace = {
-        checkThirdParty = false,
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-    },
-  },
-}
-
 return {
   {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
+    'neovim/nvim-lspconfig', -- LSP Configuration & Plugins
+    version = '^0.1.7',
     event = { 'BufWritePre', 'BufNewFile', 'BufReadPost' },
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      { 'williamboman/mason.nvim',           version = '^1.10.0', config = true },               -- Automatically install LSPs to stdpath for neovim
+      { 'williamboman/mason-lspconfig.nvim', version = '^1.27.0', config = false, opts = true }, -- will configure here
+      { 'hrsh7th/cmp-nvim-lsp',              config = false },
 
       -- Useful status updates for LSP
       {
         'j-hui/fidget.nvim',
         branch = 'legacy',
+        -- version = '^1.4.1',
+        main = 'fidget',
+        config = true,
       },
 
       -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
+      { 'folke/neodev.nvim' },
     },
-    config = function()
+
+    opts = {
+      servers = {
+        -- This allow LSP for Neovim lua configurations
+        -- Reference: https://jdhao.github.io/2021/08/12/nvim_sumneko_lua_conf/
+        lua_ls = {
+          Lua = {
+            workspace = {
+              checkThirdParty = false,
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+              enable = false
+            },
+            diagnostics = {
+              globals = { 'vim' },
+            },
+            completion = {
+              callSnippet = 'Replace',
+            }
+          },
+        },
+      }
+    },
+
+    config = function(_, opts)
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-      -- Setup mason so it can manage external tooling
-      require('mason').setup()
-
+      local ensure_installed = require('util.lazy').opts('mason-lspconfig.nvim').ensure_installed or {}
+      vim.list_extend(ensure_installed, vim.tbl_keys(opts.servers))
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
       mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
+        ensure_installed = ensure_installed,
       }
 
       mason_lspconfig.setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
-            on_attach = ON_ATTACH,
-            settings = servers[server_name],
+            on_attach = on_attach,
+            settings = opts.servers[server_name] or {},
           }
         end,
       }
@@ -166,16 +169,6 @@ return {
             ---@diagnostic disable-next-line: undefined-field
             local msg = "# " .. client.name .. "\n" .. table.concat(capAsList, "\n")
             print(msg)
-
-            -- vim.notify(msg, vim.log.levels.TRACE, {
-            --   on_open = function(win)
-            --     local buf = vim.api.nvim_win_get_buf(win)
-            --     vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-            --   end,
-            --   timeout = 14000,
-            -- })
-
-            -- print(msg .. "\nCapabilities = " .. vim.inspect(client.server_capabilities))
           end
         end
       end, {})
