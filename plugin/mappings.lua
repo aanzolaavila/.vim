@@ -13,7 +13,9 @@ local diagnostic_goto = function(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    if severity then
+      go({ severity = severity })
+    end
   end
 end
 vim.keymap.set('n', '[d', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
