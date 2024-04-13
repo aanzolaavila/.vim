@@ -12,8 +12,10 @@ return {
     vim.g.vimwiki_global_ext = 0
 
     -- this is for vimwiki/vimwiki
-    local wiki = {}
-    wiki.path = wiki_dir
+    local wiki = {
+      path = wiki_dir,
+      ext = '.wiki',
+    }
     vim.g.vimwiki_list = { wiki }
 
     local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
