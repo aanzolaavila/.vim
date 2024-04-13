@@ -103,20 +103,22 @@ return {
         -- This allow LSP for Neovim lua configurations
         -- Reference: https://jdhao.github.io/2021/08/12/nvim_sumneko_lua_conf/
         lua_ls = {
-          Lua = {
-            workspace = {
-              checkThirdParty = false,
-              library = vim.api.nvim_get_runtime_file("", true),
+          settings = {
+            Lua = {
+              workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+              telemetry = {
+                enable = false
+              },
+              diagnostics = {
+                globals = { 'vim' },
+              },
+              completion = {
+                callSnippet = 'Replace',
+              }
             },
-            telemetry = {
-              enable = false
-            },
-            diagnostics = {
-              globals = { 'vim' },
-            },
-            completion = {
-              callSnippet = 'Replace',
-            }
           },
         },
       }
@@ -124,8 +126,32 @@ return {
 
     config = function(_, opts)
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      local servers = opts.servers
+      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+        opts.capabilities or {}
+      )
+
+      local function setup(server)
+        local server_opts = vim.tbl_deep_extend("force", {
+          capabilities = vim.deepcopy(capabilities),
+        }, servers[server] or {})
+
+        if opts.setup[server] then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup["*"] then
+          if opts.setup["*"](server, server_opts) then
+            return
+          end
+        end
+        require("lspconfig")[server].setup(server_opts)
+      end
 
       local ensure_installed = require('util.lazy').opts('mason-lspconfig.nvim').ensure_installed or {}
       vim.list_extend(ensure_installed, vim.tbl_keys(opts.servers))
@@ -133,17 +159,11 @@ return {
       local mason_lspconfig = require 'mason-lspconfig'
       mason_lspconfig.setup {
         ensure_installed = ensure_installed,
+        handlers = { setup }
       }
 
-      mason_lspconfig.setup_handlers {
-        function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = opts.servers[server_name] or {},
-          }
-        end,
-      }
+      -- register autocmd for lsp on_attach
+      require('util.lsp').on_attach(on_attach)
 
       -- User command to list Lsp server capabilities
       -- Taken from https://www.reddit.com/r/neovim/comments/13r7yzw/list_server_capabilities/
