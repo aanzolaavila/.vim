@@ -18,18 +18,65 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  local cmd = function(cmd, func, opts)
+    if opts and opts.desc then
+      opts.desc = 'LSP: ' .. opts.desc
+    end
+
+    vim.api.nvim_buf_create_user_command(bufnr, cmd, func, opts)
+  end
+
   nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
 
   local telescope = require('telescope.builtin')
+  local themes = require('telescope.themes')
+  local with_cfg = require('util.telescope').with_cfg
 
-  nmap('gd', function() telescope.lsp_definitions({ initial_mode = 'normal' }) end, '[g]oto [d]efinition')
-  nmap('gD', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
-  nmap('gr', function() telescope.lsp_references({ initial_mode = 'normal' }) end, '[g]oto [r]eferences')
-  nmap('gI', function() telescope.lsp_implementations({ initial_mode = 'normal' }) end, '[g]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', function() telescope.lsp_document_symbols({ initial_mode = 'normal' }) end, '[d]ocument [s]ymbols')
-  nmap('<leader>ws', function() telescope.lsp_dynamic_workspace_symbols({ initial_mode = 'normal' }) end,
+  local short_display = {
+    shorten = {
+      len = 1,
+      exclude = { -2, -1 },
+    }
+  }
+
+  nmap('gd', with_cfg(telescope.lsp_definitions, themes.get_ivy, { initial_mode = 'normal' }),
+    '[g]oto [d]efinition')
+
+  nmap('gD', vim.lsp.buf.type_definition, 'Type [D]efinition')
+
+  nmap('gr',
+    with_cfg(telescope.lsp_references, themes.get_ivy,
+      {
+        initial_mode = 'normal',
+        path_display = { smart = true },
+        trim_text = true,
+      }),
+    '[g]oto [r]eferences')
+
+
+  nmap('gi', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
+      initial_mode = 'normal',
+      path_display = short_display,
+      trim_text = true,
+      jump_type = 'none',
+    }),
+    '[g]oto [i]mplementation')
+  nmap('gI', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
+      initial_mode = 'normal',
+      path_display = short_display,
+      trim_text = true,
+      jump_type = 'vsplit',
+    }),
+    '[g]oto [I]mplementation, in vsplit if only one choice')
+
+  nmap('<leader>D', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
+  nmap('<leader>ds', with_cfg(telescope.lsp_document_symbols, nil, { initial_mode = 'normal' }), '[d]ocument [s]ymbols')
+  nmap('<leader>ws', with_cfg(telescope.lsp_dynamic_workspace_symbols, themes.get_ivy, {
+      initial_mode = 'normal',
+      path_display = { smart = true },
+      trim_text = true
+    }),
     '[w]orkspace [s]ymbols')
 
   -- See `:help K` for why this keymap
@@ -38,10 +85,15 @@ local on_attach = function(client, bufnr)
 
   -- Lesser used LSP functionality
   -- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  cmd("LspWorkspaceAddFolder", vim.lsp.buf.add_workspace_folder, { desc = 'Add workspace folder' })
   -- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  cmd("LspWorkspaceRemoveFolder", vim.lsp.buf.remove_workspace_folder, { desc = 'Remove workspace folder' })
   -- nmap('<leader>wl', function()
   --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   -- end, '[W]orkspace [L]ist Folders')
+  cmd("LspWorkspaceListFolders", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, { desc = 'List workspace folders' })
 
   -- Create a command `:Format` local to the LSP buffer
 
@@ -49,18 +101,18 @@ local on_attach = function(client, bufnr)
     return client.supports_method('textDocument/formatting')
   end
 
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+  cmd('Format', function(_)
     if supportsFormatting then
       vim.lsp.buf.format()
     end
   end, { desc = 'Format current buffer with LSP' })
 
   local localAutoFmtEnabled = true;
-  vim.api.nvim_buf_create_user_command(bufnr, 'ToggleBufAutoFormat', function(_)
+  cmd('ToggleBufAutoFormat', function(_)
     localAutoFmtEnabled = not localAutoFmtEnabled
   end, { desc = 'Format current buffer with LSP on save' })
 
-  vim.api.nvim_buf_create_user_command(bufnr, 'ToggleGlobalAutoFormat', function(_)
+  cmd('ToggleGlobalAutoFormat', function(_)
     globalAutoFmtEnabled = not globalAutoFmtEnabled
   end, { desc = 'Format current buffer with LSP on save globally' })
 

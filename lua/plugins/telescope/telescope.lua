@@ -20,13 +20,9 @@ return {
     config = function()
       -- See `:help telescope.builtin`
       local telescope = require('telescope.builtin')
-      local themes = require('telescope.themes')
+      local themes    = require('telescope.themes')
 
-      local with_cfg = function(picker, theme, opts)
-        return function()
-          picker(theme(opts))
-        end
-      end
+      local with_cfg  = require('util.telescope').with_cfg
 
       vim.keymap.set('n', '<leader>?',
         with_cfg(telescope.oldfiles, themes.get_ivy, { initial_mode = 'normal', winblend = 10 }),
@@ -58,7 +54,8 @@ return {
         { desc = '[S]earch [j]umplist' })
 
       vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sw', telescope.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>sw', with_cfg(telescope.grep_string, themes.get_dropdown, { initial_mode = 'normal' }),
+        { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', telescope.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', with_cfg(telescope.diagnostics, themes.get_ivy, { initial_mode = 'normal' }),
         { desc = '[S]earch [D]iagnostics' })
