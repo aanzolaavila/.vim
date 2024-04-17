@@ -1,6 +1,8 @@
 local M = {}
 
 function M.with_cfg(picker, theme, opts)
+  opts = opts or {}
+
   local trim_prefix = require("util.generic").trim_prefix
   local home = vim.fn.expand("$HOME")
 

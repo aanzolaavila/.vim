@@ -17,11 +17,11 @@ return {
       },
       extensions = {},
     },
-    config = function()
-      -- See `:help telescope.builtin`
+    config = function(_, opts)
+      require('telescope').setup(opts)
+
       local telescope = require('telescope.builtin')
       local themes    = require('telescope.themes')
-
       local with_cfg  = require('util.telescope').with_cfg
 
       vim.keymap.set('n', '<leader>?',
@@ -56,7 +56,8 @@ return {
       vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sw', with_cfg(telescope.grep_string, themes.get_dropdown, { initial_mode = 'normal' }),
         { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', telescope.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sg', with_cfg(telescope.live_grep, themes.get_ivy),
+        { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', with_cfg(telescope.diagnostics, themes.get_ivy, { initial_mode = 'normal' }),
         { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[S]earch [K]eymaps' })
