@@ -118,6 +118,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd("BufWritePre", {
     buffer = bufnr,
     callback = function()
+      if not supportsFormatting() then
+        return
+      end
+
       if globalAutoFmtEnabled and localAutoFmtEnabled then
         vim.lsp.buf.format {
           async = false,
