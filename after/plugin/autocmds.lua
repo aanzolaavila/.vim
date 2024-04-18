@@ -1,6 +1,15 @@
 -- Reference: https://github.com/garcia5/dotfiles/blob/master/files/nvim/after/plugin/autocmd.lua
 local augroup = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
+
+local default_group = augroup("myconf", { clear = true })
+local au = function(event, opts)
+  opts = opts or {}
+  local default_opts = {
+    group = default_group,
+  }
+  opts = vim.tbl_extend("force", default_opts, opts)
+  vim.api.nvim_create_autocmd(event, opts)
+end
 
 local exit_if_last = function()
   -- TODO: fix this
