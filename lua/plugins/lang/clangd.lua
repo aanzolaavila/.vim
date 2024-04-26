@@ -85,7 +85,7 @@ return {
       },
       setup = {
         clangd = function(_, opts)
-          local clangd_ext_opts = LazyVim.opts("clangd_extensions.nvim")
+          local clangd_ext_opts = require("util.lazy").opts("clangd_extensions.nvim")
           require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
           return false
         end,
@@ -96,7 +96,15 @@ return {
   {
     "nvim-cmp",
     opts = function(_, opts)
-      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
+      local new_opts = {
+        sorting = {
+          comparators = {
+            require("clangd_extensions.cmp_scores"),
+          }
+        }
+      }
+      vim.tbl_extend("force", opts, new_opts)
+      return opts
     end,
   },
 

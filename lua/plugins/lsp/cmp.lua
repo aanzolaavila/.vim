@@ -9,7 +9,7 @@ return {
     'zbirenbaum/copilot-cmp',
     'onsails/lspkind.nvim',
   },
-  config = function()
+  opts = function(_, opts)
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
@@ -23,7 +23,7 @@ return {
       return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
     end
 
-    cmp.setup {
+    local default_opts = {
       -- ensure that the first option is not selected by default
       preselect = cmp.PreselectMode.None,
 
@@ -84,7 +84,7 @@ return {
         priority_weight = 2,
         comparators = {
           require("copilot_cmp.comparators").prioritize,
-          -- Below is the default comparitor list and order for nvim-cmp
+          -- Below is the default comparator list and order for nvim-cmp
           cmp.config.compare.offset,
           -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
           cmp.config.compare.exact,
@@ -106,5 +106,8 @@ return {
         ghost_text = true,
       }
     }
+
+    opts = vim.tbl_extend("force", default_opts, opts)
+    return opts
   end
 }
