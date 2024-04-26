@@ -14,6 +14,7 @@ return {
           "hcl",
         })
       end
+      return opts
     end,
   },
   {
@@ -33,6 +34,7 @@ return {
         null_ls.builtins.formatting.terraform_fmt,
         null_ls.builtins.diagnostics.terraform_validate,
       })
+      return opts
     end,
   },
   {
@@ -55,5 +57,21 @@ return {
         ["terraform-vars"] = { "terraform_fmt" },
       },
     },
+  },
+  {
+    "ANGkeith/telescope-terraform-doc.nvim",
+    ft = "terraform",
+    dependencies = "telescope.nvim",
+    config = function()
+      require("telescope").load_extension("terraform_doc")
+    end,
+  },
+  {
+    "cappyzawa/telescope-terraform.nvim",
+    ft = "terraform",
+    dependencies = "telescope.nvim",
+    config = function()
+      require("telescope").load_extension("terraform")
+    end,
   },
 }
