@@ -4,6 +4,7 @@
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
   "SchemaStore.nvim": { "branch": "main", "commit": "f660f74bcaae950a77c69dda91270063c8cbd692" },
   "catppuccin": { "branch": "main", "commit": "a1439ad7c584efb3d0ce14ccb835967f030450fe" },
+  "clangd_extensions.nvim": { "branch": "main", "commit": "2992ba8c13c2de41f91a7c7488bf1c48bcec31fe" },
   "close-buffers.vim": { "branch": "master", "commit": "0b29fbc483344e2ebec96a28070698d72a8a767c" },
   "cmake-tools.nvim": { "branch": "master", "commit": "8506c426d5b361dbaa7c61c0490a2589a9c555ce" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
