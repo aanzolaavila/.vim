@@ -1,6 +1,7 @@
 vim.filetype.add({
 	extension = {
 		templ = "templ",
+		hcl = "terraform",
 	},
 	filename = {
 		["Tiltfile"] = "starlark",
