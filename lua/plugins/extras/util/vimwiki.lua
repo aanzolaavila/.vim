@@ -44,7 +44,6 @@ return {
       callback = function()
         vim.opt_local.concealcursor = 'c'
         vim.treesitter.language.register("markdown", "vimwiki")
-        vim.treesitter.language.register("markdown_inline", "vimwiki")
       end,
       group = wiki_group,
     })
