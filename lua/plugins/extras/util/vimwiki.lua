@@ -9,12 +9,15 @@ return {
 
     -- this is only useful for lervag/wiki.vim
     vim.g.wiki_root = wiki_dir
+    vim.g.vimwiki_markdown_link_ext = 1
+    vim.g.vimwiki_stripsym = ' '
     vim.g.vimwiki_global_ext = 0
 
     -- this is for vimwiki/vimwiki
     local wiki = {
       path = wiki_dir,
-      ext = '.wiki',
+      syntax = 'markdown',
+      ext = 'md',
     }
     vim.g.vimwiki_list = { wiki }
 
@@ -22,8 +25,16 @@ return {
 
     -- Auto format lines on wiki files
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*.wiki",
+      pattern = wiki_dir .. "/**.md",
       command = [[g/./ normal gqq``]],
+      group = wiki_group,
+    })
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = wiki_dir .. "/**.md",
+      callback = function()
+        vim.opt_local.syntax = 'markdown'
+      end,
       group = wiki_group,
     })
 
@@ -31,7 +42,9 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "vimwiki",
       callback = function()
-        vim.opt.concealcursor = 'c'
+        vim.opt_local.concealcursor = 'c'
+        vim.treesitter.language.register("markdown", "vimwiki")
+        vim.treesitter.language.register("markdown_inline", "vimwiki")
       end,
       group = wiki_group,
     })
