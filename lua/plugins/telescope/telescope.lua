@@ -82,18 +82,12 @@ return {
       'nvim-telescope/telescope.nvim',
       {
         'MattesGroeger/vim-bookmarks',
-        config = function()
-          -- FIXME: for some reason it is not working
+        init = function()
           vim.g.bookmark_no_default_key_mappings = 1
-          -- workaround
-          for _, keymap in ipairs({ 'mn', 'mp', 'ma', 'mkk', 'mjj' }) do
-            vim.keymap.del('n', keymap)
-          end
-          -- end workaround
-
           vim.g.bookmark_save_per_working_dir = 1
           vim.g.bookmark_auto_save = 1
-
+        end,
+        config = function()
           -- default keymaps
           vim.keymap.set('n', 'mm', '<CMD>BookmarkToggle<CR>', { desc = 'Add/remove bookmark at current line' })
           vim.keymap.set('n', 'mi', '<CMD>BookmarkAnnotate<CR>', { desc = 'Add/edit/remove annotation at current line' })
