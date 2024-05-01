@@ -226,22 +226,24 @@ return {
         local clients = vim.lsp.get_clients()
 
         for _, client in pairs(clients) do
-          ---@diagnostic disable-next-line: undefined-field
-          if client.name ~= "null-ls" then
-            local capAsList = {}
-            ---@diagnostic disable-next-line: undefined-field
-            for key, value in pairs(client.server_capabilities) do
-              if value and key:find("Provider") then
-                local capability = key:gsub("Provider$", "")
-                table.insert(capAsList, "  - " .. capability)
-              end
-            end
-
-            table.sort(capAsList) -- sorts alphabetically
-            ---@diagnostic disable-next-line: undefined-field
-            local msg = "# " .. client.name .. "\n" .. table.concat(capAsList, "\n")
-            print(msg)
+          if client.name == "null-ls" then
+            return
           end
+
+          ---@diagnostic disable-next-line: undefined-field
+          local capAsList = {}
+          ---@diagnostic disable-next-line: undefined-field
+          for key, value in pairs(client.server_capabilities) do
+            if value and key:find("Provider") then
+              local capability = key:gsub("Provider$", "")
+              table.insert(capAsList, "  - " .. capability)
+            end
+          end
+
+          table.sort(capAsList) -- sorts alphabetically
+          ---@diagnostic disable-next-line: undefined-field
+          local msg = "# " .. client.name .. "\n" .. table.concat(capAsList, "\n")
+          print(msg)
         end
       end, {})
     end,
