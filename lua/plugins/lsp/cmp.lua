@@ -40,12 +40,17 @@ return {
           symbol_map = { Copilot = "" }
         })
       },
-
       -- end lspkind
+
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
 
       mapping = cmp.mapping.preset.insert {
@@ -73,12 +78,15 @@ return {
         end, { 'i', 's' }),
       },
 
-      sources = {
-        { name = 'copilot',  group_index = 2 },
-        { name = 'nvim_lsp', group_index = 2 },
-        { name = 'luasnip',  group_index = 2 },
-        { name = 'buffer',   group_index = 2 },
-      },
+      sources = cmp.config.sources(
+        {
+          { name = 'copilot' },
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+        }, {
+          { name = 'buffer' },
+        }
+      ),
 
       sorting = {
         priority_weight = 2,
@@ -109,5 +117,5 @@ return {
 
     opts = vim.tbl_extend("force", default_opts, opts)
     cmp.setup(opts)
-  end
+  end,
 }
