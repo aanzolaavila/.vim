@@ -9,7 +9,7 @@ return {
     'zbirenbaum/copilot-cmp',
     'onsails/lspkind.nvim',
   },
-  opts = function(_, opts)
+  config = function(opts)
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
@@ -108,6 +108,6 @@ return {
     }
 
     opts = vim.tbl_extend("force", default_opts, opts)
-    return opts
+    cmp.setup(opts)
   end
 }
