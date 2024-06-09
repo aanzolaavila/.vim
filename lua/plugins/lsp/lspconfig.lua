@@ -140,7 +140,7 @@ return {
     event = { 'BufWritePre', 'BufNewFile', 'BufReadPost' },
     dependencies = {
       { 'williamboman/mason.nvim',           version = '^1.10.0', config = true },               -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason-lspconfig.nvim', version = '^1.27.0', config = false, opts = true }, -- will configure here
+      { 'williamboman/mason-lspconfig.nvim', version = '^1.29.0', config = false, opts = true }, -- will configure here
       { 'hrsh7th/cmp-nvim-lsp',              config = false },
 
       -- Useful status updates for LSP
