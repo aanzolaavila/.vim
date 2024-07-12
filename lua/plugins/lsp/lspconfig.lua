@@ -1,4 +1,4 @@
-local globalAutoFmtEnabled = true;
+local globalAutoFmtEnabled = false;
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -96,13 +96,19 @@ local on_attach = function(client, bufnr)
 
   -- Create a command `:Format` local to the LSP buffer
 
+  local shouldAutoformatByDefault = function()
+    return os.getenv("AT_WORK") ~= "true"
+  end
+
   local supportsFormatting = function()
     return client.supports_method('textDocument/formatting')
   end
 
   cmd('Format', function(_)
-    if supportsFormatting then
+    if supportsFormatting() then
       vim.lsp.buf.format()
+    else
+      print("LSP server does not support formatting")
     end
   end, { desc = 'Format current buffer with LSP' })
 
@@ -118,7 +124,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd("BufWritePre", {
     buffer = bufnr,
     callback = function()
-      if not supportsFormatting() then
+      if not supportsFormatting() or not shouldAutoformatByDefault() then
         return
       end
 
