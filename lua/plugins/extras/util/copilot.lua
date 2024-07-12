@@ -44,6 +44,9 @@ return {
     config = function()
       -- NOTE: this is a workaround to avoid a bug with cmp, must use setup() directly
       require 'copilot_cmp'.setup()
+
+      -- TODO: this should be set on the other one, but not much time available
+      vim.cmd([[Copilot disable]]) -- don't want this enabled by default
     end
   },
 }
