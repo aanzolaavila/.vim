@@ -7,10 +7,20 @@ return {
     },
     keys = {
       { '<leader>t', '<cmd>NvimTreeFocus<CR>', mode = { 'n' }, { remap = true } },
+      { '<localleader>ff', '<cmd>NvimTreeFindFile<CR>', mode = { 'n' }, { remap = true } },
     },
-    config = function()
-      require("nvim-tree").setup()
-    end
+    opts = {
+      diagnostics = {
+        enable = true,
+        show_on_dirs = false,
+      },
+      modified = {
+        enable = true,
+      },
+      sort = {
+        sorter = "modification_time",
+      },
+    },
   },
   {
     -- to edit file system as a buffer
