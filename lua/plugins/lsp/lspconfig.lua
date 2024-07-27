@@ -1,4 +1,4 @@
-local globalAutoFmtEnabled = false;
+local globalAutoFmtEnabled = true;
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
