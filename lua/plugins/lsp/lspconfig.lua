@@ -93,6 +93,15 @@ local on_attach = function(client, bufnr)
   cmd("LspWorkspaceListFolders", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, { desc = 'List workspace folders' })
+  cmd("LspStopAll", function()
+    -- REF: https://neovim.io/doc/user/lsp.html#lsp-faq
+    vim.lsp.stop_client(vim.lsp.get_clients())
+  end, { desc = 'Restart all LSP clients' })
+  cmd("LspToggleInlayHint", function()
+    local is_enabled = vim.lsp.inlay_hint.is_enabled(bufnr)
+    vim.lsp.inlay_hint.enable(bufnr, not is_enabled)
+  end, { desc = 'Toggle Inlay Hints' })
+
 
   -- Create a command `:Format` local to the LSP buffer
 
@@ -137,6 +146,12 @@ local on_attach = function(client, bufnr)
       end
     end,
   })
+
+  -- Enable inlay hints if supported by LSP client
+  -- REFERENCE: https://github.com/MysticalDevil/inlay-hints.nvim/blob/master/lua/inlay-hints/utils.lua
+  if client.supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+  end
 end
 
 return {
@@ -232,6 +247,7 @@ return {
         local clients = vim.lsp.get_clients()
 
         for _, client in pairs(clients) do
+          ---@diagnostic disable-next-line: undefined-field
           if client.name == "null-ls" then
             return
           end
