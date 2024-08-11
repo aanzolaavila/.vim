@@ -29,7 +29,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagn
 
 -- Clipboard mappings
 vim.keymap.set({ 'n', 'v' }, '<leader>y', "\"+y", { desc = '[y]ank to system clipboard' })
-vim.keymap.set('n', '<leader>Y', "\"+Y", { desc = '[y]ank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', "\"+Y", { desc = '[Y]ank to system clipboard' })
 
 vim.keymap.set('x', '<leader>p', "\"_dP", { desc = '[P]aste from system clipboard' })
 vim.keymap.set({ 'n', 'v' }, '<leader>p', "\"+p", { desc = '[P]aste from system clipboard' })

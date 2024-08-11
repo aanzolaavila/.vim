@@ -39,8 +39,9 @@ end
 function M.on_rename(from, to)
   local clients = M.get_clients()
   for _, client in ipairs(clients) do
+    ---@diagnostic disable-next-line: undefined-field
     if client.supports_method("workspace/willRenameFiles") then
-      ---@diagnostic disable-next-line: invisible
+      ---@diagnostic disable-next-line: invisible, undefined-field
       local resp = client.request_sync("workspace/willRenameFiles", {
         files = {
           {
