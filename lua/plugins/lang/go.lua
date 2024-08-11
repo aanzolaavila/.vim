@@ -18,13 +18,13 @@ return {
         gopls = {
           keys = {
             -- Workaround for the lack of a DAP strategy in neotest-go: https://github.com/nvim-neotest/neotest-go/issues/12
-            { "<leader>td", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug Nearest (Go)" },
+            { "<leader>dt", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug Nearest (Go)" },
           },
           settings = {
             gopls = {
               gofumpt = true,
               codelenses = {
-                gc_details = false,
+                gc_details = true,
                 generate = true,
                 regenerate_cgo = true,
                 run_govulncheck = true,
@@ -33,7 +33,7 @@ return {
                 upgrade_dependency = true,
                 vendor = true,
               },
-              hints = {
+              hints = { -- NOTE: this is EXPERIMENTAL
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
                 compositeLiteralTypes = true,
@@ -45,15 +45,20 @@ return {
               analyses = {
                 fieldalignment = true,
                 nilness = true,
+                shadow = true,
+                unreachable = true,
                 unusedparams = true,
+                unusedvariable = true,
                 unusedwrite = true,
                 useany = true,
               },
+              staticcheck = true,
+              vulncheck = "Imports", -- NOTE: this is EXPIREMENTAL
+              semanticTokens = true, -- NOTE: this is EXPERIMENTAL
               usePlaceholders = true,
               completeUnimported = true,
               staticcheck = true,
               directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-              semanticTokens = true,
             },
           },
         },
