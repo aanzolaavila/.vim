@@ -52,8 +52,7 @@ return {
                 unusedwrite = true,
                 useany = true,
               },
-              staticcheck = true,
-              vulncheck = "Imports", -- NOTE: this is EXPIREMENTAL
+              vulncheck = "Imports", -- NOTE: this is EXPERIMENTAL
               semanticTokens = true, -- NOTE: this is EXPERIMENTAL
               usePlaceholders = true,
               completeUnimported = true,
@@ -269,10 +268,14 @@ return {
     main = 'gopher',
     opts = {
       commands = {
+        dlv = "dlv",
         go = "go",
         gomodifytags = "gomodifytags",
-        impl = "impl",
         iferr = "iferr",
+        impl = "impl",
+      },
+      gotag = {
+        transform = 'snakecase',
       },
     },
   }
