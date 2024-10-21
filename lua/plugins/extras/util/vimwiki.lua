@@ -14,12 +14,26 @@ return {
     vim.g.vimwiki_global_ext = 0
 
     -- this is for vimwiki/vimwiki
-    local wiki = {
-      path = wiki_dir,
+    local general = {
+      path = wiki_dir .. '/general',
       syntax = 'markdown',
       ext = 'md',
+      list_margin = 0,
+      diary_caption_level = -1,
     }
-    vim.g.vimwiki_list = { wiki }
+
+    local health = {
+      path = wiki_dir .. '/health',
+      syntax = 'default',
+      ext = 'wiki',
+      auto_generate_links = 1,
+      auto_diary_index = 1,
+      diary_frequency = 'weekly',
+      diary_caption_level = -1,
+      auto_toc = 1,
+    }
+
+    vim.g.vimwiki_list = { general, health }
 
     local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
 
@@ -34,6 +48,14 @@ return {
       pattern = wiki_dir .. "/**.md",
       callback = function()
         vim.opt_local.syntax = 'markdown'
+      end,
+      group = wiki_group,
+    })
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = wiki_dir .. "/**.wiki",
+      callback = function()
+        vim.opt_local.syntax = 'vimwiki'
       end,
       group = wiki_group,
     })
