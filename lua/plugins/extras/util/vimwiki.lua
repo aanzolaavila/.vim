@@ -18,19 +18,25 @@ return {
       path = wiki_dir .. '/general',
       syntax = 'markdown',
       ext = 'md',
-      list_margin = 0,
+
+      auto_diary_index = 1,
+      auto_generate_links = 1,
+      auto_toc = 1,
       diary_caption_level = -1,
+      diary_frequency = 'weekly',
+      list_margin = 0,
     }
 
     local health = {
       path = wiki_dir .. '/health',
-      syntax = 'default',
       ext = 'wiki',
-      auto_generate_links = 1,
+
       auto_diary_index = 1,
-      diary_frequency = 'weekly',
-      diary_caption_level = -1,
+      auto_generate_links = 1,
       auto_toc = 1,
+      diary_caption_level = -1,
+      diary_frequency = 'weekly',
+      syntax = 'default',
     }
 
     vim.g.vimwiki_list = { general, health }
@@ -38,11 +44,11 @@ return {
     local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
 
     -- Auto format lines on wiki files
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = wiki_dir .. "/**.md",
-      command = [[g/./ normal gqq``]],
-      group = wiki_group,
-    })
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   pattern = wiki_dir .. "/**.md",
+    --   command = [[g/./ normal gqq``]],
+    --   group = wiki_group,
+    -- })
 
     vim.api.nvim_create_autocmd("BufEnter", {
       pattern = wiki_dir .. "/**.md",
