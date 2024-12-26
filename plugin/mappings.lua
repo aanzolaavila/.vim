@@ -23,17 +23,21 @@ vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic floating text" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
+-- Quicklist keymaps
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>cprevious<CR>")
+
 -- ###############
 -- CUSTOM MAPPINGS
 -- ###############
 
 -- Clipboard mappings
-vim.keymap.set({ 'n', 'v' }, '<leader>y', "\"+y", { desc = '[y]ank to system clipboard' })
+--[[ vim.keymap.set({ 'n', 'v' }, '<leader>y', "\"+y", { desc = '[y]ank to system clipboard' })
 vim.keymap.set('n', '<leader>Y', "\"+Y", { desc = '[Y]ank to system clipboard' })
 
 vim.keymap.set('x', '<leader>p', "\"_dP", { desc = '[P]aste from system clipboard' })
 vim.keymap.set({ 'n', 'v' }, '<leader>p', "\"+p", { desc = '[P]aste from system clipboard' })
-vim.keymap.set('n', '<leader>P', "\"+P", { desc = '[P]aste from system clipboard' })
+vim.keymap.set('n', '<leader>P', "\"+P", { desc = '[P]aste from system clipboard' }) ]]
 
 -- Better line joining
 vim.keymap.set('n', 'J', "mzJ`z", { desc = '[J]oin current line with next line' })
@@ -49,16 +53,16 @@ vim.api.nvim_create_user_command('WA', 'wa', {})
 vim.api.nvim_create_user_command('Wa', 'wa', {})
 
 -- Change from one windows to another directionally
-vim.keymap.set('n', '<C-h>', '<C-W><C-h>')
+--[[ vim.keymap.set('n', '<C-h>', '<C-W><C-h>')
 vim.keymap.set('n', '<C-j>', '<C-W><C-j>')
 vim.keymap.set('n', '<C-k>', '<C-W><C-k>')
-vim.keymap.set('n', '<C-l>', '<C-W><C-l>')
+vim.keymap.set('n', '<C-l>', '<C-W><C-l>') ]]
 
--- Create vertical and horizontal splits
-vim.keymap.set('n', '<leader>h', '<cmd>vsplit<cr>')
+-- Create vertical and horizontal splits and move
+--[[ vim.keymap.set('n', '<leader>h', '<cmd>vsplit<cr>')
 vim.keymap.set('n', '<leader>k', '<cmd>split<cr>')
 vim.keymap.set('n', '<leader>j', '<cmd>split<cr><C-W><C-J>')
-vim.keymap.set('n', '<leader>l', '<cmd>vsplit<cr><C-W><C-L>')
+vim.keymap.set('n', '<leader>l', '<cmd>vsplit<cr><C-W><C-L>') ]]
 
 -- Buffers
 --[[ vim.keymap.set('n', 'T', '<cmd>enew<cr>', { desc = "Edit a new unedited buffer" })
@@ -73,7 +77,7 @@ vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Move current 
 vim.keymap.set('n', '<C-x>', '<cmd>tabclose<cr>', { desc = "Close current tab", silent = true })
 
 -- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
-vim.keymap.set('v', '.', ':normal.<CR>')
+-- vim.keymap.set('v', '.', ':normal.<CR>')
 
 -- Move visual selection
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
