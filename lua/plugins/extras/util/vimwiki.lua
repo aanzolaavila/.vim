@@ -39,7 +39,20 @@ return {
       syntax = 'default',
     }
 
-    vim.g.vimwiki_list = { general, health }
+    local treble = {
+      path = wiki_dir .. '/treble',
+      syntax = 'markdown',
+      ext = 'md',
+
+      auto_diary_index = 1,
+      auto_generate_links = 1,
+      auto_toc = 1,
+      diary_caption_level = -1,
+      diary_frequency = 'weekly',
+      list_margin = 0,
+    }
+
+    vim.g.vimwiki_list = { general, health, treble }
 
     local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
 
