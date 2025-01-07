@@ -130,6 +130,15 @@ au("FileType", {
   end
 })
 
+au("FileType", {
+  pattern = "templ",
+  desc = "Set tabstop to 2 for templ files",
+  callback = function()
+    vim.cmd [[setlocal tabstop=2]]
+    vim.opt_local.tabstop = 2
+  end
+})
+
 -- Remove eol for vimwiki files
 au("FileType", {
   pattern = "vimwiki",
