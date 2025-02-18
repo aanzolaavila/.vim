@@ -85,7 +85,19 @@ return {
           'mode',
         },
         lualine_b = {
-          'branch',
+          {
+            'branch',
+            fmt = function(s)
+              if type(s) ~= "string" then
+                return ""
+              end
+              -- @type integer
+              local length = #s
+              -- @type string
+              local sub = string.sub(s, 1, math.min(30, length))
+              return string.lower(sub)
+            end,
+          },
           'diff',
           {
             'diagnostics',
