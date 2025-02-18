@@ -77,7 +77,7 @@ vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Move current 
 vim.keymap.set('n', '<C-x>', '<cmd>tabclose<cr>', { desc = "Close current tab", silent = true })
 
 -- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
--- vim.keymap.set('v', '.', ':normal.<CR>')
+vim.keymap.set('v', '.', ':normal.<CR>')
 
 -- Move visual selection
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
