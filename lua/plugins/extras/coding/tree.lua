@@ -6,7 +6,7 @@ return {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
     keys = {
-      { '<leader>t', '<cmd>NvimTreeToggle<CR>', mode = { 'n' }, { remap = true } },
+      { '<leader>t',       '<cmd>NvimTreeToggle<CR>',   mode = { 'n' }, { remap = true } },
       { '<localleader>ff', '<cmd>NvimTreeFindFile<CR>', mode = { 'n' }, { remap = true } },
     },
     opts = {
@@ -16,9 +16,6 @@ return {
       },
       modified = {
         enable = true,
-      },
-      sort = {
-        sorter = "modification_time",
       },
     },
   },
