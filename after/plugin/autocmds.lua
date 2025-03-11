@@ -16,6 +16,14 @@ local exit_if_last = function()
   -- if vim.fn.winnr("$") == 1 then vim.cmd("q") end
 end
 
+-- Clear jumplist on start
+au("VimEnter", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("clearjumps")
+  end
+})
+
 -- Trim whitespace
 au("BufWritePre", {
   pattern = "*",
