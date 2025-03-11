@@ -23,10 +23,6 @@ vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic floating text" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
--- Quicklist keymaps
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<C-k>", "<cmd>cprevious<CR>")
-
 -- ###############
 -- CUSTOM MAPPINGS
 -- ###############
@@ -125,3 +121,7 @@ vim.keymap.set("i", ";", ";<c-g>u")
 -- Better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- Quicklist keymaps
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>cprevious<CR>")

@@ -44,6 +44,10 @@ return {
         with_cfg(telescope.man_pages, themes.get_ivy, { initial_mode = 'insert', winblend = 10 }),
         { desc = '[S]earch [M]an pages' })
 
+      vim.keymap.set('n', '<leader>sq',
+        with_cfg(telescope.quickfix, themes.get_ivy, { initial_mode = 'insert', winblend = 10 }),
+        { desc = '[S]earch [M]an pages' })
+
       vim.keymap.set('n', '<leader>sj', with_cfg(telescope.jumplist, themes.get_dropdown, {
           initial_mode = 'normal',
           layout_strategy = 'center',
