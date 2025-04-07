@@ -66,7 +66,10 @@ return {
         { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', with_cfg(telescope.live_grep, themes.get_ivy),
         { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', with_cfg(telescope.diagnostics, themes.get_ivy, { initial_mode = 'normal' }),
+      vim.keymap.set('n', '<leader>sd', with_cfg(telescope.diagnostics, themes.get_ivy, {
+          initial_mode = 'normal',
+          root_dir = true,
+        }),
         { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sc', telescope.commands, { desc = '[S]earch [C]ommands' })
