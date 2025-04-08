@@ -58,7 +58,9 @@ return {
       vim.keymap.set('n', '<leader>sj', with_cfg(telescope.jumplist, themes.get_dropdown, {
           initial_mode = 'normal',
           layout_strategy = 'center',
-          path_display = { truncate = 3, shorten = 2 },
+          trim_text = false,
+          fname_width = 60,
+          path_display = { 'smart' },
           layout_config = {
             prompt_position = 'top',
             preview_cutoff = 30,
