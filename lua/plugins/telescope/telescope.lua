@@ -4,7 +4,9 @@ return {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
     version = '~0.1.6',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
     opts = {
@@ -29,7 +31,12 @@ return {
         { desc = '[?] Find recently opened files' })
 
       vim.keymap.set('n', '<leader>/',
-        with_cfg(telescope.current_buffer_fuzzy_find, themes.get_dropdown, { winblend = 10, previewer = false }),
+        with_cfg(telescope.current_buffer_fuzzy_find, themes.get_dropdown,
+          {
+            winblend = 10,
+            previewer = false,
+            layout_config = { height = 0.7, width = 0.7 },
+          }),
         { desc = '[/] Fuzzily search in current buffer]' })
 
       vim.keymap.set('n', '<leader><space>',
@@ -51,7 +58,7 @@ return {
       vim.keymap.set('n', '<leader>sj', with_cfg(telescope.jumplist, themes.get_dropdown, {
           initial_mode = 'normal',
           layout_strategy = 'center',
-          path_display = { truncate = 3, shorten = 1 },
+          path_display = { truncate = 3, shorten = 2 },
           layout_config = {
             prompt_position = 'top',
             preview_cutoff = 30,
@@ -62,17 +69,32 @@ return {
         { desc = '[S]earch [j]umplist' })
 
       vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sw', with_cfg(telescope.grep_string, themes.get_dropdown, { initial_mode = 'normal' }),
+      vim.keymap.set('n', '<leader>sw', with_cfg(telescope.grep_string, themes.get_dropdown, {
+          initial_mode = 'normal',
+          path_display = { 'smart' },
+          layout_strategy = 'center',
+          layout_config = {
+            preview_cutoff = 30,
+            height = 0.7,
+            width = 0.7,
+          },
+        }),
         { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', with_cfg(telescope.live_grep, themes.get_ivy),
         { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', with_cfg(telescope.diagnostics, themes.get_ivy, {
           initial_mode = 'normal',
+          path_display = { 'smart' },
           root_dir = true,
         }),
         { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sc', telescope.commands, { desc = '[S]earch [C]ommands' })
+      vim.keymap.set('n', '<leader>sc',
+        with_cfg(telescope.commands, themes.get_dropdown, {
+          initial_mode = 'normal',
+          layout_config = { height = 0.7, width = 0.7 },
+        }),
+        { desc = '[S]earch [C]ommands', })
     end
   },
   {
@@ -118,5 +140,11 @@ return {
       vim.keymap.set('n', '<leader>sB', telescope.extensions.vim_bookmarks.current_file,
         { desc = '[s]earch [B]ookmarks in current file' })
     end,
+  },
+  {
+    'nvim-telescope/telescope-symbols.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
   }
 }
