@@ -70,7 +70,14 @@ local on_attach = function(client, bufnr)
     '[g]oto [I]mplementation, in vsplit if only one choice')
 
   nmap('<leader>D', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
-  nmap('<leader>ds', with_cfg(telescope.lsp_document_symbols, nil, { initial_mode = 'normal' }), '[d]ocument [s]ymbols')
+  nmap('<leader>ds', with_cfg(telescope.lsp_document_symbols, nil, {
+    initial_mode = 'normal',
+    layout_config = {
+      preview_cutoff = 30,
+      height = 0.7,
+      width = 0.7,
+    }
+  }), '[d]ocument [s]ymbols')
   nmap('<leader>ws', with_cfg(telescope.lsp_dynamic_workspace_symbols, themes.get_ivy, {
       initial_mode = 'normal',
       path_display = { smart = true },
