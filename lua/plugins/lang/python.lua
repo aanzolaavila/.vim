@@ -76,7 +76,13 @@ return {
   },
   {
     "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "mfussenegger/nvim-dap-python",
+    },
+    lazy = false,
     cmd = "VenvSelect",
+    branch = 'regexp',
     opts = function(_, opts)
       if require("util.lazy").has("nvim-dap-python") then
         opts.dap_enabled = true
@@ -90,6 +96,5 @@ return {
         },
       })
     end,
-    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
 }
