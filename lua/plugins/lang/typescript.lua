@@ -27,8 +27,7 @@ return {
     opts = {
       -- make sure mason installs the server
       servers = {
-        ---@type lspconfig.options.tsserver
-        tsserver = {
+        ts_ls = {
           keys = {
             {
               "<leader>co",
