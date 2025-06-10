@@ -105,8 +105,8 @@ local on_attach = function(client, bufnr)
     vim.lsp.stop_client(vim.lsp.get_clients())
   end, { desc = 'Restart all LSP clients' })
   cmd("LspToggleInlayHint", function()
-    local is_enabled = vim.lsp.inlay_hint.is_enabled(bufnr)
-    vim.lsp.inlay_hint.enable(bufnr, not is_enabled)
+    local is_enabled = vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(not is_enabled)
   end, { desc = 'Toggle Inlay Hints' })
 
 
@@ -157,7 +157,7 @@ local on_attach = function(client, bufnr)
   -- Enable inlay hints if supported by LSP client
   -- REFERENCE: https://github.com/MysticalDevil/inlay-hints.nvim/blob/master/lua/inlay-hints/utils.lua
   if client.supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.lsp.inlay_hint.enable(true)
   end
 end
 
