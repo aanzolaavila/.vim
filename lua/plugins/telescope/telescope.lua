@@ -55,6 +55,10 @@ return {
         with_cfg(telescope.quickfix, themes.get_ivy, { initial_mode = 'insert', winblend = 10 }),
         { desc = '[S]earch [Q]uickfix' })
 
+      vim.keymap.set('n', '<leader>sM',
+        with_cfg(telescope.marks, themes.get_ivy, { initial_mode = 'normal', winblend = 10 }),
+        { desc = '[S]earch [M]arks' })
+
       vim.keymap.set('n', '<leader>sj', with_cfg(telescope.jumplist, themes.get_dropdown, {
           initial_mode = 'normal',
           layout_strategy = 'center',
