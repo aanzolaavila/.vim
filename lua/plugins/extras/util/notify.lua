@@ -1,10 +1,10 @@
 return {
   "rcarriga/nvim-notify",
   opts = {
-    fps = 60,
-    timeout = 2500,
-    max_width = 60,
-    render = "compact",
+    fps = 24,
+    timeout = 100,
+    max_width = 90,
+    render = "wrapped-compact",
     stages = "fade",
   },
   config = function(_, opts)
