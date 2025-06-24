@@ -43,7 +43,6 @@ return {
                 rangeVariableTypes = true,
               },
               analyses = {
-                fieldalignment = true,
                 nilness = true,
                 shadow = true,
                 unreachable = true,
