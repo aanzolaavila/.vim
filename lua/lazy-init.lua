@@ -66,3 +66,7 @@ require('lazy').setup({
   }
 }
 )
+
+-- Enable Quick list and Location list filters
+-- Use 'Cfilter' and 'Lfilter'
+vim.cmd('packadd cfilter')

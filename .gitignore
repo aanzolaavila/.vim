@@ -92,6 +92,5 @@ swp/
 plugged/
 sessions/
 .undodir/
-plugin/packer_compiled.lua
 lua/.luarc.json
-spell/*
+spell/

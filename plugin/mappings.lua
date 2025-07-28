@@ -16,8 +16,8 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-vim.keymap.set('n', '[d', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
-vim.keymap.set('n', ']d', diagnostic_goto(true), { desc = "Goto next diagnostic" })
+vim.keymap.set('n', '[D', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
+vim.keymap.set('n', ']D', diagnostic_goto(true), { desc = "Goto next diagnostic" })
 vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic floating text" })
@@ -89,10 +89,6 @@ vim.keymap.set('n', '<down>', '<nop>')
 -- can press <Esc> to get out of terminal
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
--- Newlines
-vim.keymap.set('n', '<leader>]', 'o<Esc>k', { desc = "Adds new line below current" })
-vim.keymap.set('n', '<leader>[', 'O<Esc>j', { desc = "Adds new line above current" })
-
 -- Clear search with <esc>
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
@@ -123,5 +119,19 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Quicklist keymaps
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<C-k>", "<cmd>cprevious<CR>")
+-- [q, ]q, [Q, ]Q, [CTRL-Q, ]CTRL-Q navigate through the quickfix list
+
+-- Location keymaps
+-- [l, ]l, [L, ]L, [CTRL-L, ]CTRL-L navigate through the location-list
+
+-- Tag keymaps
+-- [t, ]t, [T, ]T, [CTRL-T, ]CTRL-T navigate through the tag-matchlist
+
+-- Argument list keymaps
+-- [a, ]a, [A, ]A navigate through the argument-list
+
+-- Buffer list keymaps
+-- [b, ]b, [B, ]B navigate through the buffer-list
+
+-- Newline keymaps
+-- [<Space>, ]<Space> add an empty line above and below the cursor

@@ -9,13 +9,22 @@ local on_attach = function(client, bufnr)
   -- ...
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
+
+  local map = function(mode, keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
   end
+
+  local nmap = function(keys, func, desc)
+    map('n', keys, func, desc)
+  end
+  local vmap = function(keys, func, desc)
+    map('v', keys, func, desc)
+  end
+
 
   local cmd = function(cmd, func, opts)
     if opts and opts.desc then
@@ -25,8 +34,10 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, cmd, func, opts)
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
+  nmap('grn', vim.lsp.buf.rename, '[r]e[n]ame')
+
+  nmap('gra', vim.lsp.buf.code_action, 'code [a]ction')
+  vmap('gra', vim.lsp.buf.code_action, 'code [a]ction')
 
   local telescope = require('telescope.builtin')
   local themes = require('telescope.themes')
@@ -42,9 +53,9 @@ local on_attach = function(client, bufnr)
   nmap('gd', with_cfg(telescope.lsp_definitions, themes.get_ivy, { initial_mode = 'normal' }),
     '[g]oto [d]efinition')
 
-  nmap('gD', vim.lsp.buf.type_definition, 'Type [D]efinition')
+  nmap('grt', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
-  nmap('gr',
+  nmap('grr',
     with_cfg(telescope.lsp_references, themes.get_ivy,
       {
         initial_mode = 'normal',
@@ -54,14 +65,14 @@ local on_attach = function(client, bufnr)
     '[g]oto [r]eferences')
 
 
-  nmap('gi', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
+  nmap('gri', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
       initial_mode = 'normal',
       path_display = short_display,
       trim_text = true,
       jump_type = 'none',
     }),
     '[g]oto [i]mplementation')
-  nmap('gI', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
+  nmap('grI', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
       initial_mode = 'normal',
       path_display = short_display,
       trim_text = true,
@@ -70,14 +81,6 @@ local on_attach = function(client, bufnr)
     '[g]oto [I]mplementation, in vsplit if only one choice')
 
   nmap('<leader>D', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
-  nmap('<leader>ds', with_cfg(telescope.lsp_document_symbols, nil, {
-    initial_mode = 'normal',
-    layout_config = {
-      preview_cutoff = 30,
-      height = 0.7,
-      width = 0.7,
-    }
-  }), '[d]ocument [s]ymbols')
   nmap('<leader>ws', with_cfg(telescope.lsp_dynamic_workspace_symbols, themes.get_ivy, {
       initial_mode = 'normal',
       path_display = { smart = true },
