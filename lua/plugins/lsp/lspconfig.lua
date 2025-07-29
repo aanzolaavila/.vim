@@ -120,7 +120,7 @@ local on_attach = function(client, bufnr)
   end
 
   local supportsFormatting = function()
-    return client.supports_method('textDocument/formatting')
+    return client:supports_method('textDocument/formatting')
   end
 
   cmd('Format', function(_)
@@ -159,7 +159,7 @@ local on_attach = function(client, bufnr)
 
   -- Enable inlay hints if supported by LSP client
   -- REFERENCE: https://github.com/MysticalDevil/inlay-hints.nvim/blob/master/lua/inlay-hints/utils.lua
-  if client.supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
+  if client:supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable(true)
   end
 end

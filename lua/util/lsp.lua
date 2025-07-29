@@ -16,7 +16,7 @@ function M.get_clients(opts)
     if opts and opts.method then
       ---@param client lsp.Client
       ret = vim.tbl_filter(function(client)
-        return client.supports_method(opts.method, { bufnr = opts.bufnr })
+        return client:supports_method(opts.method, { bufnr = opts.bufnr })
       end, ret)
     end
   end
@@ -40,7 +40,7 @@ function M.on_rename(from, to)
   local clients = M.get_clients()
   for _, client in ipairs(clients) do
     ---@diagnostic disable-next-line: undefined-field
-    if client.supports_method("workspace/willRenameFiles") then
+    if client:supports_method("workspace/willRenameFiles") then
       ---@diagnostic disable-next-line: invisible, undefined-field
       local resp = client.request_sync("workspace/willRenameFiles", {
         files = {
@@ -95,8 +95,8 @@ function M.formatter(opts)
       local clients = M.get_clients(Util.merge(filter, { bufnr = buf }))
       ---@param client lsp.Client
       local ret = vim.tbl_filter(function(client)
-        return client.supports_method("textDocument/formatting")
-            or client.supports_method("textDocument/rangeFormatting")
+        return client:supports_method("textDocument/formatting")
+            or client:supports_method("textDocument/rangeFormatting")
       end, clients)
       ---@param client lsp.Client
       return vim.tbl_map(function(client)

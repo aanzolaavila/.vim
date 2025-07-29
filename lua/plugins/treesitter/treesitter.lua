@@ -13,12 +13,12 @@ return {
       configs = {
         -- Add languages to be installed here that you want installed for treesitter
         ensure_installed = {
-          -- required for neovim
+          -- REQUIRED for neovim
           'c',
           'vim',
           'vimdoc',
           'lua',
-          -- end required
+          -- end REQUIRED
           'bash',
           'gitignore',
           'gitcommit',
@@ -59,7 +59,6 @@ return {
       },
     },
     config = function(_, opts)
-      -- vim.print(opts)
       local cfg = require('nvim-treesitter.configs')
       cfg.setup(opts.configs)
       require("nvim-treesitter.install").prefer_git = true
