@@ -8,7 +8,3 @@ Command 	Description 	Native version
 :Bdelete select 	Lets you interactively select which buffers to bdelete
 :Bdelete menu 	Lets you interactively choose one of the other commands above
 ]]
-return {
-  'Asheq/close-buffers.vim',
-  event = 'VeryLazy',
-}

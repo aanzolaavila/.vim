@@ -7,6 +7,9 @@ vim.opt.wildmenu = true
 -- Display filename on top corner of window
 vim.opt.winbar = "%=%m %f"
 
+-- Disable swapfiles
+vim.opt.swapfile = false
+
 vim.opt.encoding = "utf-8"
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
@@ -86,3 +89,11 @@ vim.g.vim_markdown_conceal_code_blocks = 0
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Enable Quick list and Location list filters
+-- Use 'Cfilter' and 'Lfilter'
+vim.cmd('packadd cfilter')
+
+-- which-key plugin options
+vim.o.timeout = true
+vim.o.timeoutlen = 300

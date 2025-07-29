@@ -151,8 +151,6 @@ local on_attach = function(client, bufnr)
         vim.lsp.buf.format {
           async = false,
         }
-        -- workaround for hidden diagnostics after file format
-        vim.diagnostic.enable(bufnr)
       end
     end,
   })

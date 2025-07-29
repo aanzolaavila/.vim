@@ -20,7 +20,6 @@ vim.keymap.set('n', '[D', diagnostic_goto(false), { desc = "Goto previous diagno
 vim.keymap.set('n', ']D', diagnostic_goto(true), { desc = "Goto next diagnostic" })
 vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostic floating text" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- ###############
