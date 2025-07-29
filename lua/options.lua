@@ -15,7 +15,6 @@ vim.opt.copyindent = true
 vim.opt.preserveindent = true
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
-vim.opt.hlsearch = false
 vim.opt.showmode = false
 vim.opt.cursorline = true
 vim.opt.visualbell = true
@@ -43,7 +42,7 @@ vim.g.python3_host_prog = vim.fn.expand("~") .. "/.pyenv/versions/neovim/bin/pyt
 -- See `:help vim.o`
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.opt.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -51,27 +50,27 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect'
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key

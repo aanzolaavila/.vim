@@ -159,3 +159,19 @@ au("FileType", {
     }
   end
 })
+
+-- START Only draw column highlight on current window
+au("WinLeave", {
+  pattern = "*",
+  callback = function()
+    vim.cmd [[set nocursorline nocursorcolumn]]
+  end
+})
+
+au("WinEnter", {
+  pattern = "*",
+  callback = function()
+    vim.cmd [[set cursorline cursorcolumn]]
+  end
+})
+-- END

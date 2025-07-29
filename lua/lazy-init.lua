@@ -37,7 +37,7 @@ require('lazy').setup({
         "tohtml",
         "getscript",
         "getscriptPlugin",
-        "gzip",
+        -- "gzip",
         "logipat",
         -- "netrw",
         -- "netrwPlugin",
