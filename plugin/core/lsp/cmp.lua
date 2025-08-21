@@ -3,6 +3,12 @@ local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 
+local has_words_before = function()
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 local opts = {
 	-- ensure that the first option is not selected by default
 	preselect = cmp.PreselectMode.None,
@@ -33,21 +39,45 @@ local opts = {
 		documentation = cmp.config.window.bordered(),
 	},
 
-	mapping = cmp.mapping.preset.insert {
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<CR>'] = cmp.config.disable,
-		['<C-j>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+	mapping = {
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if luasnip.locally_jumpable(1) and luasnip.in_snippet() then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if luasnip.locally_jumpable(-1) and luasnip.in_snippet() then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		["<C-j>"] = cmp.mapping {
+			i = function()
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+				end
+			end,
+			s = cmp.mapping.confirm({ select = true }),
+			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 		},
-		['<C-n>'] = vim.schedule_wrap(function(_)
+		["<C-n>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			else
+				fallback()
 			end
-		end),
-		['<C-p>'] = cmp.mapping(function(_)
+		end, { 'i', 's' }),
+		["<C-p>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+			else
+				fallback()
 			end
 		end, { 'i', 's' }),
 	},
@@ -58,7 +88,7 @@ local opts = {
 			{ name = 'nvim_lsp' },
 			{ name = 'luasnip' },
 		}, {
-			-- { name = 'buffer' },
+			{ name = 'buffer' },
 		}
 	),
 
@@ -82,11 +112,8 @@ local opts = {
 
 	completion = {
 		keyboard_length = 3,
+		completeopt = "menu,menuone,noinsert,noselect",
 	},
-
-	experimental = {
-		ghost_text = true,
-	}
 }
 
 cmp.setup(opts)

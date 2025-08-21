@@ -54,7 +54,9 @@ vim.pack.add({
 	{ src = 'https://github.com/tpope/vim-sleuth' },
 	{ src = 'https://github.com/windwp/nvim-autopairs' },
 	{ src = 'https://github.com/L3MON4D3/LuaSnip',                      version = vim.version.range('~2.0') },
+	{ src = 'https://github.com/saadparwaiz1/cmp_luasnip', },
 	{ src = 'https://github.com/rafamadriz/friendly-snippets' },
+	{ src = 'https://github.com/numToStr/Comment.nvim' },
 
 	-- util
 	{ src = 'https://github.com/Asheq/close-buffers.vim' },

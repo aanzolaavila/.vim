@@ -1,5 +1,5 @@
-local opts = {
+-- local opts = {
+--
+-- }
 
-}
-
-require 'tiny-inline-diagnostic'.setup(opts)
+-- require 'tiny-inline-diagnostic'.setup(opts)

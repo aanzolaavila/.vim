@@ -49,3 +49,50 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.lsp.enable("terraformls")
+
+-- snippets
+
+local ls = require 'luasnip'
+local s, i = ls.s, ls.insert_node
+local fmt = require 'luasnip.extras.fmt'.fmt
+
+ls.add_snippets("terraform", {
+	s("variable", fmt([[
+	variable "{}" {{
+		type        = {}
+		description = "{}"
+	}}]], { i(1, "variable"), i(2, "string"), i(3, "description") })),
+
+	s("policy", fmt([[
+	data "aws_iam_policy_document" "{}" {{
+		version = "2012-10-17"
+
+		statement {{
+			effect = "Allow"
+			actions = [
+
+			]
+			resources = [
+
+			]
+		}}
+	}}
+	]], { i(1) })),
+
+	s("assume-policy", fmt([[
+	data "aws_iam_policy_document" "{}" {{
+		version = "2012-10-17"
+
+		statement {{
+			effect = "Allow"
+			actions = [
+				"sts:AssumeRole",
+			]
+			principals {{
+				type        = "{}"
+				identifiers = ["{}"]
+			}}
+		}}
+	}}
+	]], { i(1), i(2, "AWS"), i(3) })), -- TODO 'type' should be choice of AWS or Service
+})
