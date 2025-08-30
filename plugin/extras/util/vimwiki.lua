@@ -84,7 +84,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = wiki_group,
 })
-
-vim.pack.add({
-  { src = 'https://github.com/vimwiki/vimwiki' },
-})

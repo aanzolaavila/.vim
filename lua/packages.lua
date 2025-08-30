@@ -35,7 +35,7 @@ vim.pack.add({
 	-- lang --------
 	-- python
 	{ src = 'https://github.com/mfussenegger/nvim-dap-python' },
-	{ src = 'https://github.com/linux-cultist/venv-selector.nvim',      version = 'regexp' },
+	{ src = 'https://github.com/linux-cultist/venv-selector.nvim' },
 	-- go
 	{ src = 'https://github.com/olexsmir/gopher.nvim' },
 
@@ -66,6 +66,7 @@ vim.pack.add({
 	{ src = 'https://github.com/wakatime/vim-wakatime' },
 	{ src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
 	{ src = 'https://github.com/folke/which-key.nvim' },
+	{ src = 'https://github.com/vimwiki/vimwiki' },
 
 	-- lualine
 	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
