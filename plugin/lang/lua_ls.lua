@@ -25,7 +25,7 @@ local fmt = require 'luasnip.extras.fmt'.fmt
 local rep = require 'luasnip.extras'.rep
 
 ls.add_snippets('lua', {
-	s({ trig = 'req' }, fmt("local {} = require '{}'", { i(1), rep(1) })),
+	s({ trig = 'require' }, fmt("local {} = require '{}'", { i(1), rep(1) })),
 })
 
 vim.lsp.enable('lua_ls')
