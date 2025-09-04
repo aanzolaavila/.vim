@@ -22,6 +22,7 @@ local venv_opts = {
 }
 
 local venv_selector = require 'venv-selector'
+---@diagnostic disable-next-line: undefined-field
 venv_selector.setup(venv_opts)
 
 vim.lsp.config('ruff', {

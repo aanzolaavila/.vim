@@ -97,3 +97,5 @@ vim.cmd('packadd cfilter')
 -- which-key plugin options
 vim.o.timeout = true
 vim.o.timeoutlen = 300
+
+vim.opt.path = ",**"

@@ -37,7 +37,7 @@ vim.pack.add({
 	-- lang --------
 	-- python
 	{ src = 'https://github.com/mfussenegger/nvim-dap-python' },
-	{ src = 'https://github.com/linux-cultist/venv-selector.nvim' },
+	{ src = 'https://github.com/linux-cultist/venv-selector.nvim',      version = 'main' },
 	-- go
 	{ src = 'https://github.com/olexsmir/gopher.nvim' },
 
