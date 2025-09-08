@@ -86,8 +86,6 @@ au("BufEnter", {
     if buftype == "terminal" then
       -- quit if the terminal is the last buffer open
       exit_if_last()
-      -- enter insert mode automatically when entering terminal
-      vim.cmd("startinsert")
     end
   end,
 })
