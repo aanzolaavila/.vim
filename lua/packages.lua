@@ -88,4 +88,7 @@ vim.pack.add({
 
 	-- rust
 	{ src = 'https://github.com/Saecki/crates.nvim' },
+
+	-- typst
+	{ src = 'https://github.com/chomosuke/typst-preview.nvim',          version = vim.version.range("~1") },
 })
