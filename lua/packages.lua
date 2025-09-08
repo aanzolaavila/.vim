@@ -69,6 +69,7 @@ vim.pack.add({
 	{ src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
 	{ src = 'https://github.com/folke/which-key.nvim' },
 	{ src = 'https://github.com/vimwiki/vimwiki' },
+	{ src = 'https://github.com/freitass/todo.txt-vim' },
 
 	-- lualine
 	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
