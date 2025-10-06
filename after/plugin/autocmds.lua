@@ -98,12 +98,6 @@ au("FileType", {
   callback = function() vim.opt_local.formatoptions = "tcrnqj" end,
 })
 
-au("BufEnter", {
-  pattern = "Dockerfile.*",
-  desc = "Detect Dockerfiles with different extensions",
-  callback = function() vim.opt_local.filetype = "Dockerfile" end,
-})
-
 local nvim_tree_group = augroup("NvimTree", { clear = true })
 au("FileType", {
   group = nvim_tree_group,
