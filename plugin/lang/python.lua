@@ -1,5 +1,5 @@
 local mason_required = vim.list_extend(vim.g.mason_ensure_installed or {}, {
-	"pyright",
+	"ty",
 	"ruff",
 })
 vim.g.mason_ensure_installed = mason_required
@@ -31,39 +31,18 @@ vim.lsp.config('ruff', {
 	}
 })
 
-vim.lsp.config("pyright", {
-	handlers = {
-		-- Override the default rename handler to remove the `annotationId` from edits.
-		--
-		-- Pyright is being non-compliant here by returning `annotationId` in the edits, but not
-		-- populating the `changeAnnotations` field in the `WorkspaceEdit`. This causes Neovim to
-		-- throw an error when applying the workspace edit.
-		--
-		-- See:
-		-- - https://github.com/neovim/neovim/issues/34731
-		-- - https://github.com/microsoft/pyright/issues/10671
-		[vim.lsp.protocol.Methods.textDocument_rename] = function(err, result, ctx)
-			if err then
-				vim.notify('Pyright rename failed: ' .. err.message, vim.log.levels.ERROR)
-				return
-			end
-
-			---@cast result lsp.WorkspaceEdit
-			for _, change in ipairs(result.documentChanges or {}) do
-				for _, edit in ipairs(change.edits or {}) do
-					if edit.annotationId then
-						edit.annotationId = nil
-					end
-				end
-			end
-
-			local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
-			vim.lsp.util.apply_workspace_edit(result, client.offset_encoding)
-		end,
-	},
+vim.lsp.config('ty', {
+	settings = {
+		ty = {
+			-- disableLanguageServices = true,
+			experimental = {
+				rename = true,
+			},
+		}
+	}
 })
 
-vim.lsp.enable({ "pyright", "ruff" })
+vim.lsp.enable({ "ty", "ruff" })
 
 -- snippets
 
@@ -76,15 +55,18 @@ ls.add_snippets("python", {
 	def read(stdin) -> str:
 		return stdin.readline().strip()
 
+
 	def solve({}) -> {}:
 		pass
+
 
 	def main(stdin):
 		line = read(stdin)
 
+
 	from sys import stdin
 	main(stdin)
-	]], { i(1), i(2, "int") })),
+	]], { i(1), i(2, "None") })),
 
 	s("solve", fmt([[
 	def solve({}) -> {}:
