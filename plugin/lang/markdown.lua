@@ -17,3 +17,37 @@ end)
 vim.cmd([[do FileType]])
 
 vim.lsp.enable("marksman")
+
+-- snippets
+
+local ls = require 'luasnip'
+local s, i = ls.s, ls.insert_node
+local fmt = require 'luasnip.extras.fmt'.fmt
+
+ls.add_snippets("markdown", {
+	s("review", fmt([[
+	Depends on:
+	- TODO
+
+	## Context
+
+	{}
+
+	## Description
+
+	{}
+
+	## How to test
+
+	{}
+	]], { i(3), i(1), i(2) })),
+
+	s("smallreview", fmt([[
+	Depends on:
+	- TODO
+
+	## Description
+
+	{}
+	]], { i(1) }))
+})
