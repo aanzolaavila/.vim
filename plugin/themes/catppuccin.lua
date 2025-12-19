@@ -15,4 +15,4 @@ local catppuccin = function()
   vim.cmd(cmd)
 end
 
--- catppuccin()
+catppuccin()
