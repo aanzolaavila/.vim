@@ -1,5 +1,5 @@
 local mason_required = vim.list_extend(vim.g.mason_ensure_installed or {}, {
-	"rust-analyzer",
+	-- "rust-analyzer", -- it is better to use the one from asdf, otherwise many things wont work
 	"codelldb",
 })
 vim.g.mason_ensure_installed = mason_required
@@ -18,13 +18,19 @@ vim.lsp.config("rust_analyzer", {
 				allFeatures = true,
 				loadOutDirsFromCheck = true,
 				runBuildScripts = true,
+				buildScripts = {
+					enable = true,
+				}
 			},
+			check = { command = "clippy" },
+			inlayHints = {
+				bindingModeHints = { enabled = true },
+				closureCaptureHints = { enabled = true },
+				closureReturnTypeHints = { enable = "always" },
+				maxLength = 100,
+			},
+			rustc = { source = "discover" },
 			-- Add clippy lints for Rust.
-			checkOnSave = {
-				allFeatures = true,
-				command = "clippy",
-				extraArgs = { "--no-deps" },
-			},
 			procMacro = {
 				enable = true,
 				ignored = {
@@ -36,19 +42,48 @@ vim.lsp.config("rust_analyzer", {
 			diagnostics = {
 				enable = true,
 				enableExperimental = true,
-				disabled = { "unresolved-proc-macro" },
+				-- disabled = { "unresolved-proc-macro" },
 			},
-		},
-	}
+			files = {
+				exclude = {
+					".direnv",
+					".git",
+					".jj",
+					".github",
+					".gitlab",
+					"bin",
+					"node_modules",
+					"target",
+					"venv",
+					".venv",
+				},
+				-- Avoid Roots Scanned hanging, see https://github.com/rust-lang/rust-analyzer/issues/12613#issuecomment-2096386344
+				watcher = "client",
+			},
+		}
+	},
 })
+
+vim.lsp.config('codelldb', {})
 
 vim.api.nvim_create_autocmd('BufRead', {
 	pattern = "Cargo.toml",
 	callback = function(_)
-		-- completion = {
-		--   cmp = { enabled = true },
-		-- },
-		require 'crates'.setup({})
+		require 'crates'.setup({
+			{
+				completion = {
+					crates = {
+						enabled = true,
+					},
+				},
+				lsp = {
+					enabled = true,
+					actions = true,
+					completion = true,
+					hover = true,
+				},
+			}
+		})
 	end
 })
 
