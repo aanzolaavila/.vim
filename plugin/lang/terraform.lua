@@ -53,7 +53,8 @@ vim.lsp.enable("terraformls")
 -- snippets
 
 local ls = require 'luasnip'
-local s, i = ls.s, ls.insert_node
+local s, i, t, c = ls.s, ls.insert_node, ls.text_node, ls.choice_node
+local rep = require("luasnip.extras").rep
 local fmt = require 'luasnip.extras.fmt'.fmt
 
 ls.add_snippets("terraform", {
@@ -95,4 +96,80 @@ ls.add_snippets("terraform", {
 		}}
 	}}
 	]], { i(1), i(2, "AWS"), i(3) })), -- TODO 'type' should be choice of AWS or Service
+
+	s("vpc", fmt([[
+	data "aws_vpc" "this" {{
+		filter {{
+			name   = "tag:Environment"
+			values = ["{}"]
+		}}
+	}}
+	]], { c(1, {
+		t("dev"),
+		t("prod"),
+		i(nil),
+	}) })),
+
+	s("subnets", fmt([[
+	data "aws_subnets" "{}" {{
+		filter {{
+			name   = "vpc-id"
+			values = [data.aws_vpc.this.id]
+		}}
+
+		tags = {{
+			Tier = "{}"
+		}}
+	}}
+	]], { c(1, { t("public"), t("private") }), rep(1) })),
+
+	s("remote_state", fmt([[
+	data "terraform_remote_state" "{}" {{
+		backend = "s3"
+		config = {{
+			bucket       = "treble-ai-shared-terraform-state"
+			key          = "{}/{}.tfstate"
+			region       = "us-east-1"
+			encrypt      = true
+			use_lockfile = true
+			profile      = "shared"
+		}}
+	}}
+	]], { i(1), i(2, "dev"), rep(1) })),
+
+
+	s("tf_state", fmt([[
+	terraform {{
+		backend "s3" {{
+			bucket       = "treble-ai-shared-terraform-state"
+			key          = "{}/.tfstate"
+			region       = "us-east-1"
+			encrypt      = true
+			use_lockfile = true
+			profile      = "shared"
+		}}
+
+		required_providers {{
+			aws = {{
+				source  = "hashicorp/aws"
+				version = "~> {}"
+			}}
+		}}
+	}}
+
+	provider "aws" {{
+		region  = "us-east-1"
+		profile = "{}"
+
+		default_tags {{
+			tags = {{
+				ManagedBy   = "terraform"
+				Environment = "{}"
+				Service     = ""
+				Repo        = "treble-ai/"
+				Owner       = "platform"
+			}}
+		}}
+	}}
+	]], { i(1, "dev"), i(2, "6.32"), rep(1), rep(1) })),
 })
