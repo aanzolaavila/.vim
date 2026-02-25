@@ -80,6 +80,20 @@ local opts = {
 				fallback()
 			end
 		end, { 'i', 's' }),
+		["<C-l>"] = cmp.mapping(function(fallback)
+			if luasnip.choice_active() then
+				luasnip.change_choice(1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
+		["<C-h>"] = cmp.mapping(function(fallback)
+			if luasnip.choice_active() then
+				luasnip.change_choice(-1)
+			else
+				fallback()
+			end
+		end, { 'i', 's' }),
 	},
 
 	sources = cmp.config.sources(
