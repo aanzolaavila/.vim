@@ -34,11 +34,14 @@ function random_theme()
   vim.cmd(command)
 end
 
-vim.api.nvim_create_user_command('RenewColorscheme', function()
+local renew_colorscheme = function()
   -- Workaround to clear remaining colorscheme highlighting
   vim.cmd('colorscheme default')
   vim.cmd('set background=dark')
   random_theme()
-end, {})
+end
+
+vim.api.nvim_create_user_command('RenewColorscheme', renew_colorscheme, {})
+vim.keymap.set('n', '<localleader>rc', renew_colorscheme, { silent = false, desc = '[r]enew [c]olorscheme' })
 
 random_theme()
