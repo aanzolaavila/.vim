@@ -48,9 +48,26 @@ local treble = {
   list_margin = 0,
 }
 
-vim.g.vimwiki_list = { general, health, treble }
+-- vim-zettel
+local zettel = {
+  path = wiki_dir .. '/zettel',
+  syntax = 'markdown',
+  ext = 'md',
 
-local wiki_group = vim.api.nvim_create_augroup('Wiki', { clear = true })
+  auto_diary_index = 1,
+  auto_generate_links = 1,
+  auto_toc = 1,
+  diary_caption_level = -1,
+  diary_frequency = 'weekly',
+  list_margin = 0,
+}
+
+vim.g.nv_search_paths = zettel.path
+
+-- List of vimwiki's
+vim.g.vimwiki_list = { general, health, treble, zettel }
+
+local wiki_group = vim.api.nvim_create_augroup('vimwiki', { clear = true })
 
 -- Auto format lines on wiki files
 -- vim.api.nvim_create_autocmd("BufWritePre", {
