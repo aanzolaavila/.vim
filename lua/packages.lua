@@ -71,6 +71,7 @@ vim.pack.add({
 	{ src = 'https://github.com/vimwiki/vimwiki' },
 	{ src = 'https://github.com/freitass/todo.txt-vim' },
 	{ src = "https://github.com/obsidian-nvim/obsidian.nvim",           version = vim.version.range "*", },
+	{ src = 'https://github.com/3rd/image.nvim' }, -- for image rendering
 
 	-- lualine
 	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
