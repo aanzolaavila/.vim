@@ -35,19 +35,6 @@ local health = {
   syntax = 'default',
 }
 
-local treble = {
-  path = wiki_dir .. '/treble',
-  syntax = 'markdown',
-  ext = 'md',
-
-  auto_diary_index = 1,
-  auto_generate_links = 1,
-  auto_toc = 1,
-  diary_caption_level = -1,
-  diary_frequency = 'weekly',
-  list_margin = 0,
-}
-
 -- vim-zettel
 local zettel = {
   path = wiki_dir .. '/zettel',
@@ -65,7 +52,7 @@ local zettel = {
 vim.g.nv_search_paths = zettel.path
 
 -- List of vimwiki's
-vim.g.vimwiki_list = { general, health, treble, zettel }
+vim.g.vimwiki_list = { general, health, zettel }
 
 local wiki_group = vim.api.nvim_create_augroup('vimwiki', { clear = true })
 
