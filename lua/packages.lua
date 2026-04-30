@@ -69,6 +69,7 @@ vim.pack.add({
 	{ src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
 	{ src = 'https://github.com/folke/which-key.nvim' },
 	{ src = 'https://github.com/vimwiki/vimwiki' },
+	{ src = 'https://github.com/mattn/calendar-vim' },
 	{ src = 'https://github.com/freitass/todo.txt-vim' },
 	{ src = "https://github.com/obsidian-nvim/obsidian.nvim",           version = vim.version.range "*", },
 	{ src = 'https://github.com/3rd/image.nvim' }, -- for image rendering
