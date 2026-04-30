@@ -9,7 +9,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Telescope keymaps are now on telescope.lua config
 
 -- Diagnostic keymaps
-local diagnostic_goto = function(next, severity)
+local function diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
@@ -69,7 +69,7 @@ vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>') ]]
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>', { desc = "Create new tab" })
 vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>', { desc = "Move current tab left" })
 vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Move current tab right" })
-vim.keymap.set('n', '<C-x>', '<cmd>tabclose<cr>', { desc = "Close current tab", silent = true })
+-- vim.keymap.set('n', '<C-x>', '<cmd>tabclose<cr>', { desc = "Close current tab", silent = true })
 
 -- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vim.keymap.set('v', '.', ':normal.<CR>')

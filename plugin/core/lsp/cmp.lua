@@ -126,7 +126,7 @@ local opts = {
 
 	completion = {
 		keyboard_length = 3,
-		completeopt = "menu,menuone,noinsert,noselect",
+		completeopt = "menu,menuone,noinsert,noselect,fuzzy",
 	},
 }
 
