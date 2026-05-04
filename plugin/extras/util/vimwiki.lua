@@ -246,11 +246,12 @@ create_autocommand(function()
   end, { desc = "Insert a link to an (image) asset" })
 end)
 
--- Create a user command :VimwikiNewFromTemplate [template_name]
-create_user_command('VimwikiNewFromTemplate', function(opts)
+-- Create a user command :VimwikiCreateFromTemplate [template_name]
+create_user_command('VimwikiCreateFromTemplate', function(opts)
   local template = opts.args ~= '' and opts.args or 'zettel'
 
-  local filename = zettelid() .. '.md'
+  local id = zettelid()
+  local filename = id .. '.md'
   local full_file_path = string.format('%s/%s', general_wiki, filename)
 
   -- Ensure the file does not already exist
@@ -269,6 +270,10 @@ create_user_command('VimwikiNewFromTemplate', function(opts)
   -- Read template content and write to the new file
   local template_lines = vim.fn.readfile(full_template_path)
   vim.fn.writefile(template_lines, full_file_path)
+
+  -- write the link into current buffer
+  local s = string.format("[%s](/%s)", id, filename)
+  vim.api.nvim_put({ s }, "", true, true)
 
   -- Open the new file and notify
   vim.cmd('edit ' .. full_file_path)
