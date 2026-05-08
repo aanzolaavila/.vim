@@ -1,29 +1,40 @@
 local opts = {
   defaults = {
     color_devicons = true,
-    borderchars = { "", "", "", "", "", "", "", "" },
+    -- borderchars = { "", "", "", "", "", "", "", "" },
     sorting_strategy = 'ascending',
     layout_strategy = 'horizontal',
     results_title = false,
-    layout_config = {
-      height = 0.999,
-      width = 0.999,
-    },
+    -- layout_config = {
+    --   height = 0.999,
+    --   width = 0.999,
+    -- },
     initial_mode = 'insert',
     path_display = { truncate = 3 },
     prompt_position = 'top',
+    generic_sorter = require('mini.fuzzy').get_telescope_sorter
   },
-  extensions = {},
+  extensions = {
+    fzf = {
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    }
+  },
 }
 
 local telescope = require('telescope')
 telescope.setup(opts)
 
-local builtin   = require('telescope.builtin')
-local themes    = require('telescope.themes')
-local with_cfg  = require('util.telescope').with_cfg
+telescope.load_extension('fzf')
 
-local with_opts = function(picker, theme, custom_opts)
+local builtin  = require('telescope.builtin')
+local themes   = require('telescope.themes')
+local with_cfg = require('util.telescope').with_cfg
+
+local function with_opts(picker, theme, custom_opts)
   local new_opts = vim.tbl_deep_extend("force", opts.defaults, custom_opts or {})
   return with_cfg(picker, theme, new_opts)
 end
@@ -72,7 +83,7 @@ vim.keymap.set('n', '<leader>sj', with_opts(builtin.jumplist, themes.get_dropdow
   }),
   { desc = '[s]earch [j]umplist' })
 
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
 
 vim.keymap.set('n', '<leader>sw', with_opts(builtin.grep_string, themes.get_dropdown, {
     initial_mode = 'normal',
@@ -94,7 +105,7 @@ vim.keymap.set('n', '<leader>sd', with_opts(builtin.diagnostics, themes.get_ivy,
   }),
   { desc = '[s]earch [d]iagnostics' })
 
-vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
 
 vim.keymap.set('n', '<leader>sc',
   with_opts(builtin.commands, themes.get_dropdown, {
@@ -104,14 +115,13 @@ vim.keymap.set('n', '<leader>sc',
 
 -- telescope vim-bookmarks
 telescope.load_extension('vim_bookmarks')
-
 vim.keymap.set('n', '<leader>sB', telescope.extensions.vim_bookmarks.all,
-  { desc = '[s]earch [b]ookmarks' })
+  { desc = '[s]earch [B]ookmarks' })
 
 vim.keymap.set('n', '<leader>sr',
   with_opts(builtin.registers, themes.get_ivy, { initial_mode = 'insert', }),
-  { desc = '[S]earch [R]egisters' })
+  { desc = '[s]earch [r]egisters' })
 
 vim.keymap.set('n', '<leader>sb',
   with_opts(builtin.builtin, themes.get_ivy, { initial_mode = 'normal', }),
-  { desc = '[S]earch [B]uiltin' })
+  { desc = '[s]earch [b]uiltin' })
