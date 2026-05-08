@@ -1,6 +1,7 @@
 vim.pack.add({
 	-- core ---------
 	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
+	{ src = 'https://github.com/nvim-mini/mini.nvim' },
 
 	-- telescope
 	{
@@ -45,14 +46,11 @@ vim.pack.add({
 	-- coding
 	{ src = 'https://github.com/Wansmer/treesj' },
 	{ src = 'https://github.com/echasnovski/mini.icons',                version = 'stable' },
-	{ src = 'https://github.com/folke/flash.nvim' },
 	{ src = 'https://github.com/folke/todo-comments.nvim' },
 	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
 	{ src = 'https://github.com/mbbill/undotree' },
-	{ src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 	{ src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 	{ src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
-	{ src = 'https://github.com/stevearc/oil.nvim' },
 	{ src = 'https://github.com/tpope/vim-sleuth' },
 	{ src = 'https://github.com/windwp/nvim-autopairs' },
 	{ src = 'https://github.com/L3MON4D3/LuaSnip',                      version = vim.version.range('~2.0') },
@@ -62,12 +60,10 @@ vim.pack.add({
 
 	-- util
 	{ src = 'https://github.com/Asheq/close-buffers.vim' },
-	{ src = 'https://github.com/folke/persistence.nvim' },
 	{ src = 'https://github.com/tpope/vim-fugitive' },
 	{ src = 'https://github.com/gierens/vim-rfc',                       version = 'c8c61a2' },
 	{ src = 'https://github.com/wakatime/vim-wakatime' },
 	{ src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
-	{ src = 'https://github.com/folke/which-key.nvim' },
 	{ src = 'https://github.com/vimwiki/vimwiki' },
 	{ src = 'https://github.com/mattn/calendar-vim' },
 	{ src = 'https://github.com/freitass/todo.txt-vim' },

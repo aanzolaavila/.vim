@@ -45,10 +45,6 @@
       "rev": "0f536967abd097d9a4275087483f15d012418740",
       "src": "git@github.com:Saecki/crates.nvim"
     },
-    "flash.nvim": {
-      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
-      "src": "git@github.com:folke/flash.nvim"
-    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "git@github.com:rafamadriz/friendly-snippets"
@@ -95,6 +91,10 @@
       "src": "git@github.com:echasnovski/mini.icons",
       "version": "'stable'"
     },
+    "mini.nvim": {
+      "rev": "199b3344d4c0dab13e45483834ce11bb7744fa3a",
+      "src": "git@github.com:nvim-mini/mini.nvim"
+    },
     "neodev.nvim": {
       "rev": "46aa467dca16cf3dfe27098042402066d2ae242d",
       "src": "git@github.com:folke/neodev.nvim"
@@ -123,10 +123,6 @@
       "rev": "c588db330592fa477a70d2fee6ba20a57194bdc3",
       "src": "git@github.com:neovim/nvim-lspconfig"
     },
-    "nvim-tree.lua": {
-      "rev": "509962f21ab7289d8dcd28568af539be39a8c01e",
-      "src": "git@github.com:nvim-tree/nvim-tree.lua"
-    },
     "nvim-treesitter": {
       "rev": "cf12346a3414fa1b06af75c79faebe7f76df080a",
       "src": "git@github.com:nvim-treesitter/nvim-treesitter"
@@ -143,10 +139,6 @@
       "rev": "dec6573816767eaa9596cabc1593f45a2f7821ee",
       "src": "git@github.com:obsidian-nvim/obsidian.nvim",
       "version": ">=0.0.0"
-    },
-    "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
-      "src": "git@github.com:stevearc/oil.nvim"
     },
     "persistence.nvim": {
       "rev": "b20b2a7887bd39c1a356980b45e03250f3dce49c",
@@ -243,10 +235,6 @@
     "vimwiki": {
       "rev": "72792615e739d0eb54a9c8f7e0a46a6e2407c9e8",
       "src": "git@github.com:vimwiki/vimwiki"
-    },
-    "which-key.nvim": {
-      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
-      "src": "git@github.com:folke/which-key.nvim"
     }
   }
 }
