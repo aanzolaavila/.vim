@@ -5,8 +5,14 @@ require('mini.pick').setup({
 	}
 })
 
-vim.keymap.set('n', '<leader><space>', function() MiniPick.builtin.resume() end,
-	{ desc = '[ ] resume from existing picker' })
+vim.keymap.set('n', '<leader><space>', function()
+		local status, result = pcall(MiniPick.builtin.resume)
+		if not status then
+			vim.notify("No picker active", vim.log.levels.ERROR)
+		end
+	end,
+	{ desc = '[ ] resume from active picker' })
+
 vim.keymap.set('n', '<leader>sf', function() MiniPick.builtin.files() end, { desc = '[s]earch [f]iles' })
 vim.keymap.set('n', '<leader>sg', function() MiniPick.builtin.grep_live() end, { desc = '[s]earch by [g]rep live' })
 vim.keymap.set('n', '<leader>sh', function() MiniPick.builtin.help() end, { desc = '[s]earch [h]elp' })

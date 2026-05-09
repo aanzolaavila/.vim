@@ -89,82 +89,66 @@ local function zettelid()
   return os.date('%Y%m%d%H%M')
 end
 
-local function find_markdown_files(folder)
+local function filepicker_select(folder, callback, picker)
   assert(folder)
+  assert(callback)
+  picker = picker or 'grep_live'
 
-  local current_file = vim.api.nvim_buf_get_name(0)
-  local pattern = folder .. '/**/*.md'
-  local files = vim.fn.glob(pattern, false, true)
+  local builtin_pickers = require('mini.pick').builtin
+  local extra_pickers = require('mini.extra').pickers
+  local pickers = vim.tbl_extend('keep', builtin_pickers, extra_pickers)
 
-  local result = {}
-  for _, file in ipairs(files) do
-    local abs_file = vim.fn.fnamemodify(file, ':p')
-    local abs_current = vim.fn.fnamemodify(current_file, ':p')
-    if abs_file ~= abs_current then
-      table.insert(result, file)
-    end
+  local mini_picker = pickers[picker]
+  if not mini_picker then
+    vim.notify(string.format("Selected picker [%s] does not exist in mini.pick", picker), vim.log.levels.ERROR)
+    return
   end
 
-  return result
-end
+  mini_picker({
+    globs = '**/*.md',
+  }, {
+    source = {
+      cwd = folder,
+      name = "Vimwiki Search",
+      choose = function(item)
+        assert(item)
 
--- Open a Telescope picker with some choices and a callback function to do something
-local function telescope_picker_select(choices, callback)
-  assert(#choices > 0)
-  assert(callback)
+        -- 'item' looks like: "path/to/file.md:10:5:matching text"
+        -- separator is a null value
+        -- We use Lua patterns to extract the filename and line number
+        local parts    = vim.split(item, "%z")
+        local filename = parts[1]
+        local line     = tonumber(parts[2])
+        local col      = tonumber(parts[3])
+        local content  = parts[4]
 
-  local pickers = require "telescope.pickers"
-  local finders = require "telescope.finders"
-  local sorters = require "telescope.sorters"
-  local actions = require "telescope.actions"
-  local action_state = require "telescope.actions.state"
-
-  pickers.new({}, {
-    prompt_title = "Select something ...",
-    finder = finders.new_table(choices),
-    sorter = sorters.get_generic_fuzzy_sorter(),
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        callback(selection)
-      end)
-      return true
-    end
-  }):find()
-end
-
-local function telescope_filepicker_select(folder, callback)
-  assert(folder)
-  assert(callback)
-
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-
-  require("telescope.builtin").live_grep({
-    prompt_title = "Vimwiki Search (Contents)",
-    cwd = folder,
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        callback(selection)
-      end)
-      return true
-    end
+        -- Fallback if the pattern doesn't match for some reason
+        filename       = filename or item
+        callback({
+          filename = filename,
+          line = line,
+          col = col,
+          content = content,
+        })
+      end
+    }
   })
 end
 
 local function insert_link(folder)
   assert(folder)
 
-  telescope_filepicker_select(folder, function(selection)
+  local target_buf = vim.api.nvim_get_current_buf()
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  local row, col = cursor_pos[1], cursor_pos[2]
+
+  filepicker_select(folder, function(selection)
     if selection then
       local choice = selection.filename or selection[1]
       local title = vim.fn.fnamemodify(choice, ":t:r")
       local rel_folder = vim.fs.relpath(wiki_dir .. '/general', folder)
       local link = string.format("[%s](/%s/%s)", title, rel_folder, choice)
-      vim.api.nvim_put({ link }, "", true, true)
+      vim.api.nvim_buf_set_text(target_buf, row - 1, col, row - 1, col, { link })
     end
   end)
 end
@@ -172,31 +156,21 @@ end
 local function insert_image(folder)
   assert(folder)
 
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
+  local target_buf = vim.api.nvim_get_current_buf()
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  local row, col = cursor_pos[1], cursor_pos[2]
 
-  local callback = function(selection)
+  local function callback(selection)
     if selection then
       local choice = selection.filename or selection[1]
       local title = vim.fn.fnamemodify(choice, ":t:r")
       local rel_folder = vim.fs.relpath(wiki_dir .. '/general', folder)
       local link = string.format("![%s](/%s/%s)", title, rel_folder, choice)
-      vim.api.nvim_put({ link }, "", true, true)
+      vim.api.nvim_buf_set_text(target_buf, row - 1, col, row - 1, col, { link })
     end
   end
 
-  require("telescope.builtin").find_files({
-    prompt_title = "Vimwiki Image Search",
-    cwd = folder,
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        callback(selection)
-      end)
-      return true
-    end
-  })
+  filepicker_select(folder, callback, 'files')
 end
 
 local function create_autocommand(callback)
