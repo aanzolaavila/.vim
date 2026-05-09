@@ -185,10 +185,6 @@
       "rev": "2ded67cdf09bb07c4805d9e93d478095ed3d8606",
       "src": "git@github.com:stevearc/vim-arduino"
     },
-    "vim-bookmarks": {
-      "rev": "9cc5fa7ecc23b052bd524d07c85356c64b92aeef",
-      "src": "git@github.com:MattesGroeger/vim-bookmarks"
-    },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "git@github.com:tpope/vim-fugitive"

@@ -3,14 +3,6 @@ vim.pack.add({
 	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
 	{ src = 'https://github.com/nvim-mini/mini.nvim' },
 
-	-- telescope
-	{
-		src = 'https://github.com/nvim-telescope/telescope.nvim',
-		version = vim.version.range('~0.1.8'),
-	},
-	{ src = 'https://github.com/tom-anders/telescope-vim-bookmarks.nvim' },
-	{ src = 'https://github.com/nvim-telescope/telescope-symbols.nvim' },
-
 	-- treesitter
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
@@ -36,7 +28,6 @@ vim.pack.add({
 	-- extras -----------
 	-- coding
 	{ src = 'https://github.com/Wansmer/treesj' },
-	{ src = 'https://github.com/echasnovski/mini.icons',                version = 'stable' },
 	{ src = 'https://github.com/folke/todo-comments.nvim' },
 	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
 	{ src = 'https://github.com/mbbill/undotree' },
