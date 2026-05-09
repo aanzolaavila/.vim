@@ -86,11 +86,6 @@
       "src": "git@github.com:mason-org/mason.nvim",
       "version": "2.0.1 - 2.1.0"
     },
-    "mini.icons": {
-      "rev": "ff2e4f1d29f659cc2bad0f9256f2f6195c6b2428",
-      "src": "git@github.com:echasnovski/mini.icons",
-      "version": "'stable'"
-    },
     "mini.nvim": {
       "rev": "199b3344d4c0dab13e45483834ce11bb7744fa3a",
       "src": "git@github.com:nvim-mini/mini.nvim"
@@ -140,10 +135,6 @@
       "src": "git@github.com:obsidian-nvim/obsidian.nvim",
       "version": ">=0.0.0"
     },
-    "persistence.nvim": {
-      "rev": "b20b2a7887bd39c1a356980b45e03250f3dce49c",
-      "src": "git@github.com:folke/persistence.nvim"
-    },
     "playground": {
       "rev": "ba48c6a62a280eefb7c85725b0915e021a1a0749",
       "src": "git@github.com:nvim-treesitter/playground"
@@ -152,22 +143,13 @@
       "rev": "fcb3e9ac127d178b4c189088396165b3facc219e",
       "src": "git@github.com:nvim-lua/plenary.nvim"
     },
-    "telescope-symbols.nvim": {
-      "rev": "a6d0127a53d39b9fc2af75bd169d288166118aec",
-      "src": "git@github.com:nvim-telescope/telescope-symbols.nvim"
+    "telescope-fzf-native.nvim": {
+      "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
+      "src": "git@github.com:nvim-telescope/telescope-fzf-native.nvim"
     },
     "telescope-terraform-doc.nvim": {
       "rev": "66987fac94d12704fdfd90b857f4f648e31251c9",
       "src": "git@github.com:ANGkeith/telescope-terraform-doc.nvim"
-    },
-    "telescope-vim-bookmarks.nvim": {
-      "rev": "09a61043496bd9c4240955f7532ff2ae8fe3a905",
-      "src": "git@github.com:tom-anders/telescope-vim-bookmarks.nvim"
-    },
-    "telescope.nvim": {
-      "rev": "84b9ba066d1860f7a586ce9cd732fd6c4f77d1d9",
-      "src": "git@github.com:nvim-telescope/telescope.nvim",
-      "version": "0.1.8 - 0.2.0"
     },
     "tiny-inline-diagnostic.nvim": {
       "rev": "57a0eb84b2008c76e77930639890d9874195b1e1",

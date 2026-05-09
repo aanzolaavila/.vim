@@ -1,17 +1,10 @@
 local globalAutoFmtEnabled = true;
 
 local on_attach = function(args)
-	-- NOTE: Remember that lua is a real programming language, and as such it is possible
-	-- to define small helper and utility functions so you don't have to repeat yourself
-	-- many times.
-	-- ...
-	-- In this case, we create a function that lets us more easily define mappings specific
-	-- for LSP related items. It sets the mode, buffer and description for us each time.
-
 	local bufnr = args.buf
 	local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-	local map = function(modes, keys, func, desc)
+	local function map(modes, keys, func, desc)
 		if desc then
 			desc = 'LSP: ' .. desc
 		end
@@ -19,77 +12,32 @@ local on_attach = function(args)
 		vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	local cmd = function(cmd, func, opts)
+	local function cmd(command, func, opts)
 		if opts and opts.desc then
 			opts.desc = 'LSP: ' .. opts.desc
 		end
 
-		vim.api.nvim_buf_create_user_command(bufnr, cmd, func, opts)
+		vim.api.nvim_buf_create_user_command(bufnr, command, func, opts)
 	end
+
+	local picker = require('mini.extra').pickers.lsp
 
 	map('n', 'grn', vim.lsp.buf.rename, '[r]e[n]ame')
 	map({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, 'code [a]ction')
-
-	local telescope = require('telescope.builtin')
-	local themes = require('telescope.themes')
-	local with_cfg = require('util.telescope').with_cfg
-
-	map('n', 'gd', with_cfg(telescope.lsp_definitions, themes.get_ivy, { initial_mode = 'normal' }),
-		'[g]oto [d]efinition')
-
-	map('n', 'grt', vim.lsp.buf.type_definition, 'Type [D]efinition')
-
-	map('n', 'grr',
-		with_cfg(telescope.lsp_references, themes.get_ivy,
-			{
-				initial_mode = 'normal',
-				path_display = { smart = true },
-				trim_text = true,
-			}),
-		'[g]oto [r]eferences')
-
-	local short_display = {
-		shorten = {
-			len = 1,
-			exclude = { -2, -1 },
-		}
-	}
-
-	map('n', 'gri', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
-			initial_mode = 'normal',
-			path_display = short_display,
-			trim_text = true,
-			jump_type = 'none',
-		}),
-		'[g]oto [i]mplementation')
-	map('n', 'grI', with_cfg(telescope.lsp_implementations, themes.get_ivy, {
-			initial_mode = 'normal',
-			path_display = short_display,
-			trim_text = true,
-			jump_type = 'vsplit',
-		}),
-		'[g]oto [I]mplementation, in vsplit if only one choice')
-
-	map('n', '<leader>D', function() vim.lsp.buf.declaration({ initial_mode = 'normal' }) end, '[g]oto [D]eclaration')
-	map('n', '<leader>ws', with_cfg(telescope.lsp_dynamic_workspace_symbols, themes.get_ivy, {
-			initial_mode = 'normal',
-			path_display = { smart = true },
-			trim_text = true
-		}),
-		'[w]orkspace [s]ymbols')
+	map('n', 'gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
+	map('n', 'grt', function() picker { scope = 'type_definition' } end, 'Type [D]efinition')
+	map('n', 'grr', function() picker { scope = 'references' } end, '[g]oto [r]eferences')
+	map('n', 'gri', function() picker { scope = 'implementation' } end, '[g]oto [i]mplementation')
+	map('n', '<leader>D', function() picker { scope = 'declaration' } end, '[g]oto [D]eclaration')
+	map('n', '<leader>ws', function() picker { scope = 'workspace_symbol' } end, '[w]orkspace [s]ymbols')
 
 	-- See `:help K` for why this keymap
 	map('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
 	map('n', '<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
 	-- Lesser used LSP functionality
-	-- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
 	cmd("LspWorkspaceAddFolder", vim.lsp.buf.add_workspace_folder, { desc = 'Add workspace folder' })
-	-- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
 	cmd("LspWorkspaceRemoveFolder", vim.lsp.buf.remove_workspace_folder, { desc = 'Remove workspace folder' })
-	-- nmap('<leader>wl', function()
-	--   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	-- end, '[W]orkspace [L]ist Folders')
 	cmd("LspWorkspaceListFolders", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, { desc = 'List workspace folders' })
@@ -104,11 +52,11 @@ local on_attach = function(args)
 
 
 	-- Create a command `:Format` local to the LSP buffer
-	local shouldAutoformatByDefault = function()
+	local function shouldAutoformatByDefault()
 		return os.getenv("AT_WORK") ~= "true"
 	end
 
-	local supportsFormatting = function()
+	local function supportsFormatting()
 		return client:supports_method('textDocument/formatting')
 	end
 
@@ -117,7 +65,7 @@ local on_attach = function(args)
 			vim.lsp.buf.format()
 			vim.print("Buffer formatted")
 		else
-			print("LSP server does not support formatting")
+			vim.notify("LSP server does not support formatting", vim.log.levels.WARN)
 		end
 	end, { desc = 'Format current buffer with LSP' })
 

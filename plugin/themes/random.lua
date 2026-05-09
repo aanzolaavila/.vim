@@ -1,4 +1,4 @@
-function random_theme()
+local function random_theme()
   local dark = {
     "wildcharm",
     "vim",
