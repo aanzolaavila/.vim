@@ -8,14 +8,17 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Diagnostic keymaps
 local function diagnostic_goto(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  local count = next and 1 or -1
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    vim.diagnostic.jump({
+      severity = severity,
+      count = count,
+    })
   end
 end
-vim.keymap.set('n', '[D', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
-vim.keymap.set('n', ']D', diagnostic_goto(true), { desc = "Goto next diagnostic" })
+-- vim.keymap.set('n', '[D', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
+-- vim.keymap.set('n', ']D', diagnostic_goto(true), { desc = "Goto next diagnostic" })
 vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)

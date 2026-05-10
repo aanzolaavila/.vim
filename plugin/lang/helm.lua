@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local bufnr = event.buf
 		if vim.api.nvim_get_option_value("filetype", { buf = bufnr }) == "helm" then
 			vim.schedule(function()
-				vim.lsp.stop_client(client.id)
+				client.stop(client, true)
 			end)
 		end
 	end

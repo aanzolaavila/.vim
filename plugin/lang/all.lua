@@ -40,7 +40,9 @@ au('LspAttach', {
 		})
 		au({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
 			buffer = bufnr,
-			callback = vim.lsp.codelens.refresh
+			callback = function()
+				vim.lsp.codelens.enable(true, { bufnr = bufnr })
+			end
 		})
 	end
 })

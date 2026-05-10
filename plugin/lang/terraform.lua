@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	command = "setlocal commentstring=#\\ %s",
 })
 
-local executed = false
+--[[ local executed = false
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "terraform",
 	callback = function(_)
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		executed = true
 	end
-})
+}) ]]
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)

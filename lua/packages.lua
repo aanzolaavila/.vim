@@ -6,10 +6,10 @@ vim.pack.add({
 	-- treesitter
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
-	{ src = 'https://github.com/nvim-treesitter/playground' },
+	-- { src = 'https://github.com/nvim-treesitter/playground' },
 
 	-- lsp
-	{ src = 'https://github.com/mason-org/mason.nvim',                       version = vim.version.range('~2.0.1') },
+	{ src = 'https://github.com/mason-org/mason.nvim',                       version = vim.version.range('~2.2.1') },
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = 'https://github.com/folke/neodev.nvim' },
 	{ src = 'https://github.com/onsails/lspkind.nvim' },
@@ -23,7 +23,6 @@ vim.pack.add({
 
 	-- dap
 	{ src = 'https://github.com/mfussenegger/nvim-dap' },
-
 
 	-- extras -----------
 	-- coding
@@ -46,6 +45,7 @@ vim.pack.add({
 	{ src = 'https://github.com/wakatime/vim-wakatime' },
 	{ src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
 	{ src = 'https://github.com/vimwiki/vimwiki' },
+	{ src = 'https://github.com/zk-org/zk-nvim' },
 	{ src = 'https://github.com/mattn/calendar-vim' },
 	{ src = 'https://github.com/freitass/todo.txt-vim' },
 	{ src = "https://github.com/obsidian-nvim/obsidian.nvim",                version = vim.version.range "*", },
@@ -56,7 +56,6 @@ vim.pack.add({
 	{ src = 'https://github.com/linrongbin16/lsp-progress.nvim' },
 
 	-- lang --------
-
 	-- schema store for yaml schema support
 	{ src = 'https://github.com/b0o/SchemaStore.nvim' },
 
@@ -69,9 +68,6 @@ vim.pack.add({
 
 	-- helm
 	{ src = 'https://github.com/towolf/vim-helm' },
-
-	-- terraform
-	{ src = 'https://github.com/ANGkeith/telescope-terraform-doc.nvim' },
 
 	-- markdown
 	{ src = 'https://github.com/iamcco/markdown-preview.nvim' },
@@ -86,7 +82,44 @@ vim.pack.add({
 	-- arduino
 	{ src = 'https://github.com/stevearc/vim-arduino' },
 	{ src = 'https://github.com/chomosuke/typst-preview.nvim',               version = vim.version.range("~1") },
+
+	-- quarto
+	{ src = 'https://github.com/quarto-dev/quarto-nvim' },
+	{ src = 'https://github.com/jmbuhr/otter.nvim' },
 })
 
 -- native undotree
-vim.cmd [[ packadd neovim.undotree ]]
+vim.schedule(function() vim.cmd [[ packadd nvim.undotree ]] end)
+
+-- My WIP plugins
+-- terraform
+vim.opt.rtp:prepend(vim.fn.expand '~/code/development/terraform-doc.nvim')
+
+-- Cleanup unused plugins
+local function pack_clean()
+	local active_plugins = {}
+	local unused_plugins = {}
+
+	for _, plugin in ipairs(vim.pack.get()) do
+		active_plugins[plugin.spec.name] = plugin.active
+	end
+
+	for _, plugin in ipairs(vim.pack.get()) do
+		if not active_plugins[plugin.spec.name] then
+			table.insert(unused_plugins, plugin.spec.name)
+		end
+	end
+
+	if #unused_plugins == 0 then
+		return
+	end
+
+	local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
+	if choice == 1 then
+		vim.pack.del(unused_plugins)
+	end
+end
+
+vim.api.nvim_create_autocmd('VimEnter', {
+	callback = pack_clean
+})

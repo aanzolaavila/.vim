@@ -18,6 +18,16 @@ vim.cmd([[do FileType]])
 
 vim.lsp.enable("marksman")
 
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'markdown',
+	callback = function(event)
+		-- Adds the ability of setting/unsetting a checkbox in markdown
+		vim.keymap.set('n', '<C-Space>', function()
+			require('checkbox-toggle').toggle()
+		end, { buf = event.buf })
+	end
+})
+
 -- snippets
 
 local ls = require 'luasnip'
