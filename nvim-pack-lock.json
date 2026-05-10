@@ -137,19 +137,15 @@
     },
     "playground": {
       "rev": "ba48c6a62a280eefb7c85725b0915e021a1a0749",
-      "src": "git@github.com:nvim-treesitter/playground"
+      "src": "https://github.com/nvim-treesitter/playground"
     },
     "plenary.nvim": {
       "rev": "fcb3e9ac127d178b4c189088396165b3facc219e",
       "src": "git@github.com:nvim-lua/plenary.nvim"
     },
-    "telescope-fzf-native.nvim": {
-      "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
-      "src": "git@github.com:nvim-telescope/telescope-fzf-native.nvim"
-    },
     "telescope-terraform-doc.nvim": {
       "rev": "66987fac94d12704fdfd90b857f4f648e31251c9",
-      "src": "git@github.com:ANGkeith/telescope-terraform-doc.nvim"
+      "src": "https://github.com/ANGkeith/telescope-terraform-doc.nvim"
     },
     "tiny-inline-diagnostic.nvim": {
       "rev": "57a0eb84b2008c76e77930639890d9874195b1e1",
@@ -171,10 +167,6 @@
       "rev": "325036ee145ca51d9efb145c09ac16bce3bc8b7d",
       "src": "git@github.com:chomosuke/typst-preview.nvim",
       "version": "1.0.0 - 2.0.0"
-    },
-    "undotree": {
-      "rev": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d",
-      "src": "git@github.com:mbbill/undotree"
     },
     "venv-selector.nvim": {
       "rev": "bcb2f58533c59b01565285eba49693f00bc460f5",

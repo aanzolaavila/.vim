@@ -30,7 +30,6 @@ vim.pack.add({
 	{ src = 'https://github.com/Wansmer/treesj' },
 	{ src = 'https://github.com/folke/todo-comments.nvim' },
 	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
-	{ src = 'https://github.com/mbbill/undotree' },
 	{ src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 	{ src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
 	{ src = 'https://github.com/tpope/vim-sleuth' },
@@ -88,3 +87,6 @@ vim.pack.add({
 	{ src = 'https://github.com/stevearc/vim-arduino' },
 	{ src = 'https://github.com/chomosuke/typst-preview.nvim',               version = vim.version.range("~1") },
 })
+
+-- native undotree
+vim.cmd [[ packadd neovim.undotree ]]
