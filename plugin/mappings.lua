@@ -6,18 +6,19 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Telescope keymaps are now on telescope.lua config
-
 -- Diagnostic keymaps
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+local function diagnostic_goto(next, severity)
+  local count = next and 1 or -1
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    vim.diagnostic.jump({
+      severity = severity,
+      count = count,
+    })
   end
 end
-vim.keymap.set('n', '[D', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
-vim.keymap.set('n', ']D', diagnostic_goto(true), { desc = "Goto next diagnostic" })
+-- vim.keymap.set('n', '[D', diagnostic_goto(false), { desc = "Goto previous diagnostic" })
+-- vim.keymap.set('n', ']D', diagnostic_goto(true), { desc = "Goto next diagnostic" })
 vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
@@ -69,7 +70,7 @@ vim.keymap.set('n', '<S-H>', '<cmd>bprev<cr>') ]]
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<cr>', { desc = "Create new tab" })
 vim.keymap.set('n', '<leader><S-H>', '<cmd>tabm -1<cr>', { desc = "Move current tab left" })
 vim.keymap.set('n', '<leader><S-L>', '<cmd>tabm +1<cr>', { desc = "Move current tab right" })
-vim.keymap.set('n', '<C-x>', '<cmd>tabclose<cr>', { desc = "Close current tab", silent = true })
+-- vim.keymap.set('n', '<C-x>', '<cmd>tabclose<cr>', { desc = "Close current tab", silent = true })
 
 -- In Visual Mode, when I press . execute it as I would run it in Normal Mode, over the selected lines
 vim.keymap.set('v', '.', ':normal.<CR>')

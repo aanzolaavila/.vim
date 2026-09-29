@@ -52,21 +52,31 @@ local fmt = require 'luasnip.extras.fmt'.fmt
 
 ls.add_snippets("python", {
 	s("ayed", fmt([[
-	def read(stdin) -> str:
-		return stdin.readline().strip()
+	from sys import stdin
+	from typing import TextIO
 
 
-	def solve({}) -> {}:
+	def read(f: TextIO) -> str:
+		return f.readline().strip()
+
+
+	def solve() -> None: # T(n) = O(?)
+		"""
+		== Especificación ==
+		Entrada:
+			--
+		Salida:
+			--
+		"""
 		pass
 
 
-	def main(stdin):
-		line = read(stdin)
+	def main(f: TextIO):
+		line = read(f)
 
 
-	from sys import stdin
 	main(stdin)
-	]], { i(1), i(2, "None") })),
+	]], {})),
 
 	s("solve", fmt([[
 	def solve({}) -> {}:

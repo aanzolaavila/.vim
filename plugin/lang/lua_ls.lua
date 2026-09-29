@@ -21,7 +21,6 @@ vim.lsp.config('lua_ls', {
 	},
 })
 
-
 local ls = require 'luasnip'
 local s, i = ls.snippet, ls.insert_node
 local fmt = require 'luasnip.extras.fmt'.fmt

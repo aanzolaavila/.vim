@@ -22,7 +22,8 @@ local opts = {
 local todo = require 'todo-comments'
 todo.setup(opts)
 
-vim.keymap.set( 'n', ']t', todo.jump_next, { desc = 'Next Todo comment' })
-vim.keymap.set( 'n', '[t', todo.jump_prev, { desc = 'Prev Todo comment' })
-vim.keymap.set( 'n', '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME initial_mode=normal<cr>', { desc = '[S]earch [t]odos (TODO,FIX,FIXME)' })
-vim.keymap.set( 'n', '<leader>sT', '<cmd>TodoTelescope initial_mode=normal<cr>', { desc = '[S]earch all [T]odos' })
+vim.keymap.set('n', ']t', todo.jump_next, { desc = 'Next Todo comment' })
+vim.keymap.set('n', '[t', todo.jump_prev, { desc = 'Prev Todo comment' })
+vim.keymap.set('n', '<leader>st', '<cmd>TodoQuickFix keywords=TODO,FIX,FIXME initial_mode=normal<cr>',
+  { desc = '[S]earch [t]odos (TODO,FIX,FIXME)' })
+vim.keymap.set('n', '<leader>sT', '<cmd>TodoQuickFix initial_mode=normal<cr>', { desc = '[S]earch all [T]odos' })

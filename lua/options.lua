@@ -37,6 +37,7 @@ vim.opt.statusline = "%F%m%r%h%w%=(%{&ff}/%Y) (line %l/%L, col %c)"
 -- Save with LF, try to read as LF or as CRLF
 vim.opt.fileformats = "unix,dos"
 
+-- color column for margin limits
 vim.opt.colorcolumn = "80"
 
 vim.g.python3_host_prog = vim.fn.expand("~") .. "/.pyenv/versions/neovim/bin/python3"
@@ -73,7 +74,8 @@ vim.wo.signcolumn = 'yes'
 vim.opt.termguicolors = true
 
 -- Set completeopt to have a better completion experience
-vim.opt.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'fuzzy,menu,noselect'
+vim.opt.wildoptions:append('fuzzy')
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key

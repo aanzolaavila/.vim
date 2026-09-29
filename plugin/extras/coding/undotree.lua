@@ -1,8 +1,9 @@
-vim.pack.add({
-})
+local function toggle_undotree()
+	require('undotree').open()
+end
 
 vim.keymap.set(
 	'n', '<leader>u',
-	':UndotreeShow<CR>:UndotreeFocus<CR>',
+	toggle_undotree,
 	{ remap = true }
 )

@@ -3,12 +3,6 @@ local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 
-local has_words_before = function()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local opts = {
 	-- ensure that the first option is not selected by default
 	preselect = cmp.PreselectMode.None,
@@ -126,7 +120,7 @@ local opts = {
 
 	completion = {
 		keyboard_length = 3,
-		completeopt = "menu,menuone,noinsert,noselect",
+		completeopt = "menu,menuone,noinsert,noselect,fuzzy",
 	},
 }
 
