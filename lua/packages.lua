@@ -10,6 +10,7 @@ vim.pack.add({
 
 	-- lsp
 	{ src = 'https://github.com/mason-org/mason.nvim',                       version = vim.version.range('~2.2.1') },
+	-- { src = 'https://github.com/mason-org/mason-lspconfig.nvim',             version = vim.version.range('~2.3.0') },
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = 'https://github.com/folke/neodev.nvim' },
 	{ src = 'https://github.com/onsails/lspkind.nvim' },
