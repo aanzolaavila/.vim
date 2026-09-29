@@ -17,7 +17,7 @@ local opts = {
 }
 
 -- TODO: take location from actual configuration
-local zkdir = vim.fn.expand '~/Documents/wiki'
+local zkdir = vim.fn.expand '$ZK_NOTEBOOK_DIR'
 
 local zk = require('zk')
 local commands = require('zk.commands')
