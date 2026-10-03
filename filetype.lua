@@ -3,6 +3,7 @@ vim.filetype.add({
 		templ = "templ",
 		tf = "terraform",
 		zsh = "sh",
+		h = "c",
 	},
 	filename = {
 		["Tiltfile"] = "starlark",
