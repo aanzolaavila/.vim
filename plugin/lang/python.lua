@@ -56,10 +56,6 @@ ls.add_snippets("python", {
 	from typing import TextIO
 
 
-	def read(f: TextIO) -> str:
-		return f.readline().strip()
-
-
 	def solve() -> None: # T(n) = O(?)
 		"""
 		== Especificación ==
@@ -72,7 +68,7 @@ ls.add_snippets("python", {
 
 
 	def main(f: TextIO):
-		line = read(f)
+		pass
 
 
 	main(stdin)
