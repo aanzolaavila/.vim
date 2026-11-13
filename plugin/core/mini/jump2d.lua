@@ -1,4 +1,8 @@
-require('mini.jump2d').setup()
+require('mini.jump2d').setup({
+  mappings = {
+    start_jumping = '' -- '' disables the mapping
+  }
+})
 
 vim.keymap.set({ 'n', 'x', 'o' }, 's', function()
   MiniJump2d.start(MiniJump2d.builtin_opts.single_character)
