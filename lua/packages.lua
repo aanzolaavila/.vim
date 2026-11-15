@@ -9,7 +9,7 @@ vim.pack.add({
 	-- { src = 'https://github.com/nvim-treesitter/playground' },
 
 	-- lsp
-	{ src = 'https://github.com/mason-org/mason.nvim',                       version = vim.version.range('~2.2.1') },
+	{ src = 'https://github.com/mason-org/mason.nvim',                       version = vim.version.range('~2.3.1') },
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = 'https://github.com/folke/neodev.nvim' },
 	{ src = 'https://github.com/onsails/lspkind.nvim' },
