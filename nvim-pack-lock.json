@@ -147,6 +147,10 @@
       "rev": "17f1e5d664bc615478230dc0240666329efacf9b",
       "src": "https://github.com/quarto-dev/quarto-nvim"
     },
+    "tf-docs.nvim": {
+      "rev": "67f1ac6286f178d41a3fd333b6a95d28bc552ee7",
+      "src": "https://github.com/mhiro2/tf-docs.nvim"
+    },
     "tiny-inline-diagnostic.nvim": {
       "rev": "46ae9b3c8f3039e96ff4497d190ad0aee091f30d",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"

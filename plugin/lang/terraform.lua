@@ -29,6 +29,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.lsp.enable("terraformls")
 
+-- tf-docs
+require("tf-docs").setup()
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "terraform",
+	callback = function(args)
+		local buf = args.buf
+		local ft = vim.bo[buf].filetype
+		if ft ~= "terraform" and ft ~= "hcl" then
+			return
+		end
+
+		vim.keymap.set("n", "<localleader>sd", function()
+			local tf = require("tf-docs")
+			local url = tf.resolve(0)
+			if url and url ~= "" then
+				tf.open(0)
+				return
+			end
+		end, { buffer = buf, desc = "Terraform: docs or hover" })
+	end
+})
+
 -- snippets
 
 local ls = require 'luasnip'

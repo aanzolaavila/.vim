@@ -86,6 +86,9 @@ vim.pack.add({
 	-- quarto
 	{ src = 'https://github.com/quarto-dev/quarto-nvim' },
 	{ src = 'https://github.com/jmbuhr/otter.nvim' },
+
+	-- terraform
+	{ src = 'https://github.com/mhiro2/tf-docs.nvim' },
 })
 
 -- native undotree
