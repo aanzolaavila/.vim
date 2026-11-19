@@ -37,6 +37,7 @@ vim.pack.add({
 	{ src = 'https://github.com/saadparwaiz1/cmp_luasnip', },
 	{ src = 'https://github.com/rafamadriz/friendly-snippets' },
 	{ src = 'https://github.com/numToStr/Comment.nvim' },
+	{ src = 'https://github.com/folke/persistence.nvim' },
 
 	-- util
 	{ src = 'https://github.com/Asheq/close-buffers.vim' },
@@ -76,8 +77,8 @@ vim.pack.add({
 	{ src = 'https://github.com/Saecki/crates.nvim' },
 
 	-- typst
-	{ src = 'https://github.com/chomosuke/typst-preview.nvim',          version = vim.version.range("~1") },
-	{ src = 'https://github.com/chomosuke/typst-preview.nvim',          version = vim.version.range("~1") },
+	{ src = 'https://github.com/chomosuke/typst-preview.nvim',               version = vim.version.range("~1") },
+	{ src = 'https://github.com/chomosuke/typst-preview.nvim',               version = vim.version.range("~1") },
 
 	-- arduino
 	{ src = 'https://github.com/stevearc/vim-arduino' },
