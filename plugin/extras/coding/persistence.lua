@@ -16,6 +16,11 @@ vim.api.nvim_create_user_command('SessionLoadLast', function() persistence.load(
 vim.api.nvim_create_user_command('SessionSelect', persistence.select, { desc = "Select session to restore" })
 vim.api.nvim_create_user_command('SessionStop', persistence.stop, { desc = "Stop tracking session" })
 
+local function session_exists()
+	local session_file = persistence.current()
+	return vim.fn.filereadable(session_file) == 1
+end
+
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local cwd = vim.fs.normalize(vim.fn.getcwd())
@@ -25,7 +30,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			vim.fs.normalize("~/wiki"),
 		}
 
-		if not vim.tbl_contains(denylist, cwd) then
+		if not vim.tbl_contains(denylist, cwd) and session_exists() then
 			local choice = vim.fn.confirm("Load session from " .. cwd .. "?", "&Yes\n&No", 2)
 			if choice == 1 then
 				persistence.load()
